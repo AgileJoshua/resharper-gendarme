@@ -1,5 +1,6 @@
 ﻿using JetBrains.ReSharper.Intentions.CSharp.Test;
 using NUnit.Framework;
+using RGendarme.Rules.Tutorial.ReverseString;
 
 namespace RGendarme.Tests
 {

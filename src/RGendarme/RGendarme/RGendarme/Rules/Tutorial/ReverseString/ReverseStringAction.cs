@@ -11,7 +11,7 @@ using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.TextControl;
 using JetBrains.Util;
 
-namespace RGendarme
+namespace RGendarme.Rules.Tutorial.ReverseString
 {
     /// <summary>
     /// This is an example context action. The test project demonstrates tests for

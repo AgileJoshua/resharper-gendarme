@@ -12,12 +12,25 @@ namespace RGendarme.Rules.Tutorial.IntPower
     {   
         protected override void Run(IInvocationExpression element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
-            bool functionIsCalledPow = false;
-            var e = element.InvokedExpression as IReferenceExpression;
-            if (e != null)
+//            bool functionIsCalledPow = false;
+//            var e = element.InvokedExpression as IReferenceExpression;
+//            if (e != null)
+//            {
+//                if (e.Reference.GetName().Equals("Pow"))
+//                    functionIsCalledPow = true;
+//            }
+
+            bool isOnMathRow = false;
+            var r = element.InvocationExpressionReference.Resolve();
+            var m = r.DeclaredElement as IMethod;
+            if (m != null)
             {
-                if (e.Reference.GetName().Equals("Pow"))
-                    functionIsCalledPow = true;
+                var parent = m.GetContainingType();
+                if (parent != null)
+                {
+                    isOnMathRow = parent.GetClrName().FullName.Equals("System.Math")
+                                  && m.ShortName.Equals("Pow");
+                }
             }
 
             bool firstArgIsIdentifier = false;
@@ -44,7 +57,7 @@ namespace RGendarme.Rules.Tutorial.IntPower
                 }
             }
 
-            if (functionIsCalledPow && firstArgIsIdentifier && secondArgIsInteger)
+            if (isOnMathRow && firstArgIsIdentifier && secondArgIsInteger)
                 consumer.AddHighlighting(new IntPowerHighlighting(element, power), element.GetDocumentRange(), element.GetContainingFile());
         }
     }

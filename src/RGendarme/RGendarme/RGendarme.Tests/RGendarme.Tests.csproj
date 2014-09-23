@@ -50,8 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReverseStringAvailabilityTests.cs" />
-    <Compile Include="ReverseStringExecuteTests.cs" />
+    <Compile Include="Rules\Tutorial\IntPower\IntPowAvailabilityTests.cs" />
+    <Compile Include="Rules\Tutorial\ReverseString\ReverseStringAvailabilityTests.cs" />
+    <Compile Include="Rules\Tutorial\ReverseString\ReverseStringExecuteTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RGendarme\RGendarme.csproj">
@@ -63,9 +64,9 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="test\data\ReverseStringAction\availability01.cs" />
-    <None Include="test\data\ReverseStringAction\execute01.cs" />
-    <None Include="test\data\ReverseStringAction\execute01.cs.gold" />
+    <None Include="test\data\Rules\Tutorial\ReverseStringAction\availability01.cs" />
+    <None Include="test\data\Rules\Tutorial\ReverseStringAction\execute01.cs" />
+    <None Include="test\data\Rules\Tutorial\ReverseStringAction\execute01.cs.gold" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

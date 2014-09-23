@@ -12,14 +12,6 @@ namespace RGendarme.Rules.Tutorial.IntPower
     {   
         protected override void Run(IInvocationExpression element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
-//            bool functionIsCalledPow = false;
-//            var e = element.InvokedExpression as IReferenceExpression;
-//            if (e != null)
-//            {
-//                if (e.Reference.GetName().Equals("Pow"))
-//                    functionIsCalledPow = true;
-//            }
-
             bool isOnMathRow = false;
             var r = element.InvocationExpressionReference.Resolve();
             var m = r.DeclaredElement as IMethod;

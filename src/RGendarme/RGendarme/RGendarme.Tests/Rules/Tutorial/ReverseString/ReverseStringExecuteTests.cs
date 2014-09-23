@@ -2,19 +2,19 @@
 using NUnit.Framework;
 using RGendarme.Rules.Tutorial.ReverseString;
 
-namespace RGendarme.Tests
+namespace RGendarme.Tests.Rules.Tutorial.ReverseString
 {
     [TestFixture]
     public class ReverseStringExecuteTests : CSharpContextActionExecuteTestBase<ReverseStringAction>
     {
         protected override string ExtraPath
         {
-            get { return "ReverseStringAction"; }
+            get { return @"Rules\Tutorial\ReverseStringAction"; }
         }
 
         protected override string RelativeTestDataPath
         {
-            get { return "ReverseStringAction"; }
+            get { return @"Rules\Tutorial\ReverseStringAction"; }
         }
 
         [Test]

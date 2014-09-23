@@ -1,0 +1,12 @@
+﻿public class C
+{
+    public void M()
+    {
+        double x = 0.0;
+        double y = |System.Math.Pow(x, 2.0)|(0);
+    }
+}
+------------------------------------------------
+0: Inefficient use of integer-based power
+QUICKFIXES:
+Inline integer power

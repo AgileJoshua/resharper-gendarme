@@ -1,0 +1,11 @@
+﻿namespace N
+{
+    public class C
+    {
+        public void M()
+        {
+            double x = 0.0;
+            double i = x*x{caret};
+        }
+    }
+}

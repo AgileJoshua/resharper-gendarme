@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rules\Tutorial\IntPower\IntPowQuickFixAvailabilityTests.cs" />
     <Compile Include="Rules\Tutorial\IntPower\IntPowQuickFixTests.cs" />
     <Compile Include="Rules\Tutorial\ReverseString\ReverseStringAvailabilityTests.cs" />
     <Compile Include="Rules\Tutorial\ReverseString\ReverseStringExecuteTests.cs" />

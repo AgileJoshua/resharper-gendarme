@@ -51,7 +51,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Rules\Tutorial\Custom\StringIsNullOrEmptyWithFalseAnalyzer.cs" />
+    <Compile Include="Rules\Custom\StringIsNullOrEmptyWithFalse\StringIsNullOrEmptyWithFalseAnalyzer.cs" />
+    <Compile Include="Rules\Custom\StringIsNullOrEmptyWithFalse\StringIsNullOrEmptyWithFalseBulbItem.cs" />
+    <Compile Include="Rules\Custom\StringIsNullOrEmptyWithFalse\StringIsNullOrEmptyWithFalseHighlight.cs" />
+    <Compile Include="Rules\Custom\StringIsNullOrEmptyWithFalse\StringIsNullOrEmptyWithFalseQuickFix.cs" />
     <Compile Include="Rules\Tutorial\IntPower\IntPowerHighlighting.cs" />
     <Compile Include="Rules\Tutorial\IntPower\IntPowerInliningFix.cs" />
     <Compile Include="Rules\Tutorial\IntPower\IntPowerProblemAnalyzer.cs" />

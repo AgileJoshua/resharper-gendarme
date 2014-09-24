@@ -30,7 +30,6 @@ namespace RGendarme.Rules.Tutorial.Custom
                 }
             }
 
-
             bool isFalseConstant = false;
             var right = element.RightOperand as ICSharpLiteralExpression;
             if (right != null && right.IsConstantValue())

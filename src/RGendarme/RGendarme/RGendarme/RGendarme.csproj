@@ -35,7 +35,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartAction>Program</StartAction>
     <StartProgram>$(VsInstallDir)devenv.exe</StartProgram>
-    <StartArguments>/ReSharper.Plugin $(AssemblyName).dll /ReSharper.Internal</StartArguments>
+    <StartArguments>"D:\vs-projects\RGemTestApp2\RGemTestApp2.sln" /ReSharper.Plugin $(AssemblyName).dll /ReSharper.Internal</StartArguments>
     <StartWorkingDirectory>$(MSBuildProjectDirectory)\$(OutputPath)</StartWorkingDirectory>
   </PropertyGroup>
   <ItemGroup>

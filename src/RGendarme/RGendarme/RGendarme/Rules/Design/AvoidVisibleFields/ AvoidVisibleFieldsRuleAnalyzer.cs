@@ -1,36 +1,28 @@
-﻿using JetBrains.ReSharper.Daemon;
-using JetBrains.ReSharper.Daemon.Stages;
+﻿using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
-using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace RGendarme.Rules.Design.AvoidVisibleFields
 {
-    [ElementProblemAnalyzer(new[] { typeof(IFieldDeclaration) }, HighlightingTypes = new[] { typeof(AvoidVisibleFieldsHighlighting) })]
-    public class  AvoidVisibleFieldsAnalyzer : ElementProblemAnalyzer<IFieldDeclaration>
+    [ElementProblemAnalyzer(new[] { typeof(IMultipleFieldDeclaration) }, HighlightingTypes = new[] { typeof(AvoidVisibleFieldsHighlighting) })]
+    public class  AvoidVisibleFieldsAnalyzer : ElementProblemAnalyzer<IMultipleFieldDeclaration>
     {
-        protected override void Run(IFieldDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
+        protected override void Run(IMultipleFieldDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
-            throw new System.NotImplementedException();
-        }
-    }
+            bool isPublicField = false;
+            IModifiersList modifiers = element.ModifiersList;
 
-    [StaticSeverityHighlighting(Severity.WARNING, CSharpLanguage.Name)]
-    public class AvoidVisibleFieldsHighlighting : IHighlighting
-    {
-        public IFieldDeclaration FieldDeclaration;
-        public AvoidVisibleFieldsHighlighting(IFieldDeclaration fieldDeclaration)
-        {
-            FieldDeclaration = fieldDeclaration;
-        }
+            foreach (ITokenNode m in modifiers.Modifiers)
+            {
+                if (m.GetText().Equals("public"))
+                    isPublicField = true;
+            }
 
-        public bool IsValid()
-        {
-            return FieldDeclaration != null && FieldDeclaration.IsValid();
+            if (isPublicField)
+            {
+                consumer.AddHighlighting(new AvoidVisibleFieldsHighlighting(element), element.GetDocumentRange(), element.GetContainingFile());
+            }
         }
-
-        public string ToolTip { get { return "Use a property or method instead."; } }
-        public string ErrorStripeToolTip { get { return ToolTip; }}
-        public int NavigationOffsetPatch { get { return 0; } }
     }
 }

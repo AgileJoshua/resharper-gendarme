@@ -7,8 +7,8 @@ namespace RGendarme.Rules.Design.AvoidVisibleFields
     [StaticSeverityHighlighting(Severity.WARNING, CSharpLanguage.Name)]
     public class AvoidVisibleFieldsHighlighting : IHighlighting
     {
-        public IFieldDeclaration FieldDeclaration;
-        public AvoidVisibleFieldsHighlighting(IFieldDeclaration fieldDeclaration)
+        public IMultipleFieldDeclaration FieldDeclaration;
+        public AvoidVisibleFieldsHighlighting(IMultipleFieldDeclaration fieldDeclaration)
         {
             FieldDeclaration = fieldDeclaration;
         }

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>RGendarme</id>
+    <version>0.0.1</version>
+    <authors>Anton Zhidkov</authors>
+    <owners>Anton Zhidkov</owners>
+    <title>Gendarme plugin for ReSharper</title>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://raw.githubusercontent.com/azhidkov/resharper-gendarme/master/LICENSE</licenseUrl>
+    <description>Provides additional inspections from Gendarme project.</description>
+    <projectUrl>https://github.com/azhidkov/resharper-gendarme</projectUrl>
+    <copyright>Copyright &#x00A9; 2014 Anton Zhidkov</copyright>
+    <!--<iconUrl>https://raw.github.com/hmemcpy/AgentMulder/master/logo.png</iconUrl>-->
+    <releaseNotes>First public release.</releaseNotes>
+    <tags>resharper rgendarme gendarme fxcop static analysis</tags>
+    <dependencies>
+      <dependency id="Resharper" version="[8.1,8.3)"/>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="RGendarme\RGendarme\RGendarme\bin\Debug\*.dll" target="ReSharper\v8.1\plugins"/>
+    <file src="RGendarme\RGendarme\RGendarme\bin\Debug\*.pdb" target="ReSharper\v8.1\plugins"/> 
+  </files>
+</package>

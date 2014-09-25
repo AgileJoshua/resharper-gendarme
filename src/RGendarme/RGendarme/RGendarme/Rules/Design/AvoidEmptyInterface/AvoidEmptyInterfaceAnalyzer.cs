@@ -20,8 +20,10 @@ namespace RGendarme.Rules.Design.AvoidEmptyInterface
 
             if (!isEmptyInterface)
             {
-                if (body.Methods.Count == 0)
+                if (body.Methods.IsEmpty && body.Properties.IsEmpty && body.EventDeclarations.IsEmpty && body.Indexers.IsEmpty)
+                {
                     isEmptyInterface = true;
+                }
             }
 
             if (isEmptyInterface)

@@ -61,6 +61,8 @@
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsCreatePropertyBulbItem.cs" />
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsHighlighting.cs" />
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsQuickFix.cs" />
+    <Compile Include="Rules\Naming\UseCorrectSuffix\Attribute\NotImplementType\UseCorrectSuffixAttributeNotImplementAttributeAnalyzer.cs" />
+    <Compile Include="Rules\Naming\UseCorrectSuffix\Attribute\WrongSuffix\UseCorrectSuffixAttributeWrongClassNameAnalyzer.cs" />
     <Compile Include="Rules\Tutorial\IntPower\IntPowerHighlighting.cs" />
     <Compile Include="Rules\Tutorial\IntPower\IntPowerInliningFix.cs" />
     <Compile Include="Rules\Tutorial\IntPower\IntPowerProblemAnalyzer.cs" />

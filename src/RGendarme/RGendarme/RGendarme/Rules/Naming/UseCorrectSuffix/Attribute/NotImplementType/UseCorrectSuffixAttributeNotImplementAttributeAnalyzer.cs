@@ -3,6 +3,7 @@ using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.Tree;
 
 namespace RGendarme.Rules.Naming.UseCorrectSuffix.Attribute.NotImplementType
 {
@@ -12,10 +13,36 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix.Attribute.NotImplementType
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
             // 1. get class name
+            string name = element.NameIdentifier.Name;
+            if (!string.IsNullOrEmpty(name) && !name.EndsWith("Attribute"))
+                return;
+            
             // 2. get exntend list
-            // 3. check if class has Attribute suffix but doesn't extend Attribute class
+            IExtendsList extends = element.ExtendsList;
+            if (extends == null)
+            {
+                consumer.AddHighlighting(new UseCorrectSuffixAttributeNotImplementAttributeHighlighting(element), element.GetDocumentRange(), element.GetContainingFile());
+                return;
+            }
 
-            throw new System.NotImplementedException();
+            // 3. check if class has Attribute suffix but doesn't extend Attribute class
+            bool isImplementAttribute = false;
+            foreach (IDeclaredTypeUsage type in extends.ExtendedInterfaces)
+            {
+                var declaredType = type as IUserDeclaredTypeUsage;
+                if (declaredType != null)
+                {
+                    if (declaredType.TypeName != null)
+                    {
+                        string extendTypeName = declaredType.TypeName.ShortName;
+                        if (extendTypeName.Equals("Attribute"))
+                            isImplementAttribute = true;
+                    }
+                }
+            }
+
+            if (!isImplementAttribute)
+                consumer.AddHighlighting(new UseCorrectSuffixAttributeNotImplementAttributeHighlighting(element), element.GetDocumentRange(), element.GetContainingFile());
         }
     }
 

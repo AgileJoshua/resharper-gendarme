@@ -11,11 +11,12 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix.Attribute.WrongSuffix
     {
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            // TODO: NotImplemented
             // 1. get class name
             // 2. get exntend list
             // 3. check if class extends Attribute class, it has to have Attbite suffix
 
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
     }
 

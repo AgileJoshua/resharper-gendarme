@@ -17,7 +17,7 @@ namespace RGendarme.Rules.Tutorial.IntPower
             var m = r.DeclaredElement as IMethod;
             if (m != null)
             {
-                var parent = m.GetContainingType();
+                ITypeElement parent = m.GetContainingType();
                 if (parent != null)
                 {
                     isOnMathRow = parent.GetClrName().FullName.Equals("System.Math")

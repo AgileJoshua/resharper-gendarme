@@ -75,6 +75,12 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix
             }
         }
 
+        /// <summary>
+        /// Check if extend list contains specific type.
+        /// </summary>
+        /// <param name="extends">Extend list</param>
+        /// <param name="baseClass">Full CLR type name.</param>
+        /// <returns></returns>
         private bool IsImplement(IExtendsList extends, string baseClass)
         {
             bool result = false;

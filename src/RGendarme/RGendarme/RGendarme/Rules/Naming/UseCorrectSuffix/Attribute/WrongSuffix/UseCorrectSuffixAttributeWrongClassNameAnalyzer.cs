@@ -14,6 +14,7 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix.Attribute.WrongSuffix
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
             Analyze(element, consumer, "Attribute", (id, suffix) => new UseCorrectSuffixAttributeWrongClassNameHighlighting(id, suffix));
+            Analyze(element, consumer, "EventArgs", (id, suffix) => new UseCorrectSuffixAttributeWrongClassNameHighlighting(id, suffix));
         }
 
         private void Analyze(IClassDeclaration element, IHighlightingConsumer consumer, string suffix, Func<ICSharpIdentifier, string, IHighlighting> highlighting)

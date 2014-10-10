@@ -14,6 +14,7 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix.Attribute.NotImplementType
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
             Analyze(element, consumer, "Attribute", (id, suffix) => new UseCorrectSuffixAttributeNotImplementAttributeHighlighting(id, suffix));
+            Analyze(element, consumer, "EventArgs", (id, suffix) => new UseCorrectSuffixAttributeNotImplementAttributeHighlighting(id, suffix));
         }
 
         private void Analyze(IClassDeclaration element, IHighlightingConsumer consumer, string suffix,

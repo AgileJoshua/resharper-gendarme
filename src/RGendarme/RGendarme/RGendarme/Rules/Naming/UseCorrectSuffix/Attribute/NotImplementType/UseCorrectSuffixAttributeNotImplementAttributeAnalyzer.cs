@@ -14,6 +14,7 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix.Attribute.NotImplementType
         {
             // 1. get class name
             string name = element.NameIdentifier.Name;
+
             if (!string.IsNullOrEmpty(name) && !name.EndsWith("Attribute"))
                 return;
             
@@ -21,7 +22,9 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix.Attribute.NotImplementType
             IExtendsList extends = element.ExtendsList;
             if (extends == null)
             {
-                consumer.AddHighlighting(new UseCorrectSuffixAttributeNotImplementAttributeHighlighting(element), element.GetDocumentRange(), element.GetContainingFile());
+                ICSharpIdentifier nameIdentifier = element.NameIdentifier;
+
+                consumer.AddHighlighting(new UseCorrectSuffixAttributeNotImplementAttributeHighlighting(nameIdentifier), nameIdentifier.GetDocumentRange(), nameIdentifier.GetContainingFile());
                 return;
             }
 
@@ -42,15 +45,18 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix.Attribute.NotImplementType
             }
 
             if (!isImplementAttribute)
-                consumer.AddHighlighting(new UseCorrectSuffixAttributeNotImplementAttributeHighlighting(element), element.GetDocumentRange(), element.GetContainingFile());
+            {
+                ICSharpIdentifier nameIdentifier = element.NameIdentifier;
+                consumer.AddHighlighting(new UseCorrectSuffixAttributeNotImplementAttributeHighlighting(nameIdentifier), nameIdentifier.GetDocumentRange(), nameIdentifier.GetContainingFile());
+            }
         }
     }
 
     [StaticSeverityHighlighting(Severity.WARNING, CSharpLanguage.Name)]
     public class UseCorrectSuffixAttributeNotImplementAttributeHighlighting : IHighlighting
     {
-        public IClassDeclaration ClassDeclaration { get; private set; }
-        public UseCorrectSuffixAttributeNotImplementAttributeHighlighting(IClassDeclaration classDeclaration)
+        public ICSharpIdentifier ClassDeclaration { get; private set; }
+        public UseCorrectSuffixAttributeNotImplementAttributeHighlighting(ICSharpIdentifier classDeclaration)
         {
             ClassDeclaration = classDeclaration;
         }

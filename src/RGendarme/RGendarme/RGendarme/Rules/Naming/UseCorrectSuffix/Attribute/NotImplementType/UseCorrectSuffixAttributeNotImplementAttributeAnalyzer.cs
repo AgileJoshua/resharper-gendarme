@@ -1,4 +1,5 @@
-﻿using JetBrains.ReSharper.Daemon;
+﻿using System;
+using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp;
@@ -12,19 +13,24 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix.Attribute.NotImplementType
     {
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            Analyze(element, consumer, "Attribute", (id, suffix) => new UseCorrectSuffixAttributeNotImplementAttributeHighlighting(id, suffix));
+        }
+
+        private void Analyze(IClassDeclaration element, IHighlightingConsumer consumer, string suffix,
+            Func<ICSharpIdentifier, string, IHighlighting> highlighting)
+        {
             // 1. get class name
             string name = element.NameIdentifier.Name;
 
-            if (!string.IsNullOrEmpty(name) && !name.EndsWith("Attribute"))
+            if (!string.IsNullOrEmpty(name) && !name.EndsWith(suffix))
                 return;
-            
+
             // 2. get exntend list
             IExtendsList extends = element.ExtendsList;
             if (extends == null)
             {
                 ICSharpIdentifier nameIdentifier = element.NameIdentifier;
-
-                consumer.AddHighlighting(new UseCorrectSuffixAttributeNotImplementAttributeHighlighting(nameIdentifier), nameIdentifier.GetDocumentRange(), nameIdentifier.GetContainingFile());
+                consumer.AddHighlighting(highlighting(nameIdentifier, suffix), nameIdentifier.GetDocumentRange(), nameIdentifier.GetContainingFile());
                 return;
             }
 
@@ -38,7 +44,7 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix.Attribute.NotImplementType
                     if (declaredType.TypeName != null)
                     {
                         string extendTypeName = declaredType.TypeName.ShortName;
-                        if (extendTypeName.Equals("Attribute"))
+                        if (extendTypeName.Equals(suffix))
                             isImplementAttribute = true;
                     }
                 }
@@ -47,7 +53,7 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix.Attribute.NotImplementType
             if (!isImplementAttribute)
             {
                 ICSharpIdentifier nameIdentifier = element.NameIdentifier;
-                consumer.AddHighlighting(new UseCorrectSuffixAttributeNotImplementAttributeHighlighting(nameIdentifier), nameIdentifier.GetDocumentRange(), nameIdentifier.GetContainingFile());
+                consumer.AddHighlighting(highlighting(nameIdentifier, suffix), nameIdentifier.GetDocumentRange(), nameIdentifier.GetContainingFile());
             }
         }
     }
@@ -56,9 +62,12 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix.Attribute.NotImplementType
     public class UseCorrectSuffixAttributeNotImplementAttributeHighlighting : IHighlighting
     {
         public ICSharpIdentifier ClassDeclaration { get; private set; }
-        public UseCorrectSuffixAttributeNotImplementAttributeHighlighting(ICSharpIdentifier classDeclaration)
+        private readonly string _suffix;
+
+        public UseCorrectSuffixAttributeNotImplementAttributeHighlighting(ICSharpIdentifier classDeclaration, string suffix)
         {
             ClassDeclaration = classDeclaration;
+            _suffix = suffix;
         }
 
         public bool IsValid()
@@ -66,7 +75,7 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix.Attribute.NotImplementType
             return ClassDeclaration != null && ClassDeclaration.IsValid();
         }
 
-        public string ToolTip { get { return "Has Attribute suffix but doesn't extend Attribute class"; } }
+        public string ToolTip { get { return string.Format("Has {0} suffix but doesn't extend {0} class", _suffix); } }
         public string ErrorStripeToolTip { get { return ToolTip; } }
         public int NavigationOffsetPatch { get { return 0; }}
     }

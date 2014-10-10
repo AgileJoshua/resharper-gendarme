@@ -28,7 +28,8 @@ namespace RGendarme.Rules.Design.AvoidEmptyInterface
 
             if (isEmptyInterface)
             {
-                consumer.AddHighlighting(new AvoidEmptyInterfaceHighlighting(element), element.GetDocumentRange(), element.GetContainingFile());
+                ICSharpIdentifier interfaceName = element.NameIdentifier;
+                consumer.AddHighlighting(new AvoidEmptyInterfaceHighlighting(interfaceName), interfaceName.GetDocumentRange(), interfaceName.GetContainingFile());
             }
         }
     }
@@ -36,8 +37,8 @@ namespace RGendarme.Rules.Design.AvoidEmptyInterface
     [StaticSeverityHighlighting(Severity.WARNING, CSharpLanguage.Name)]
     public class AvoidEmptyInterfaceHighlighting : IHighlighting
     {
-        public IInterfaceDeclaration Declaration { get; private set; }
-        public AvoidEmptyInterfaceHighlighting(IInterfaceDeclaration declaration)
+        public ICSharpIdentifier Declaration { get; private set; }
+        public AvoidEmptyInterfaceHighlighting(ICSharpIdentifier declaration)
         {
             Declaration = declaration;
         }

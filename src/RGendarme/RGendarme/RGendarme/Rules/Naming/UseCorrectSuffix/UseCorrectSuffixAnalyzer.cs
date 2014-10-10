@@ -2,7 +2,9 @@
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
+using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
+using JetBrains.ReSharper.Psi.ExtensionsAPI.Resolve;
 using JetBrains.ReSharper.Psi.Tree;
 
 namespace RGendarme.Rules.Naming.UseCorrectSuffix
@@ -12,18 +14,18 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix
     {
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
-            Analyze(element, consumer, "Attribute", (id, suffix) => new UseCorrectSuffixHighlighting(id, suffix));
-            Analyze(element, consumer, "EventArgs", (id, suffix) => new UseCorrectSuffixHighlighting(id, suffix));
+            Analyze(element, consumer, "Attribute", "System.Attribute", (id, suffix) => new UseCorrectSuffixHighlighting(id, suffix));
+            Analyze(element, consumer, "EventArgs", "System.EventArgs", (id, suffix) => new UseCorrectSuffixHighlighting(id, suffix));
         }
 
-        private void Analyze(IClassDeclaration element, IHighlightingConsumer consumer, string suffix,
+        private void Analyze(IClassDeclaration element, IHighlightingConsumer consumer, string suffix, string baseClass,
             Func<ICSharpIdentifier, string, IHighlighting> highlighting)
         {
-            AnalyzeWrongClassName(element, consumer, suffix, highlighting);
-            AnalyzeNotImplement(element, consumer, suffix, highlighting);
+            AnalyzeWrongClassName(element, consumer, suffix, baseClass, highlighting);
+            AnalyzeNotImplement(element, consumer, suffix, baseClass, highlighting);
         }
 
-        private void AnalyzeWrongClassName(IClassDeclaration element, IHighlightingConsumer consumer, string suffix, Func<ICSharpIdentifier, string, IHighlighting> highlighting)
+        private void AnalyzeWrongClassName(IClassDeclaration element, IHighlightingConsumer consumer, string suffix, string baseClass, Func<ICSharpIdentifier, string, IHighlighting> highlighting)
         {
             string errorMsg = string.Format("Class doesn't have {0} suffix", suffix);
 
@@ -33,22 +35,7 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix
                 return;
 
             // 2. check if class extends Attribute class, it has to have Attbite suffix
-            bool isExtendAttribute = false;
-            foreach (IDeclaredTypeUsage type in extends.ExtendedInterfaces)
-            {
-                var declaredType = type as IUserDeclaredTypeUsage;
-                if (declaredType != null)
-                {
-                    if (declaredType.TypeName != null)
-                    {
-                        string extendTypeName = declaredType.TypeName.ShortName;
-                        if (extendTypeName.Equals(suffix))
-                            isExtendAttribute = true;
-                    }
-                }
-            }
-
-            if (!isExtendAttribute)
+            if (!IsImplement(extends, baseClass))
                 return;
 
             // 3. get class name
@@ -60,7 +47,7 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix
             }
         }
 
-        private void AnalyzeNotImplement(IClassDeclaration element, IHighlightingConsumer consumer, string suffix,
+        private void AnalyzeNotImplement(IClassDeclaration element, IHighlightingConsumer consumer, string suffix, string baseClass,
             Func<ICSharpIdentifier, string, IHighlighting> highlighting)
         {
             string errorMsg = string.Format("Has {0} suffix but doesn't extend {0} class", suffix); 
@@ -81,27 +68,43 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix
             }
 
             // 3. check if class has Attribute suffix but doesn't extend Attribute class
-            bool isImplementAttribute = false;
-            foreach (IDeclaredTypeUsage type in extends.ExtendedInterfaces)
-            {
-                var declaredType = type as IUserDeclaredTypeUsage;
-                if (declaredType != null)
-                {
-                    if (declaredType.TypeName != null)
-                    {
-                        // TODO: now it's very simple - improve it using check agains full path
-                        string extendTypeName = declaredType.TypeName.ShortName;
-                        if (extendTypeName.Equals(suffix))
-                            isImplementAttribute = true;
-                    }
-                }
-            }
-
-            if (!isImplementAttribute)
+            if (!IsImplement(extends, baseClass))
             {
                 ICSharpIdentifier nameIdentifier = element.NameIdentifier;
                 consumer.AddHighlighting(highlighting(nameIdentifier, errorMsg), nameIdentifier.GetDocumentRange(), nameIdentifier.GetContainingFile());
             }
+        }
+
+        private bool IsImplement(IExtendsList extends, string baseClass)
+        {
+            bool result = false;
+            foreach (IDeclaredTypeUsage type in extends.ExtendedInterfaces)
+            {
+                var declaredType = type as IUserDeclaredTypeUsage;
+                if (declaredType != null && declaredType.TypeName != null)
+                {
+                    ResolveResultWithInfo resolveResult = declaredType.TypeName.Reference.CurrentResolveResult;
+                    if (resolveResult != null)
+                    {
+                        IDeclaredElement element = resolveResult.Result.DeclaredElement;
+                        if (element != null)
+                        {
+                            var cls = element as IClass;
+                            if (cls != null)
+                            {
+                                if (cls.GetClrName().FullName.Equals(baseClass))
+                                {
+                                    result = true;
+                                    break;
+                                }
+                            }
+                            // TODO: add use case when interface used
+                        }
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

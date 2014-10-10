@@ -89,6 +89,7 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix
                 {
                     if (declaredType.TypeName != null)
                     {
+                        // TODO: now it's very simple - improve it using check agains full path
                         string extendTypeName = declaredType.TypeName.ShortName;
                         if (extendTypeName.Equals(suffix))
                             isImplementAttribute = true;

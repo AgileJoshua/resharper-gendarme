@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
@@ -14,8 +15,29 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix
     {
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
-            Analyze(element, consumer, "Attribute", "System.Attribute", (id, suffix) => new UseCorrectSuffixHighlighting(id, suffix));
-            Analyze(element, consumer, "EventArgs", "System.EventArgs", (id, suffix) => new UseCorrectSuffixHighlighting(id, suffix));
+            // key - name, value - base type
+            var dict = new Dictionary<string, string>
+            {
+                {"Attribute", "System.Attribute"},
+                {"EventArgs", "System.EventArgs"},
+                {"Exception", "System.Exception"},
+                {"DataSet", "System.Data.DataSet"},
+                {"Stream", "System.IO.Stream"},
+                {"Permission", "System.Security.IPermission"},
+                {"Condition", "System.Security.Policy.IMembershipCondition"}
+            };
+
+            foreach (var kvp in dict)
+            {
+                Analyze(element, consumer, kvp.Key, kvp.Value, (id, suffix) => new UseCorrectSuffixHighlighting(id, suffix));
+            }
+
+            // special cases
+            // dictionary
+            AnalyzeWrongClassName(element, consumer, "Dictionary", "System.Collections.IDictionary", (id, suffix) => new UseCorrectSuffixHighlighting(id, suffix));
+            AnalyzeWrongClassName(element, consumer, "Dictionary", "System.Collections.Generic.IDictionary", (id, suffix) => new UseCorrectSuffixHighlighting(id, suffix));
+
+
         }
 
         private void Analyze(IClassDeclaration element, IHighlightingConsumer consumer, string suffix, string baseClass,
@@ -50,7 +72,7 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix
         private void AnalyzeNotImplement(IClassDeclaration element, IHighlightingConsumer consumer, string suffix, string baseClass,
             Func<ICSharpIdentifier, string, IHighlighting> highlighting)
         {
-            string errorMsg = string.Format("Has {0} suffix but doesn't extend {0} class", suffix); 
+            string errorMsg = string.Format("Has {0} suffix but doesn't extend {1} class", suffix, baseClass); 
 
             // 1. get class name
             string name = element.NameIdentifier.Name;
@@ -104,7 +126,26 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix
                                     break;
                                 }
                             }
-                            // TODO: add use case when interface used
+
+                            var inter = element as IInterface;
+                            if (inter != null)
+                            {
+                                string fullName = inter.GetClrName().FullName;
+                                if (string.IsNullOrWhiteSpace(fullName)) continue;
+
+                                // When interface is generic - remove '`2' at the end.
+                                int pos = fullName.LastIndexOf("`", StringComparison.OrdinalIgnoreCase);
+                                if (pos != -1)
+                                {
+                                    fullName = fullName.Substring(0, pos);
+                                }
+
+                                if (fullName.Equals(baseClass))
+                                {
+                                    result = true;
+                                    break;
+                                }
+                            }
                         }
                     }
                 }

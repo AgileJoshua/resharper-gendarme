@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Security;
 using System.Security.Policy;
@@ -14,96 +16,11 @@ namespace RGendarme.ManualTests
         //         string this[int index] { get; set; }
     }
 
-//    public class MyEven1tArgs : EventArgs
-//    {
-//
-//    }
-//
-//    public class MyDict1Dictionar : System.Collections.IDictionary
-//    {
-//        
-//    }
-
-    public class MyDict2di : System.Collections.Generic.IDictionary<string, string>
-    {
-
-    }
-
-//    public class MyCondition : System.Security.Policy.IMembershipCondition
-//    {
-//        public SecurityElement ToXml()
-//        {
-//            throw new NotImplementedException();
-//        }
-//
-//        public void FromXml(SecurityElement e)
-//        {
-//            throw new NotImplementedException();
-//        }
-//
-//        public SecurityElement ToXml(PolicyLevel level)
-//        {
-//            throw new NotImplementedException();
-//        }
-//
-//        public void FromXml(SecurityElement e, PolicyLevel level)
-//        {
-//            throw new NotImplementedException();
-//        }
-//
-//        public bool Check(Evidence evidence)
-//        {
-//            throw new NotImplementedException();
-//        }
-//
-//        public IMembershipCondition Copy()
-//        {
-//            throw new NotImplementedException();
-//        }
-//    }
-
-//    public class MyPermission //: IPermission
-//    {
-//        public SecurityElement ToXml()
-//        {
-//            throw new NotImplementedException();
-//        }
-//
-//        public void FromXml(SecurityElement e)
-//        {
-//            throw new NotImplementedException();
-//        }
-//
-//        public IPermission Copy()
-//        {
-//            throw new NotImplementedException();
-//        }
-//
-//        public IPermission Intersect(IPermission target)
-//        {
-//            throw new NotImplementedException();
-//        }
-//
-//        public IPermission Union(IPermission target)
-//        {
-//            throw new NotImplementedException();
-//        }
-//
-//        public bool IsSubsetOf(IPermission target)
-//        {
-//            throw new NotImplementedException();
-//        }
-//
-//        public void Demand()
-//        {
-//            throw new NotImplementedException();
-//        }
-//    }
-
-    public class MyDataSet : System.Data.DataSet
+    public class My21Collection : IEnumerable<string>
     {
         
     }
+
 
     public class MyCollection : System.Collections.Queue
     {

@@ -37,7 +37,11 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix
             AnalyzeWrongClassName(element, consumer, "Dictionary", "System.Collections.IDictionary", (id, suffix) => new UseCorrectSuffixHighlighting(id, suffix));
             AnalyzeWrongClassName(element, consumer, "Dictionary", "System.Collections.Generic.IDictionary", (id, suffix) => new UseCorrectSuffixHighlighting(id, suffix));
 
-
+            // collections
+            AnalyzeWrongClassName(element, consumer, "Collection", "System.Collections.ICollection", (id, suffix) => new UseCorrectSuffixHighlighting(id, suffix));
+            AnalyzeWrongClassName(element, consumer, "Collection", "System.Collections.IEnumerable", (id, suffix) => new UseCorrectSuffixHighlighting(id, suffix));
+            AnalyzeWrongClassName(element, consumer, "Collection", "System.Collections.Generic.ICollection", (id, suffix) => new UseCorrectSuffixHighlighting(id, suffix));
+            AnalyzeWrongClassName(element, consumer, "Collection", "System.Collections.Generic.IEnumerable", (id, suffix) => new UseCorrectSuffixHighlighting(id, suffix));
         }
 
         private void Analyze(IClassDeclaration element, IHighlightingConsumer consumer, string suffix, string baseClass,

@@ -16,78 +16,12 @@ namespace RGendarme.ManualTests
         //         string this[int index] { get; set; }
     }
 
-    public class My21Collection : IEnumerable<string>
+    public class HelloCollection : System.Collections.Stack
     {
         
     }
 
-
-    public class MyCollection : System.Collections.Queue
-    {
-        
-    }
-
-    public class MyStream //: System.IO.Stream
-    {
-        public override void Flush()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override long Seek(long offset, SeekOrigin origin)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void SetLength(long value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override int Read(byte[] buffer, int offset, int count)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Write(byte[] buffer, int offset, int count)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool CanRead
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public override bool CanSeek
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public override bool CanWrite
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public override long Length
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public override long Position { get; set; }
-    }
-
-    public class Attribute
-    {
-
-    }
-
-    public class MyException : Exception
-    {
-        
-    }
-
-    public abstract class ClsAttribute : System.Attribute
+    public abstract class ClsAttribute : Attribute
     {
 
         public void Dispose()

@@ -66,6 +66,8 @@
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsQuickFix.cs" />
     <Compile Include="Rules\Naming\DoNotPrefixEventsWithAfterOrBefore\DoNotPrefixEventsWithAfterOrBeforeAnalyzer.cs" />
     <Compile Include="Rules\Naming\DoNotPrefixEventsWithAfterOrBefore\DoNotPrefixEventsWithAfterOrBeforeHighlighting.cs" />
+    <Compile Include="Rules\Naming\DoNotPrefixValuesWithEnumName\DoNotPrefixValuesWithEnumNameAnalyzer.cs" />
+    <Compile Include="Rules\Naming\DoNotPrefixValuesWithEnumName\DoNotPrefixValuesWithEnumNameHighlighting.cs" />
     <Compile Include="Rules\Naming\UseCorrectSuffix\UseCorrectSuffixAnalyzer.cs" />
     <Compile Include="Rules\Naming\UseCorrectSuffix\UseCorrectSuffixHighlighting.cs" />
     <Compile Include="Rules\Tutorial\IntPower\IntPowerHighlighting.cs" />

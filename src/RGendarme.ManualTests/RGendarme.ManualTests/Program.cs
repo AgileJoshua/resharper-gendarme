@@ -33,6 +33,13 @@ namespace RGendarme.ManualTests
         }
     }
 
+    public enum Answer
+    {
+        AnswerYes,
+        AnswerNo,
+        AnswerMaybe,
+    }
+
     public abstract class ClsAttribute : Attribute
     {
 

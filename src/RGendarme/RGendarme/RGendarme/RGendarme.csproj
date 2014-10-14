@@ -56,6 +56,8 @@
     <Compile Include="Rules\Custom\StringIsNullOrEmptyWithFalse\StringIsNullOrEmptyWithFalseHighlight.cs" />
     <Compile Include="Rules\Custom\StringIsNullOrEmptyWithFalse\StringIsNullOrEmptyWithFalseQuickFix.cs" />
     <Compile Include="Rules\Design\AvoidEmptyInterface\AvoidEmptyInterfaceAnalyzer.cs" />
+    <Compile Include="Rules\Design\AvoidMultidimensionalIndexer\AvoidMultidimensionalIndexerAnalyzer.cs" />
+    <Compile Include="Rules\Design\AvoidMultidimensionalIndexer\AvoidMultidimensionalIndexerHighlighting.cs" />
     <Compile Include="Rules\Design\AvoidVisibleFields\ AvoidVisibleFieldsRuleAnalyzer.cs" />
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsCreateMethodBulbItem.cs" />
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsCreatePropertyBulbItem.cs" />

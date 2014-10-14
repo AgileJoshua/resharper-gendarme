@@ -18,7 +18,13 @@ namespace RGendarme.ManualTests
 
     public class HelloCollection : System.Collections.Stack
     {
-        
+        public int this[int x, int y]
+        {
+            get
+            {
+                return 0;
+            }
+        }
     }
 
     public abstract class ClsAttribute : Attribute

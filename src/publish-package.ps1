@@ -14,3 +14,6 @@ Write-Host "Push package...done."
 Write-Host "Remove temporary nuget package..." -NoNewline
 Remove-Item *.nupkg
 Write-Host "done."
+
+Write-Host -NoNewLine 'Press any key to continue...';
+$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');

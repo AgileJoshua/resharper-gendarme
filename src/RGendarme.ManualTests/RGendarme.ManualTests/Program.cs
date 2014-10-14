@@ -5,6 +5,13 @@ using System.IO;
 using System.Security;
 using System.Security.Policy;
 
+namespace One.Two.Three.Five
+{
+    internal class Helper
+    {
+    }
+}
+
 namespace RGendarme.ManualTests
 {
     public delegate void StringListEvent(IStringList sender);

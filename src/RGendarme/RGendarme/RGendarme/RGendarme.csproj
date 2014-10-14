@@ -64,6 +64,8 @@
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsCreatePropertyBulbItem.cs" />
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsHighlighting.cs" />
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsQuickFix.cs" />
+    <Compile Include="Rules\Naming\AvoidDeepNamespaceHierarchy\AvoidDeepNamespaceHierarchyAnalyzer.cs" />
+    <Compile Include="Rules\Naming\AvoidDeepNamespaceHierarchy\AvoidDeepNamespaceHierarchyHighlighting.cs" />
     <Compile Include="Rules\Naming\DoNotPrefixEventsWithAfterOrBefore\DoNotPrefixEventsWithAfterOrBeforeAnalyzer.cs" />
     <Compile Include="Rules\Naming\DoNotPrefixEventsWithAfterOrBefore\DoNotPrefixEventsWithAfterOrBeforeHighlighting.cs" />
     <Compile Include="Rules\Naming\DoNotPrefixValuesWithEnumName\DoNotPrefixValuesWithEnumNameAnalyzer.cs" />

@@ -16,6 +16,12 @@ namespace RGendarme.ManualTests
         //         string this[int index] { get; set; }
     }
 
+    public class Bad
+    {
+        public event ResolveEventHandler BeforeResolve;
+        public event ResolveEventHandler AfterResolve;
+    }
+
     public class HelloCollection : System.Collections.Stack
     {
         public int this[int x, int y]

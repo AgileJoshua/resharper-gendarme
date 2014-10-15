@@ -59,6 +59,8 @@
     <Compile Include="Rules\Design\AvoidEmptyInterface\AvoidEmptyInterfaceHighlighting.cs" />
     <Compile Include="Rules\Design\AvoidMultidimensionalIndexer\AvoidMultidimensionalIndexerAnalyzer.cs" />
     <Compile Include="Rules\Design\AvoidMultidimensionalIndexer\AvoidMultidimensionalIndexerHighlighting.cs" />
+    <Compile Include="Rules\Design\AvoidPropertiesWithoutGetAccessor\AvoidPropertiesWithoutGetAccessorAnalyzer.cs" />
+    <Compile Include="Rules\Design\AvoidPropertiesWithoutGetAccessor\AvoidPropertiesWithoutGetAccessorHighlighting.cs" />
     <Compile Include="Rules\Design\AvoidVisibleFields\ AvoidVisibleFieldsRuleAnalyzer.cs" />
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsCreateMethodBulbItem.cs" />
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsCreatePropertyBulbItem.cs" />

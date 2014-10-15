@@ -27,6 +27,18 @@ namespace RGendarme.ManualTests
     {
         public event ResolveEventHandler BeforeResolve;
         public event ResolveEventHandler AfterResolve;
+
+        private double _seed;
+        public double Seed
+        {
+            // no get since there's no use case for it
+            set
+            {
+                _seed = value;
+            }
+
+            get { return _seed; }
+        }
     }
 
     public class HelloCollection : System.Collections.Stack

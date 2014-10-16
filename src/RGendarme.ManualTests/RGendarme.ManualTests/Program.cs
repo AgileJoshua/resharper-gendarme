@@ -14,6 +14,8 @@ namespace One.Two.Three.Five
 
 namespace RGendarme.ManualTests
 {
+
+
     public delegate void StringListEvent(IStringList sender);
     public interface IStringList
     {
@@ -38,6 +40,14 @@ namespace RGendarme.ManualTests
             }
 
             get { return _seed; }
+        }
+
+        public bool this[DateTime date, int i1, long l2, string s3, double d1, float f2]
+        {
+            get
+            {
+                return false;
+            }
         }
     }
 

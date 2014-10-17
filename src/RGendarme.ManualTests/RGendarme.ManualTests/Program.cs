@@ -15,7 +15,16 @@ namespace One.Two.Three.Five
 
 namespace RGendarme.ManualTests
 {
+    public class CPhone
+    {
+        
+    }
 
+    public class Call<Mechanism>
+    {
+        // ...
+    }
+    
 
     public delegate void StringListEvent(IStringList sender);
     public interface IStringList

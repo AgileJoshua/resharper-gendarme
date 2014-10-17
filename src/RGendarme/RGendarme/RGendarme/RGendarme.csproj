@@ -74,6 +74,9 @@
     <Compile Include="Rules\Naming\DoNotPrefixEventsWithAfterOrBefore\DoNotPrefixEventsWithAfterOrBeforeHighlighting.cs" />
     <Compile Include="Rules\Naming\DoNotPrefixValuesWithEnumName\DoNotPrefixValuesWithEnumNameAnalyzer.cs" />
     <Compile Include="Rules\Naming\DoNotPrefixValuesWithEnumName\DoNotPrefixValuesWithEnumNameHighlighting.cs" />
+    <Compile Include="Rules\Naming\UseCorrectPrefix\UseCorrectPrefixAnalyzer.cs" />
+    <Compile Include="Rules\Naming\UseCorrectPrefix\UseCorrectPrefixHighlighting.cs" />
+    <Compile Include="Rules\Naming\UseCorrectPrefix\UseCorrectPrefixWrongGenericTypeNameHighlighting.cs" />
     <Compile Include="Rules\Naming\UseCorrectSuffix\UseCorrectSuffixAnalyzer.cs" />
     <Compile Include="Rules\Naming\UseCorrectSuffix\UseCorrectSuffixHighlighting.cs" />
     <Compile Include="Rules\Naming\UsePreferredTerms\UsePreferredTermsAnalyzer.cs" />

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Security.Policy;
 
 namespace One.Two.Three.Five
@@ -23,6 +24,12 @@ namespace RGendarme.ManualTests
         //       int Count { get; }
         //        event StringListEvent Changed;
         //         string this[int index] { get; set; }
+    }
+
+    abstract public class ComPlusSecurity
+    {
+        abstract public void LogIn();
+        abstract public void LogOut();
     }
 
     public class Bad

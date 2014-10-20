@@ -2,7 +2,7 @@
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 
-namespace RGendarme.Rules.Design
+namespace RGendarme.Rules.Design.UseFlagsAttribute
 {
     [StaticSeverityHighlighting(Severity.WARNING, CSharpLanguage.Name)]
     public class UseFlagsAttributeHighlighting : IHighlighting

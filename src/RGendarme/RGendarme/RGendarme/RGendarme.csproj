@@ -68,8 +68,8 @@
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsQuickFix.cs" />
     <Compile Include="Rules\Design\PreferIntegerOrStringForIndexers\PreferIntegerOrStringForIndexersAnalyzer.cs" />
     <Compile Include="Rules\Design\PreferIntegerOrStringForIndexers\PreferIntegerOrStringForIndexersHighlighting.cs" />
-    <Compile Include="Rules\Design\UseFlagsAttributeAnalyzer.cs" />
-    <Compile Include="Rules\Design\UseFlagsAttributeHighlighting.cs" />
+    <Compile Include="Rules\Design\UseFlagsAttribute\UseFlagsAttributeAnalyzer.cs" />
+    <Compile Include="Rules\Design\UseFlagsAttribute\UseFlagsAttributeHighlighting.cs" />
     <Compile Include="Rules\Naming\AvoidDeepNamespaceHierarchy\AvoidDeepNamespaceHierarchyAnalyzer.cs" />
     <Compile Include="Rules\Naming\AvoidDeepNamespaceHierarchy\AvoidDeepNamespaceHierarchyHighlighting.cs" />
     <Compile Include="Rules\Naming\DoNotPrefixEventsWithAfterOrBefore\DoNotPrefixEventsWithAfterOrBeforeAnalyzer.cs" />
@@ -97,7 +97,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Actions.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Rules\Design\MissingAttributeUsageOnCustomAttribute\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -4,7 +4,7 @@ using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace RGendarme.Rules.Design
+namespace RGendarme.Rules.Design.UseFlagsAttribute
 {
     [ElementProblemAnalyzer(new[] { typeof(IEnumDeclaration) }, HighlightingTypes = new[] { typeof(UseFlagsAttributeHighlighting) })]
     public class UseFlagsAttributeAnalyzer : ElementProblemAnalyzer<IEnumDeclaration>

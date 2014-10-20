@@ -20,6 +20,11 @@ namespace RGendarme.ManualTests
         
     }
 
+    public class MyAttribute : Attribute
+    {
+        
+    }
+
     public class Call<Mechanism>
     {
         // ...

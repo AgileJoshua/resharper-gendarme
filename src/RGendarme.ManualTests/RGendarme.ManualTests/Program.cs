@@ -32,7 +32,7 @@ namespace RGendarme.ManualTests
     }
 
     [Serializable]
-    [Flags]
+//    [Flags]
     enum Options
     {
         First = 1,

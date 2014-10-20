@@ -19,7 +19,7 @@ namespace RGendarme.Rules.Design.AvoidPropertiesWithoutGetAccessor
             return Declaration != null && Declaration.IsValid();
         }
 
-        public string ToolTip { get { return "Avoid properties without get accessor."; } }
+        public string ToolTip { get { return "Design: avoid properties without get accessor."; } }
         public string ErrorStripeToolTip { get { return ToolTip; } }
         public int NavigationOffsetPatch { get { return 0; } }
     }

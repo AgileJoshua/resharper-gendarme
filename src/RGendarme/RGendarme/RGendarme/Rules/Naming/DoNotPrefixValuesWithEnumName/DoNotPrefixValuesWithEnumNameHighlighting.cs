@@ -18,7 +18,7 @@ namespace RGendarme.Rules.Naming.DoNotPrefixValuesWithEnumName
             return Declaration != null && Declaration.IsValid();
         }
 
-        public string ToolTip { get { return "Do not prefix values with enum name."; } }
+        public string ToolTip { get { return "Naming: do not prefix values with enum name."; } }
         public string ErrorStripeToolTip { get { return ToolTip; } }
         public int NavigationOffsetPatch { get { return 0; } }
     }

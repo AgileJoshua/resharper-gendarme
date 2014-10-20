@@ -19,7 +19,7 @@ namespace RGendarme.Rules.Naming.UseCorrectPrefix
             return Declaration != null && Declaration.IsValid();
         }
 
-        public string ToolTip { get { return "Generic type param name must starts with T letter."; } }
+        public string ToolTip { get { return "Naming: generic type param name must starts with T letter."; } }
         public string ErrorStripeToolTip { get { return ToolTip; } }
         public int NavigationOffsetPatch { get { return 0; } }
     }

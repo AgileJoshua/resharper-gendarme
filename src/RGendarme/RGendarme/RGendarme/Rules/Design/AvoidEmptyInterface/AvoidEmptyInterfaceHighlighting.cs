@@ -18,7 +18,7 @@ namespace RGendarme.Rules.Design.AvoidEmptyInterface
             return Declaration != null && Declaration.IsValid();
         }
 
-        public string ToolTip { get { return "Empty interface - use attribute instead"; } }
+        public string ToolTip { get { return "Design: empty interface - use attribute instead"; } }
         public string ErrorStripeToolTip { get { return ToolTip; } }
         public int NavigationOffsetPatch { get { return 0; } }
     }

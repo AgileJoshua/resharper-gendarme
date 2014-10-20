@@ -19,7 +19,7 @@ namespace RGendarme.Rules.Design.AvoidMultidimensionalIndexer
             return Declaration != null && Declaration.IsValid();
         }
 
-        public string ToolTip { get { return "Avoid multidimensional indexer. Use method instead."; } }
+        public string ToolTip { get { return "Design: avoid multidimensional indexer. Use method instead."; } }
         public string ErrorStripeToolTip { get { return ToolTip; } }
         public int NavigationOffsetPatch { get { return 0; } }
     }

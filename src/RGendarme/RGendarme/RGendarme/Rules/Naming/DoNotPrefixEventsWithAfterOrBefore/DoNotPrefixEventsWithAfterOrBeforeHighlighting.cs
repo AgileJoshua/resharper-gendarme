@@ -18,7 +18,7 @@ namespace RGendarme.Rules.Naming.DoNotPrefixEventsWithAfterOrBefore
             return Declaration != null && Declaration.IsValid();
         }
 
-        public string ToolTip { get { return "Do not prefix events with After or Before. Use a verb in the present and\\or in the past tense"; } }
+        public string ToolTip { get { return "Naming: do not prefix events with After or Before. Use a verb in the present and\\or in the past tense"; } }
         public string ErrorStripeToolTip { get { return ToolTip; } }
         public int NavigationOffsetPatch { get { return 0; } }
     }

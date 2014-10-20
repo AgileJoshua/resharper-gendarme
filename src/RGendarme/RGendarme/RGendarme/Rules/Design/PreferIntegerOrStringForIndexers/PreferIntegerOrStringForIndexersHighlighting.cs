@@ -18,7 +18,7 @@ namespace RGendarme.Rules.Design.PreferIntegerOrStringForIndexers
             return Declaration != null && Declaration.IsValid();
         }
 
-        public string ToolTip { get { return "Use only int, long or string in indexer."; } }
+        public string ToolTip { get { return "Design: use only int, long or string in indexer."; } }
         public string ErrorStripeToolTip { get { return ToolTip; } }
         public int NavigationOffsetPatch { get { return 0; }}
     }

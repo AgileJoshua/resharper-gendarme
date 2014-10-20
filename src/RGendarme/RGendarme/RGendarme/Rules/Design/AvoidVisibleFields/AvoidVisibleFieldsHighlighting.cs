@@ -18,7 +18,7 @@ namespace RGendarme.Rules.Design.AvoidVisibleFields
             return FieldDeclaration != null && FieldDeclaration.IsValid();
         }
 
-        public string ToolTip { get { return "Public field. Use a property or method instead."; } }
+        public string ToolTip { get { return "Design: public field. Use a property or method instead."; } }
         public string ErrorStripeToolTip { get { return ToolTip; }}
         public int NavigationOffsetPatch { get { return 0; } }
     }

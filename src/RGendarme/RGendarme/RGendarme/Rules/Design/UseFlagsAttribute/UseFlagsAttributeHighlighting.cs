@@ -19,7 +19,7 @@ namespace RGendarme.Rules.Design.UseFlagsAttribute
             return Declaration != null && Declaration.IsValid();
         }
 
-        public string ToolTip { get { return "Use Flags attribute."; } }
+        public string ToolTip { get { return "Design: use Flags attribute."; } }
         public string ErrorStripeToolTip { get { return ToolTip; } }
         public int NavigationOffsetPatch { get { return 0; } }
     }

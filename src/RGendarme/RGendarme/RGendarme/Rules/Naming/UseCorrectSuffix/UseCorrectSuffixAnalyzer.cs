@@ -64,7 +64,7 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix
             // TODO refactor it later
             string errorMsg;
             if (suffix.Length == 1)
-                errorMsg = string.Format("Class doesn't have {0} suffix.", suffix);
+                errorMsg = string.Format("Naming: Class doesn't have {0} suffix.", suffix);
             else
             {
                 // TODO move it to helper class
@@ -76,7 +76,7 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix
                         sb.Append(" or ");
                 }
 
-                errorMsg = string.Format("Class doesn't have {0} suffix.", sb);
+                errorMsg = string.Format("Naming: Class doesn't have {0} suffix.", sb);
             }
 
             // 1. get exntend list
@@ -101,7 +101,7 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix
         private void AnalyzeNotImplement(IClassDeclaration element, IHighlightingConsumer consumer, string suffix, string baseClass,
             Func<ICSharpIdentifier, string, IHighlighting> highlighting)
         {
-            string errorMsg = string.Format("Has {0} suffix but doesn't extend {1} class", suffix, baseClass); 
+            string errorMsg = string.Format("Naming: Has {0} suffix but doesn't extend {1} class", suffix, baseClass); 
 
             // 1. get class name
             if (element.NameIdentifier == null)

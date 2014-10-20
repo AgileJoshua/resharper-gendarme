@@ -20,7 +20,7 @@ namespace RGendarme.Rules.Naming.AvoidDeepNamespaceHierarchy
             return Declaration != null && Declaration.IsValid();
         }
 
-        public string ToolTip { get { return string.Format("Avoid deep namespace hierarchy. Not more than {0} levels.", _maxDeepLevel); } }
+        public string ToolTip { get { return string.Format("Naming: avoid deep namespace hierarchy. Not more than {0} levels.", _maxDeepLevel); } }
         public string ErrorStripeToolTip { get { return ToolTip; } }
         public int NavigationOffsetPatch { get { return 0; } }
     }

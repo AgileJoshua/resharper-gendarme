@@ -19,7 +19,7 @@ namespace RGendarme.Rules.Design.MissingAttributeUsageOnCustomAttribute
             return Declaration != null && Declaration.IsValid();
         }
 
-        public string ToolTip { get { return "Missing AttributeUsage on custom attribute."; } }
+        public string ToolTip { get { return "Design: missing AttributeUsage on custom attribute."; } }
         public string ErrorStripeToolTip { get { return ToolTip; } }
         public int NavigationOffsetPatch { get { return 0; }}
     }

@@ -20,6 +20,7 @@ namespace RGendarme.ManualTests
         
     }
 
+    [AttributeUsage(AttributeTargets.All)]
     public class MyAttribute : Attribute
     {
         
@@ -31,7 +32,7 @@ namespace RGendarme.ManualTests
     }
 
     [Serializable]
-    //[Flags]
+    [Flags]
     enum Options
     {
         First = 1,

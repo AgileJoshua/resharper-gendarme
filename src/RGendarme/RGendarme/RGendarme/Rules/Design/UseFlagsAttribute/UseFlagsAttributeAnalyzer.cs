@@ -3,6 +3,7 @@ using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using RGendarme.Lib;
 
 namespace RGendarme.Rules.Design.UseFlagsAttribute
 {
@@ -29,31 +30,7 @@ namespace RGendarme.Rules.Design.UseFlagsAttribute
                 return;
 
             // 2. if has, check for Flags attribute
-            var attributes = element.Attributes;
-            if (attributes.Count == 0)
-                return;
-
-            bool hasFlagsAttribute = false;
-            foreach (IAttribute attr in attributes)
-            {
-                IReferenceName name = attr.Name;
-                if (name == null) continue;
-
-                var result = name.Reference.CurrentResolveResult;
-                if (result == null) continue;
-
-                var cls = result.DeclaredElement as IClass;
-                if (cls == null) continue;
-
-                var clrName = cls.GetClrName().FullName;
-                if (clrName.Equals("System.FlagsAttribute"))
-                {
-                    hasFlagsAttribute = true;
-                    break;
-                }
-            }
-
-            if (!hasFlagsAttribute)
+            if (!AnalyzerHelper.HasAttribute(element, "System.FlagsAttribute"))
             {
                 consumer.AddHighlighting(new UseFlagsAttributeHighlighting(element), element.NameIdentifier.GetDocumentRange(), element.GetContainingFile());
             }

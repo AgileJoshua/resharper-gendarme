@@ -24,6 +24,16 @@ namespace RGendarme.ManualTests
     {
         // ...
     }
+
+    [Serializable]
+    //[Flags]
+    enum Options
+    {
+        First = 1,
+        Second = 2,
+        Third = 4,
+        All = First | Second | Third,
+    }
     
 
     public delegate void StringListEvent(IStringList sender);

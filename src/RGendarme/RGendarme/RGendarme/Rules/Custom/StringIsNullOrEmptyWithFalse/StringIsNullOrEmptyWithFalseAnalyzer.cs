@@ -19,7 +19,7 @@ namespace RGendarme.Rules.Custom.StringIsNullOrEmptyWithFalse
                 var method = r.DeclaredElement as IMethod;
                 if (method != null)
                 {
-                    var parent = method.GetContainingType();
+                    ITypeElement parent = method.GetContainingType();
                     if (parent != null)
                     {
                         isNullOrEmptyFunc = parent.GetClrName().FullName.Equals("System.String")

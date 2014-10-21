@@ -1,16 +1,26 @@
-﻿using JetBrains.ReSharper.Daemon.Stages;
+﻿using JetBrains.Application.Settings;
+using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using RGendarme.Settings;
 
 namespace RGendarme.Rules.Custom.StringIsNullOrEmptyWithFalse
 {
     [ElementProblemAnalyzer(new[] { typeof(IEqualityExpression) }, HighlightingTypes = new[] { typeof(StringIsNullOrEmptyWithFalseHighlight) })]
     public class StringIsNullOrEmptyWithFalseAnalyzer : ElementProblemAnalyzer<IEqualityExpression>
     {
+        private readonly ISettingsStore _settings;
+        public StringIsNullOrEmptyWithFalseAnalyzer(ISettingsStore settings)
+        {
+            _settings = settings;
+        }
+
         protected override void Run(IEqualityExpression element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            SettingsScalarEntry settingValue = _settings.Schema.GetScalarEntry((RGendarmeSettings s) => s.SampleOption);
+
             bool isNullOrEmptyFunc = false;
             var left = element.LeftOperand as IInvocationExpression;
             if (left != null)

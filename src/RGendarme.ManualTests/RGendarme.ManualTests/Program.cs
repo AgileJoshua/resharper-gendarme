@@ -6,7 +6,7 @@ using System.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Policy;
 
-namespace One.Two.Three.Five
+namespace One.Two.Three.Four.Five
 {
     internal class Helper
     {
@@ -17,7 +17,10 @@ namespace RGendarme.ManualTests
 {
     public class CPhone
     {
-        
+        public string GetConnectionString()
+        {
+            return "hello world";
+        }
     }
 
     [AttributeUsage(AttributeTargets.All)]

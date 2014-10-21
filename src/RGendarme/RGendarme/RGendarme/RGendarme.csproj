@@ -86,6 +86,8 @@
     <Compile Include="Rules\Naming\UseCorrectSuffix\UseCorrectSuffixHighlighting.cs" />
     <Compile Include="Rules\Naming\UsePreferredTerms\UsePreferredTermsAnalyzer.cs" />
     <Compile Include="Rules\Naming\UsePreferredTerms\UsePreferredTermsHighlighting.cs" />
+    <Compile Include="Rules\Naming\UsePropertyInsteadMethodWithGetPrefix\UsePropertyInsteadMethodWithGetPrefixAnalyzer.cs" />
+    <Compile Include="Rules\Naming\UsePropertyInsteadMethodWithGetPrefix\UsePropertyInsteadMethodWithGetPrefixHighlighting.cs" />
     <Compile Include="Rules\Tutorial\IntPower\IntPowerHighlighting.cs" />
     <Compile Include="Rules\Tutorial\IntPower\IntPowerInliningFix.cs" />
     <Compile Include="Rules\Tutorial\IntPower\IntPowerProblemAnalyzer.cs" />

@@ -104,6 +104,14 @@ namespace RGendarme.ManualTests
         AnswerMaybe,
     }
 
+    [Flags]
+    [Serializable]
+    enum Access
+    {
+        Read = 0,
+        Write = 1
+    }
+
     public abstract class ClsAttribute : Attribute
     {
 

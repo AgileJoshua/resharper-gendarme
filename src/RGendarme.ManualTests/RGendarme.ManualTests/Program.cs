@@ -15,6 +15,61 @@ namespace One.Two.Three.Four.Five
 
 namespace RGendarme.ManualTests
 {
+
+    class DoesNotOverloadAdd
+    {
+        public static int operator - (DoesNotOverloadAdd left, DoesNotOverloadAdd right)
+        {
+            return 0;
+        }
+
+        public static int operator + (DoesNotOverloadAdd left, DoesNotOverloadAdd right)
+        {
+            return 0;
+        }
+
+//        public static int operator *(DoesNotOverloadAdd left, DoesNotOverloadAdd right)
+//        {
+//            return 0;
+//        }
+
+        public static int operator /(DoesNotOverloadAdd left, DoesNotOverloadAdd right)
+        {
+            return 0;
+        }
+
+//        public static int operator >(DoesNotOverloadAdd left, DoesNotOverloadAdd right)
+//        {
+//            return 0;
+//        }
+
+        public static int operator <(DoesNotOverloadAdd left, DoesNotOverloadAdd right)
+        {
+            return 0;
+        }
+
+        public static int operator >=(DoesNotOverloadAdd left, DoesNotOverloadAdd right)
+        {
+            return 0;
+        }
+
+//        public static int operator <=(DoesNotOverloadAdd left, DoesNotOverloadAdd right)
+//        {
+//            return 0;
+//        }
+
+//        public static bool operator true(DoesNotOverloadAdd ope)
+//        {
+//            return true;
+//        }
+
+        public static bool operator false(DoesNotOverloadAdd ope)
+        {
+            return false;
+        }
+
+    }
+
     public class CPhone
     {
         public string GetConnectionString()

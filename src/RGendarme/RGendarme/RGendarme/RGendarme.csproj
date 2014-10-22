@@ -69,6 +69,8 @@
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsCreatePropertyBulbItem.cs" />
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsHighlighting.cs" />
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsQuickFix.cs" />
+    <Compile Include="Rules\Design\EnsureSymmetryForOverloadedOperators\EnsureSymmetryForOverloadedOperatorsAnalyzer.cs" />
+    <Compile Include="Rules\Design\EnsureSymmetryForOverloadedOperators\EnsureSymmetryForOverloadedOperatorsHighlighting.cs" />
     <Compile Include="Rules\Design\FlagsShouldNotDefineAZeroValue\FlagsShouldNotDefineAZeroValueAnalyzer.cs" />
     <Compile Include="Rules\Design\FlagsShouldNotDefineAZeroValue\FlagsShouldNotDefineAZeroValueHighlighting.cs" />
     <Compile Include="Rules\Design\MissingAttributeUsageOnCustomAttribute\MissingAttributeUsageOnCustomAttributeAnalyzer.cs" />

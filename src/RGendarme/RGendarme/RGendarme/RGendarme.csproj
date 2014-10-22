@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="Lib\AnalyzerHelper.cs" />
     <Compile Include="Lib\Extenstions\ParameterDeclarationExtensions.cs" />
+    <Compile Include="Rules\Custom\SameKeyInDictionaryDeclaration\SameKeyInDictionaryDeclarationAnalyzer.cs" />
+    <Compile Include="Rules\Custom\SameKeyInDictionaryDeclaration\SameKeyInDictionaryDeclarationHighlight.cs" />
     <Compile Include="Rules\Custom\StringIsNullOrEmptyWithFalse\StringIsNullOrEmptyWithFalseAnalyzer.cs" />
     <Compile Include="Rules\Custom\StringIsNullOrEmptyWithFalse\StringIsNullOrEmptyWithFalseBulbItem.cs" />
     <Compile Include="Rules\Custom\StringIsNullOrEmptyWithFalse\StringIsNullOrEmptyWithFalseHighlight.cs" />

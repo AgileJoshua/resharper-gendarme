@@ -28,6 +28,24 @@ namespace RGendarme.ManualTests
 
     class DoesNotOverloadAdd
     {
+        public void Foo()
+        {
+            var rules = new Dictionary<string, string>
+	        {
+    	        {"-", "+"},
+    	        {"+", "-"},
+    	        {"+", "/"} // <-- error in runtime!
+	        };
+
+            var rule1 = new Dictionary<int, string>
+	        {
+    	        {1, "+"},
+    	        {2, "-"},
+    	        {1, "/"} // <-- error in runtime!
+	        };
+
+           
+        }
 
         public bool NextJob (ref int id, string display)
         {

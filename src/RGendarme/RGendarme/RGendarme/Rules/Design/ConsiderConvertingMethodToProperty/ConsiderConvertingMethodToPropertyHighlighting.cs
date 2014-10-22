@@ -2,14 +2,14 @@ using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 
-namespace RGendarme.Rules.Naming.UsePropertyInsteadMethodWithGetPrefix
+namespace RGendarme.Rules.Design.ConsiderConvertingMethodToProperty
 {
     [StaticSeverityHighlighting(Severity.WARNING, CSharpLanguage.Name)]
-    public class UsePropertyInsteadMethodWithGetPrefixHighlighting : IHighlighting
+    public class ConsiderConvertingMethodToPropertyHighlighting : IHighlighting
     {
         public IMethodDeclaration Declaration { get; private set; }
 
-        public UsePropertyInsteadMethodWithGetPrefixHighlighting(IMethodDeclaration declaration)
+        public ConsiderConvertingMethodToPropertyHighlighting(IMethodDeclaration declaration)
         {
             Declaration = declaration;
         }
@@ -19,7 +19,7 @@ namespace RGendarme.Rules.Naming.UsePropertyInsteadMethodWithGetPrefix
             return Declaration != null && Declaration.IsValid();
         }
 
-        public string ToolTip { get { return "Naming: Use property instead."; } }
+        public string ToolTip { get { return "Design: consider converting method to property."; } }
         public string ErrorStripeToolTip { get { return ToolTip; } }
         public int NavigationOffsetPatch { get { return 0; } }
     }

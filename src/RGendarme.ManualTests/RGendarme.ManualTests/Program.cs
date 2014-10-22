@@ -11,6 +11,16 @@ namespace One.Two.Three.Four.Five
     internal class Helper
     {
     }
+
+//    public sealed class MyClass
+//    {
+//        // note that C# compilers won't allow this to compile
+//        public int GetAnswer()
+//        {
+//            return 42;
+//        }
+//    }
+
 }
 
 namespace RGendarme.ManualTests
@@ -19,7 +29,7 @@ namespace RGendarme.ManualTests
     class DoesNotOverloadAdd
     {
 
-        public bool NextJob (out int id, string display)
+        public bool NextJob (ref int id, string display)
         {
             display = String.Format("Job #{0}", id++);
 
@@ -83,7 +93,7 @@ namespace RGendarme.ManualTests
 
     public class CPhone
     {
-        public string GetConnectionString()
+        public string IsConnectionString()
         {
             return "hello world";
         }

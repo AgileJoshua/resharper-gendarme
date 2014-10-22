@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Lib\AnalyzerHelper.cs" />
+    <Compile Include="Lib\Extenstions\ParameterDeclarationExtensions.cs" />
     <Compile Include="Rules\Custom\StringIsNullOrEmptyWithFalse\StringIsNullOrEmptyWithFalseAnalyzer.cs" />
     <Compile Include="Rules\Custom\StringIsNullOrEmptyWithFalse\StringIsNullOrEmptyWithFalseBulbItem.cs" />
     <Compile Include="Rules\Custom\StringIsNullOrEmptyWithFalse\StringIsNullOrEmptyWithFalseHighlight.cs" />
@@ -64,6 +65,8 @@
     <Compile Include="Rules\Design\AvoidMultidimensionalIndexer\AvoidMultidimensionalIndexerHighlighting.cs" />
     <Compile Include="Rules\Design\AvoidPropertiesWithoutGetAccessor\AvoidPropertiesWithoutGetAccessorAnalyzer.cs" />
     <Compile Include="Rules\Design\AvoidPropertiesWithoutGetAccessor\AvoidPropertiesWithoutGetAccessorHighlighting.cs" />
+    <Compile Include="Rules\Design\AvoidRefAndOutParameters\AvoidRefAndOutParametersAnalyzer.cs" />
+    <Compile Include="Rules\Design\AvoidRefAndOutParameters\AvoidRefAndOutParametersHighlighting.cs" />
     <Compile Include="Rules\Design\AvoidVisibleFields\ AvoidVisibleFieldsRuleAnalyzer.cs" />
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsCreateMethodBulbItem.cs" />
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsCreatePropertyBulbItem.cs" />

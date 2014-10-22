@@ -18,6 +18,17 @@ namespace RGendarme.ManualTests
 
     class DoesNotOverloadAdd
     {
+
+        public bool NextJob (out int id, string display)
+        {
+            display = String.Format("Job #{0}", id++);
+
+            if (id < 0)
+                return false;
+            
+            return true;
+        }
+
         public static int operator - (DoesNotOverloadAdd left, DoesNotOverloadAdd right)
         {
             return 0;
@@ -42,16 +53,16 @@ namespace RGendarme.ManualTests
 //        {
 //            return 0;
 //        }
-
-        public static int operator <(DoesNotOverloadAdd left, DoesNotOverloadAdd right)
-        {
-            return 0;
-        }
-
-        public static int operator >=(DoesNotOverloadAdd left, DoesNotOverloadAdd right)
-        {
-            return 0;
-        }
+//
+//        public static int operator <(DoesNotOverloadAdd left, DoesNotOverloadAdd right)
+//        {
+//            return 0;
+//        }
+//
+//        public static int operator >=(DoesNotOverloadAdd left, DoesNotOverloadAdd right)
+//        {
+//            return 0;
+//        }
 
 //        public static int operator <=(DoesNotOverloadAdd left, DoesNotOverloadAdd right)
 //        {
@@ -63,10 +74,10 @@ namespace RGendarme.ManualTests
 //            return true;
 //        }
 
-        public static bool operator false(DoesNotOverloadAdd ope)
-        {
-            return false;
-        }
+//        public static bool operator false(DoesNotOverloadAdd ope)
+//        {
+//            return false;
+//        }
 
     }
 

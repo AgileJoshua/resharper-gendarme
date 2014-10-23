@@ -25,6 +25,20 @@ namespace One.Two.Three.Four.Five
 
 namespace RGendarme.ManualTests
 {
+    public sealed class MyClass1
+    {
+        private int someValue;
+    }
+
+    // =======================
+    public sealed class MyClass2
+    {
+        private int GetAnswer()
+        {
+            return 42;
+        }
+    }
+
 
     class DoesNotOverloadAdd
     {

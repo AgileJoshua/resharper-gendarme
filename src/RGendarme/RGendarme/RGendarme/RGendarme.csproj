@@ -136,7 +136,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Settings\OptionsPageThemedIcons\samplePage.gif" />
+    <ThemedIconPng Include="Settings\OptionsPageThemedIcons\UseIntMaxValueOptions.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -147,4 +147,5 @@
     <Error Condition="!Exists('..\..\packages\JetBrains.ReSharper.SDK.8.2.1158\build\JetBrains.ReSharper.SDK.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\JetBrains.ReSharper.SDK.8.2.1158\build\JetBrains.ReSharper.SDK.Targets'))" />
   </Target>
   <Import Project="..\..\packages\JetBrains.ReSharper.SDK.8.2.1158\build\JetBrains.ReSharper.SDK.Targets" Condition="Exists('..\..\packages\JetBrains.ReSharper.SDK.8.2.1158\build\JetBrains.ReSharper.SDK.Targets')" />
+  <Import Project="$(ReSharperSdkTools)\MSBuild\JetBrains.Build.Platform.ThemedIconsConverter.Targets" Condition="Exists('$(ReSharperSdkTools)\MSBuild\JetBrains.Build.Platform.ThemedIconsConverter.Targets')" />
 </Project>

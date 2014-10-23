@@ -1,8 +1,9 @@
 ﻿using JetBrains.Application.Settings;
+using JetBrains.ReSharper.Settings;
 
 namespace RGendarme.Settings
 {
-    [SettingsKey(typeof(EnvironmentSettings), "RGendarme settings")]
+    [SettingsKey(typeof(CodeInspectionSettings), "RGendarme settings")]
     public class RGendarmeSettings
     {
         [SettingsEntry(true, "Whether to do or not")]

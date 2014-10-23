@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using JetBrains.DataFlow;
+﻿using JetBrains.DataFlow;
 using JetBrains.ReSharper.PowerToys.OptionsPage;
 using JetBrains.UI.CrossFramework;
 using JetBrains.UI.Options;
@@ -16,7 +8,7 @@ namespace RGendarme.Settings
     /// <summary>
     /// Interaction logic for NamingOptionPage.xaml
     /// </summary>
-    [OptionsPage(PID, "Naming rules", typeof(OptionsPageThemedIcons.SamplePage), ParentId = SampleOptionPage.PID)]
+    [OptionsPage(PID, "Naming rules", typeof(OptionsPageThemedIcons.UseIntMaxValueOptions), ParentId = SampleOptionPage.PID)]
     public partial class NamingOptionPage : IOptionsPage
     {
         private const string PID = "NamingOptionPage";

@@ -16,15 +16,16 @@
 
 using JetBrains.Application.Settings;
 using JetBrains.DataFlow;
-using JetBrains.ReSharper.Features.Common.Options;
+using JetBrains.ReSharper.Features.Environment.Options.Inspections;
 using JetBrains.UI.Controls;
 using JetBrains.UI.CrossFramework;
 using JetBrains.UI.Options;
+using JetBrains.UI.Options.OptionPages;
 using RGendarme.Settings;
 
 namespace JetBrains.ReSharper.PowerToys.OptionsPage
 {
-  [OptionsPage(PID, "Sample Page", typeof(OptionsPageThemedIcons.SamplePage), ParentId = ToolsPage.PID)]
+  [OptionsPage(PID, "Sample Page", typeof(OptionsPageThemedIcons.UseIntMaxValueOptions), ParentId = CodeInspectionPage.PID)]
   public partial class SampleOptionPage : IOptionsPage
   {
     public const string PID = "SamplePageId";

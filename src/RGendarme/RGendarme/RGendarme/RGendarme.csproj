@@ -76,6 +76,8 @@
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsQuickFix.cs" />
     <Compile Include="Rules\Design\AvoidVisibleNestedTypes\AvoidVisibleNestedTypesAnalyzer.cs" />
     <Compile Include="Rules\Design\AvoidVisibleNestedTypes\AvoidVisibleNestedTypesHighlighting.cs" />
+    <Compile Include="Rules\Design\ConsiderUsingStaticType\ConsiderUsingStaticTypeAnalyzer.cs" />
+    <Compile Include="Rules\Design\ConsiderUsingStaticType\ConsiderUsingStaticTypeHighlighting.cs" />
     <Compile Include="Rules\Design\EnsureSymmetryForOverloadedOperators\EnsureSymmetryForOverloadedOperatorsAnalyzer.cs" />
     <Compile Include="Rules\Design\EnsureSymmetryForOverloadedOperators\EnsureSymmetryForOverloadedOperatorsHighlighting.cs" />
     <Compile Include="Rules\Design\FlagsShouldNotDefineAZeroValue\FlagsShouldNotDefineAZeroValueAnalyzer.cs" />

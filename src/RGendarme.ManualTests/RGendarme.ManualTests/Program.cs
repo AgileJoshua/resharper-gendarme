@@ -39,6 +39,24 @@ namespace RGendarme.ManualTests
 //        }
 //    }
 
+    public  class Class
+    {
+        public static void Method()
+        {
+        }
+
+        static int i = 3;
+
+        public static int P
+        {
+            get { return 1; }
+        }
+
+        public delegate int Del (int i);
+
+        public static event Del evnt;
+    }
+
     abstract public class AbstractDispose1  //: IDisposable
     {
         IntPtr field;

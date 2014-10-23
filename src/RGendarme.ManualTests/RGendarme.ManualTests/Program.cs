@@ -52,6 +52,13 @@ namespace RGendarme.ManualTests
         }
     }
 
+    public class Outer
+    {
+        public class Inner
+        {
+            // ...
+        }
+    }
 
 //    class DoesNotOverloadAdd
 //    {

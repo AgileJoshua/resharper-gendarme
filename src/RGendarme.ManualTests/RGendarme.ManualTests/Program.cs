@@ -39,15 +39,17 @@ namespace RGendarme.ManualTests
 //        }
 //    }
 
-    abstract public class AbstractDispose // : IDisposable
+    abstract public class AbstractDispose1  //: IDisposable
     {
         IntPtr field;
 
+        //public abstract  void Dispose();
+
         // the field should be disposed in the type that declares it
-//        public void Dispose()
-//        {
-//            
-//        }
+        public void Dispose()
+        {
+            
+        }
     }
 
 

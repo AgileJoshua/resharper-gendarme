@@ -1,9 +1,7 @@
 ﻿using System.Linq;
 using JetBrains.Application.Settings;
-using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
-using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Parsing;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
@@ -22,28 +20,10 @@ namespace RGendarme.Rules.Design.TypesWithNativeFieldsShouldBeDisposable
 
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
-            // 1. if class implements IDisposable and Dispose exists and is not abstract - return
-            if (element.ExtendsList == null || !AnalyzerHelper.IsImplement(element.ExtendsList, "System.IDisposable"))
+            if (element.FieldDeclarations.IsEmpty)
                 return;
 
-            // TODO refactor this - move it to helper class
-            bool hasDispose = false; // if true - return
-            foreach (IMethodDeclaration m in element.MethodDeclarationsEnumerable)
-            {
-                
-                if (m.NameIdentifier != null && !string.IsNullOrEmpty(m.NameIdentifier.Name) &&
-                    m.NameIdentifier.Name.Equals("Dispose") && 
-                    !m.ModifiersList.HasModifier(CSharpTokenType.ABSTRACT_KEYWORD))
-                {
-                    hasDispose = true;
-                    break;
-                }
-            }
-
-            if (hasDispose)
-                return;
-
-            // 2. if class has  IntPtr, UIntPtr, or HandleRef fields - throw warning
+            // 1. if class has  IntPtr, UIntPtr, or HandleRef fields - throw warning
             var unsafeTypes = new[] {"System.IntPtr", "System.UIntPtr", "System.Runtime.InteropServices.HandleRef"};
             bool hasUnsafeFields = false; //= element.FieldDeclarationsEnumerable.Any(field => field.IsUnsafe);
             foreach (IFieldDeclaration field in element.FieldDeclarationsEnumerable)
@@ -56,32 +36,31 @@ namespace RGendarme.Rules.Design.TypesWithNativeFieldsShouldBeDisposable
                 }
             }
 
-            if (hasUnsafeFields)
+            if (!hasUnsafeFields)
+                return;
+
+            // 2. if class implements IDisposable and Dispose exists and is not abstract - return
+            bool hasDispose = false; // if true - return
+            if (element.ExtendsList != null && AnalyzerHelper.IsImplement(element.ExtendsList, "System.IDisposable"))
+            {
+                // TODO refactor this - move it to helper class
+                foreach (IMethodDeclaration m in element.MethodDeclarationsEnumerable)
+                {
+                    if (m.NameIdentifier != null && !string.IsNullOrEmpty(m.NameIdentifier.Name) &&
+                        m.NameIdentifier.Name.Equals("Dispose") &&
+                        m.ModifiersList != null &&
+                        !m.ModifiersList.HasModifier(CSharpTokenType.ABSTRACT_KEYWORD))
+                    {
+                        hasDispose = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!hasDispose)
             {
                 consumer.AddHighlighting(new TypesWithNativeFieldsShouldBeDisposableHighlighting(element), element.NameIdentifier.GetDocumentRange(), element.GetContainingFile());
             }
-
-            //throw new System.NotImplementedException();
         }
-    }
-
-    [StaticSeverityHighlighting(Severity.WARNING, CSharpLanguage.Name)]
-    public class TypesWithNativeFieldsShouldBeDisposableHighlighting : IHighlighting
-    {
-        public IClassDeclaration Declaration { get; private set; }
-
-        public TypesWithNativeFieldsShouldBeDisposableHighlighting(IClassDeclaration declaration)
-        {
-            Declaration = declaration;
-        }
-
-        public bool IsValid()
-        {
-            return Declaration != null && Declaration.IsValid();
-        }
-
-        public string ToolTip { get { return "Design: types with native fields should be disposable."; } }
-        public string ErrorStripeToolTip { get { return ToolTip; } }
-        public int NavigationOffsetPatch { get { return 0; } }
     }
 }

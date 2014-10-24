@@ -23,6 +23,22 @@ using System.Security.Policy;
 
 //}
 
+
+namespace MyStuff.Special
+{
+    // single type inside a namespace
+    public class Helper
+    {
+    }
+
+    enum Position
+    {
+        First = 1,
+        Second
+    }
+
+}
+
 namespace RGendarme.ManualTests
 {
 //    public sealed class MyClass1

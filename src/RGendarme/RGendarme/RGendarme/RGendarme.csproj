@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Lib\AnalyzerHelper.cs" />
     <Compile Include="Lib\Extenstions\ParameterDeclarationExtensions.cs" />
+    <Compile Include="Lib\TypeHelper.cs" />
     <Compile Include="Rules\Custom\SameKeyInDictionaryDeclaration\SameKeyInDictionaryDeclarationAnalyzer.cs" />
     <Compile Include="Rules\Custom\SameKeyInDictionaryDeclaration\SameKeyInDictionaryDeclarationHighlight.cs" />
     <Compile Include="Rules\Custom\StringIsNullOrEmptyWithFalse\StringIsNullOrEmptyWithFalseAnalyzer.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Rules\Design\AvoidVisibleNestedTypes\AvoidVisibleNestedTypesHighlighting.cs" />
     <Compile Include="Rules\Design\ConsiderUsingStaticType\ConsiderUsingStaticTypeAnalyzer.cs" />
     <Compile Include="Rules\Design\ConsiderUsingStaticType\ConsiderUsingStaticTypeHighlighting.cs" />
+    <Compile Include="Rules\Design\DeclareEventHandlersCorrectly\DeclareEventHandlersCorrectlyAnalyzer.cs" />
     <Compile Include="Rules\Design\EnsureSymmetryForOverloadedOperators\EnsureSymmetryForOverloadedOperatorsAnalyzer.cs" />
     <Compile Include="Rules\Design\EnsureSymmetryForOverloadedOperators\EnsureSymmetryForOverloadedOperatorsHighlighting.cs" />
     <Compile Include="Rules\Design\EnumsShouldDefineAZeroValue\EnumsShouldDefineAZeroValueAnalyzer.cs" />

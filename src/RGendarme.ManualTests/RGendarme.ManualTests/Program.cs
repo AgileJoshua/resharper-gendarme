@@ -26,6 +26,15 @@ using System.Security.Policy;
 
 namespace MyStuff.Special
 {
+    delegate void MyDelegate(int sender, EventArgs two);
+
+    class Bad
+    {
+        public event MyDelegate CustomEvent;
+
+        public event EventHandler<EventArgs> CustomEvent1;
+    }
+
     // single type inside a namespace
     public class Helper
     {
@@ -68,9 +77,7 @@ namespace RGendarme.ManualTests
             get { return 1; }
         }
 
-        public delegate int Del (int i);
-
-        public static event Del evnt;
+        
     }
 
     abstract public class AbstractDispose1  //: IDisposable

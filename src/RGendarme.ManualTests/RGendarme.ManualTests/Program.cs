@@ -26,13 +26,13 @@ using System.Security.Policy;
 
 namespace MyStuff.Special
 {
-    delegate void MyDelegate(int sender, EventArgs two);
+    delegate int MyDelegate(int sendesr, float two);
 
     class Bad
     {
-        public event MyDelegate CustomEvent;
+        public event MyDelegate CustomEvent1;
 
-        public event EventHandler<EventArgs> CustomEvent1;
+        public event EventHandler<int> CustomEvent;
     }
 
     // single type inside a namespace

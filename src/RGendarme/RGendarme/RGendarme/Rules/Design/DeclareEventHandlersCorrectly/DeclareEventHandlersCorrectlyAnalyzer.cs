@@ -1,17 +1,10 @@
 ﻿using JetBrains.Application.Settings;
-using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp;
-using JetBrains.ReSharper.Psi.CSharp.Impl;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Impl.Types;
-using JetBrains.ReSharper.Psi.Resolve.Managed;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.ReSharper.Psi.Util;
-using RGendarme.Lib;
-using yWorks.yFiles.GraphML.Writer;
 
 namespace RGendarme.Rules.Design.DeclareEventHandlersCorrectly
 {
@@ -46,7 +39,8 @@ namespace RGendarme.Rules.Design.DeclareEventHandlersCorrectly
             IMethod method = delegat.InvokeMethod;
             if (!method.ReturnType.IsVoid())
             {
-                consumer.AddHighlighting(new DeclareEventHandlersCorrectlyHighlighting(element, "Delegate return type must be void."), element.DelegateName.GetDocumentRange(), element.GetContainingFile());
+                ThrowWarning(element, consumer, "Delegate return type must be void.");
+                consumer.AddHighlighting(new DeclareEventHandlersCorrectlyHighlighting(element, ), element.DelegateName.GetDocumentRange(), element.GetContainingFile());
             }
 
             if (method.Parameters.Count != 2)
@@ -61,36 +55,60 @@ namespace RGendarme.Rules.Design.DeclareEventHandlersCorrectly
                 consumer.AddHighlighting(new DeclareEventHandlersCorrectlyHighlighting(element, "First argument must has 'sender' name."), element.DelegateName.GetDocumentRange(), element.GetContainingFile());
             }
 
-            IParameter second = method.Parameters[1];
-            IExpressionType t = second.Type;
-
             IDeclaredType sysType = TypeFactory.CreateTypeByCLRName("System.EventArgs", element.GetPsiModule(), element.GetResolveContext());
-            if (!t.IsImplicitlyConvertibleTo(sysType, ClrPredefinedTypeConversionRule.INSTANCE))
+
+            IParameter second = method.Parameters[1];
+
+            if (second.Type.IsOpenType) // is generic method
+            {   
+                // todo rafactor this code block 
+                // look at this later
+//                string secondTypeShortName = second.Type.ToString();
+//                foreach (ITypeParameter p in delegat.TypeParameters)
+//                {
+//                    if (p.ShortName.Equals(secondTypeShortName))
+//                    {
+//                        IExpressionType t = p.EffectiveBaseClass();
+//                        IExpressionType t2 = p.Type();
+//                    }
+//                }
+//                foreach (var a in args.TypeArgumentNodes)
+//                {
+//                    int i = 1;
+//                }
+
+                // todo is'e ugly implementation but it's working. Refactot it later.
+                bool isExtendEventArgs = false;
+                ITypeArgumentList args = type.TypeArgumentList;
+                if (args != null)
+                {
+                    foreach (IType a in args.TypeArguments)
+                    {
+                        if (a.IsImplicitlyConvertibleTo(sysType, ClrPredefinedTypeConversionRule.INSTANCE))
+                        {
+                            isExtendEventArgs = true;
+                        }
+                    }
+                }
+
+                if (!isExtendEventArgs)
+                {
+                    ThrowWarning(element, consumer, "Second argument must be 'System.EventArgs' or extend it.");
+                }
+
+            }
+            else
             {
-                consumer.AddHighlighting(new DeclareEventHandlersCorrectlyHighlighting(element, "Second argument must be 'System.EventArgs' or extend it."), element.DelegateName.GetDocumentRange(), element.GetContainingFile());
+                if (!second.Type.IsImplicitlyConvertibleTo(sysType, ClrPredefinedTypeConversionRule.INSTANCE))
+                {
+                    ThrowWarning(element, consumer, "Second argument must be 'System.EventArgs' or extend it.");    
+                }
             }
         }
-    }
 
-    [StaticSeverityHighlighting(Severity.WARNING, CSharpLanguage.Name)]
-    public class DeclareEventHandlersCorrectlyHighlighting : IHighlighting
-    {
-        public IEventDeclaration Declaration { get; private set; }
-        private string _details;
-
-        public DeclareEventHandlersCorrectlyHighlighting(IEventDeclaration declaration, string details)
+        private void ThrowWarning(IEventDeclaration element, IHighlightingConsumer consumer, string message)
         {
-            Declaration = declaration;
-            _details = details;
+            consumer.AddHighlighting(new DeclareEventHandlersCorrectlyHighlighting(element,message), element.DelegateName.GetDocumentRange(), element.GetContainingFile());
         }
-
-        public bool IsValid()
-        {
-            return Declaration != null && Declaration.IsValid();
-        }
-
-        public string ToolTip { get { return string.Format("Design: declare event handlers correctly. {0}", _details); } }
-        public string ErrorStripeToolTip { get { return ToolTip; } }
-        public int NavigationOffsetPatch { get { return 0; } }
     }
 }

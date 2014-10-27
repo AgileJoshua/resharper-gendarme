@@ -12,10 +12,10 @@ namespace RGendarme.Lib
             return typeElement != null;
         }
 
-        public static bool TryGetType(string typeName, IPsiModule psiModule, IModuleReferenceResolveContext moduleReferenceResolveContext, out IDeclaredType typeElement)
-        {
-            typeElement = TypeFactory.CreateTypeByCLRName(typeName, psiModule, moduleReferenceResolveContext);
-            return typeElement != null;
-        }
+//        public static bool TryGetType(string typeName, IPsiModule psiModule, IModuleReferenceResolveContext moduleReferenceResolveContext, out IDeclaredType typeElement)
+//        {
+//            typeElement = TypeFactory.CreateTypeByCLRName(typeName, psiModule, moduleReferenceResolveContext);
+//            return typeElement != null;
+//        }
     }
 }

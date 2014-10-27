@@ -88,6 +88,8 @@
     <Compile Include="Rules\Design\EnumsShouldDefineAZeroValue\EnumsShouldDefineAZeroValueHighlighting.cs" />
     <Compile Include="Rules\Design\FlagsShouldNotDefineAZeroValue\FlagsShouldNotDefineAZeroValueAnalyzer.cs" />
     <Compile Include="Rules\Design\FlagsShouldNotDefineAZeroValue\FlagsShouldNotDefineAZeroValueHighlighting.cs" />
+    <Compile Include="Rules\Design\ImplementICloneableCorrectly\ImplementICloneableCorrectlyAnalyzer.cs" />
+    <Compile Include="Rules\Design\ImplementICloneableCorrectly\ImplementICloneableCorrectlyHighlighting.cs" />
     <Compile Include="Rules\Design\ImplementIComparableCorrectly\ImplementIComparableCorrectlyAnalyzer.cs" />
     <Compile Include="Rules\Design\ImplementIComparableCorrectly\ImplementIComparableCorrectlyHighlight.cs" />
     <Compile Include="Rules\Design\MissingAttributeUsageOnCustomAttribute\MissingAttributeUsageOnCustomAttributeAnalyzer.cs" />

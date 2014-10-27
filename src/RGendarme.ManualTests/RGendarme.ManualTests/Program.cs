@@ -22,22 +22,28 @@ using System.Security.Policy;
 //    }
 
 //}
+using RGendarme.ManualTests;
 
 
 namespace MyStuff.Special
 {
     delegate int MyDelegate(int sendesr, float two);
 
-    class Bad
-    {
-        public event MyDelegate CustomEvent1;
-
-        public event EventHandler<int> CustomEvent;
-    }
+//    class Bad
+//    {
+//        public event MyDelegate CustomEvent1;
+//
+//        public event EventHandler<int> CustomEvent;
+//    }
 
     // single type inside a namespace
-    public class Helper
-    {
+  
+    public class MyClass : ICloneable{
+        public object Clone ()
+        {
+            MyClass myClass = new MyClass ();
+            return myClass;
+        }
     }
 
     enum Position
@@ -46,37 +52,37 @@ namespace MyStuff.Special
         Second
     }
 
-    class MyClass : IComparable
-    {
-        public int CompareTo(object obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static MyClass operator >(MyClass left, MyClass right)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static MyClass operator <(MyClass left, MyClass right)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static MyClass operator ==(MyClass left, MyClass right)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static MyClass operator !=(MyClass left, MyClass right)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Equals(object obj)
-        {
-            return true;
-        }
+//    class MyClass : IComparable
+//    {
+//        public int CompareTo(object obj)
+//        {
+//            throw new NotImplementedException();
+//        }
+//
+//        public static MyClass operator >(MyClass left, MyClass right)
+//        {
+//            throw new NotImplementedException();
+//        }
+//
+//        public static MyClass operator <(MyClass left, MyClass right)
+//        {
+//            throw new NotImplementedException();
+//        }
+//
+//        public static MyClass operator ==(MyClass left, MyClass right)
+//        {
+//            throw new NotImplementedException();
+//        }
+//
+//        public static MyClass operator !=(MyClass left, MyClass right)
+//        {
+//            throw new NotImplementedException();
+//        }
+//
+//        public override bool Equals(object obj)
+//        {
+//            return true;
+//        }
 
 //        public override bool Equals(object obj)
 //        {
@@ -87,7 +93,7 @@ namespace MyStuff.Special
 //        {
 //            
 //        }
-    }
+//    }
 
 }
 

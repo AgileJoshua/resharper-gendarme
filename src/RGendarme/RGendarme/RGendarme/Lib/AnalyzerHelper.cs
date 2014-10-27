@@ -7,6 +7,17 @@ namespace RGendarme.Lib
 {
     public static class AnalyzerHelper
     {
+        public static bool IsImplement(IClassDeclaration declaration, string baseClass)
+        {
+            if (declaration == null)
+                throw new ArgumentNullException("declaration");
+
+            if (declaration.ExtendsList == null)
+                return false;
+
+            return IsImplement(declaration.ExtendsList, baseClass);
+        }
+
         /// <summary>
         /// Check if extend list contains specific type.
         /// </summary>

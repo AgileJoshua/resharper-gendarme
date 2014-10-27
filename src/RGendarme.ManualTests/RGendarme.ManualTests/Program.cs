@@ -46,6 +46,49 @@ namespace MyStuff.Special
         Second
     }
 
+    class MyClass : IComparable
+    {
+        public int CompareTo(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static MyClass operator >(MyClass left, MyClass right)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static MyClass operator <(MyClass left, MyClass right)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static MyClass operator ==(MyClass left, MyClass right)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static MyClass operator !=(MyClass left, MyClass right)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return true;
+        }
+
+//        public override bool Equals(object obj)
+//        {
+//            return base.Equals(obj);
+//        }
+
+//        public float Equals(int i, int z)
+//        {
+//            
+//        }
+    }
+
 }
 
 namespace RGendarme.ManualTests
@@ -64,7 +107,7 @@ namespace RGendarme.ManualTests
 //        }
 //    }
 
-    public  class Class
+    public  class MyClass
     {
         public static void Method()
         {
@@ -76,6 +119,8 @@ namespace RGendarme.ManualTests
         {
             get { return 1; }
         }
+
+        public static 
 
         
     }

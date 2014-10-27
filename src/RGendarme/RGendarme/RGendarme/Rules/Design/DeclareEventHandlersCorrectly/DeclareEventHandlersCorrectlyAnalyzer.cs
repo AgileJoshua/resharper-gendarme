@@ -40,19 +40,18 @@ namespace RGendarme.Rules.Design.DeclareEventHandlersCorrectly
             if (!method.ReturnType.IsVoid())
             {
                 ThrowWarning(element, consumer, "Delegate return type must be void.");
-                consumer.AddHighlighting(new DeclareEventHandlersCorrectlyHighlighting(element, ), element.DelegateName.GetDocumentRange(), element.GetContainingFile());
             }
 
             if (method.Parameters.Count != 2)
             {
-                consumer.AddHighlighting(new DeclareEventHandlersCorrectlyHighlighting(element, "Delegate method must has two parameters"), element.DelegateName.GetDocumentRange(), element.GetContainingFile());
+                ThrowWarning(element, consumer, "Delegate method must has two parameters");
                 return;
             }
 
             IParameter first = method.Parameters[0];
             if (!first.ShortName.Equals("sender"))
             {
-                consumer.AddHighlighting(new DeclareEventHandlersCorrectlyHighlighting(element, "First argument must has 'sender' name."), element.DelegateName.GetDocumentRange(), element.GetContainingFile());
+                ThrowWarning(element, consumer, "First argument must has 'sender' name.");
             }
 
             IDeclaredType sysType = TypeFactory.CreateTypeByCLRName("System.EventArgs", element.GetPsiModule(), element.GetResolveContext());

@@ -24,6 +24,7 @@ namespace RGendarme.Lib
         /// <param name="extends">Extend list</param>
         /// <param name="baseClass">Full CLR type name.</param>
         /// <returns></returns>
+        [Obsolete("Use IsImplement(IClassDeclaration ...) instead.")]
         public static bool IsImplement(IExtendsList extends, string baseClass)
         {
             bool result = false;

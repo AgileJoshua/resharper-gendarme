@@ -27,13 +27,28 @@ using RGendarme.ManualTests;
 
 namespace MyStuff.Special
 {
-    public class Bad
+    class NoFinalizer : IDisposable
     {
-        bool hasFoo;
-        int foo;
+        IntPtr field;
 
-        private bool? Foo;
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+//        ~NoFinalizer()
+//        {
+//            
+//        }
     }
+
+//    public class Bad
+//    {
+//        bool hasFoo;
+//        int foo;
+//
+//        private bool? Foo;
+//    }
 
 //    delegate int MyDelegate(int sendesr, float two);
 

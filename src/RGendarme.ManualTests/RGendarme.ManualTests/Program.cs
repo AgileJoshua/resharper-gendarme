@@ -31,6 +31,8 @@ namespace MyStuff.Special
     {
         bool hasFoo;
         int foo;
+
+        private bool? Foo;
     }
 
 //    delegate int MyDelegate(int sendesr, float two);

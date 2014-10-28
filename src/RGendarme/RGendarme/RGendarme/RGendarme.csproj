@@ -79,6 +79,7 @@
     <Compile Include="Rules\Design\AvoidVisibleNestedTypes\AvoidVisibleNestedTypesAnalyzer.cs" />
     <Compile Include="Rules\Design\AvoidVisibleNestedTypes\AvoidVisibleNestedTypesHighlighting.cs" />
     <Compile Include="Rules\Design\ConsiderConvertingFieldToNullable\ConsiderConvertingFieldToNullableAnalyzer.cs" />
+    <Compile Include="Rules\Design\ConsiderConvertingFieldToNullable\ConsiderConvertingFieldToNullableHighlighting.cs" />
     <Compile Include="Rules\Design\ConsiderUsingStaticType\ConsiderUsingStaticTypeAnalyzer.cs" />
     <Compile Include="Rules\Design\ConsiderUsingStaticType\ConsiderUsingStaticTypeHighlighting.cs" />
     <Compile Include="Rules\Design\DeclareEventHandlersCorrectly\DeclareEventHandlersCorrectlyAnalyzer.cs" />

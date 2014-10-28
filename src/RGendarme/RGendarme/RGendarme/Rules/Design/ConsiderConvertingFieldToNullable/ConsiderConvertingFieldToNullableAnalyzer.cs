@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Windows.Documents;
 using JetBrains.Application.Settings;
-using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 
@@ -31,7 +28,8 @@ namespace RGendarme.Rules.Design.ConsiderConvertingFieldToNullable
 
             const string pattern = @"^(is|has)";
 
-            var boolFieldses = new List<string>();
+            // 1. Get all bool fields and all not nullable fields
+            var boolFieldses = new List<IFieldDeclaration>();
             var possibleFields = new List<IFieldDeclaration>();
             foreach (IFieldDeclaration field in element.FieldDeclarationsEnumerable)
             {
@@ -45,8 +43,7 @@ namespace RGendarme.Rules.Design.ConsiderConvertingFieldToNullable
 
                 if (type.Equals("System.Boolean") && starts)
                 {
-                    string shortName = Regex.Replace(name, pattern, string.Empty, RegexOptions.IgnoreCase);
-                    boolFieldses.Add(shortName);
+                    boolFieldses.Add(field);
                     continue;
                 }
 
@@ -56,39 +53,27 @@ namespace RGendarme.Rules.Design.ConsiderConvertingFieldToNullable
                 }
             }
 
-            foreach (string boolField in boolFieldses)
+            // 2. check if bool and not bool are similar
+            foreach (IFieldDeclaration boolField in boolFieldses)
             {
+                string shortName = Regex.Replace(boolField.NameIdentifier.Name, pattern, string.Empty, RegexOptions.IgnoreCase);
+
                 IFieldDeclaration replaced = possibleFields.FirstOrDefault(
-                    f => string.Compare(f.NameIdentifier.Name, boolField, StringComparison.OrdinalIgnoreCase) == 0);
+                    f => string.Compare(f.NameIdentifier.Name, shortName, StringComparison.OrdinalIgnoreCase) == 0);
+
                 if (replaced != null)
                 {
-                    consumer.AddHighlighting(new ConsiderConvertingFieldToNullableHighlighting(element, string.Format("Merge {0} and {1} variables.", boolField, replaced.NameIdentifier.Name)), replaced.GetDocumentRange(), element.GetContainingFile());
+                    string warning = string.Format("Merge {0} and {1} fields.", boolField.NameIdentifier.Name, replaced.NameIdentifier.Name);
+
+                    ThrowWarning(replaced, consumer, warning);
+                    ThrowWarning(boolField, consumer, warning);
                 }
             }
-
-            //throw new System.NotImplementedException();
         }
-    }
 
-    [StaticSeverityHighlighting(Severity.WARNING, CSharpLanguage.Name)]
-    public class ConsiderConvertingFieldToNullableHighlighting : IHighlighting
-    {
-        public IClassDeclaration Declaration { get; private set; }
-        private readonly string _warningMessage;
-
-        public ConsiderConvertingFieldToNullableHighlighting(IClassDeclaration declaration, string warningMessage)
+        private void ThrowWarning(IFieldDeclaration field, IHighlightingConsumer consumer, string warning)
         {
-            Declaration = declaration;
-            _warningMessage = warningMessage;
+            consumer.AddHighlighting(new ConsiderConvertingFieldToNullableHighlighting(field, warning), field.GetDocumentRange(), field.GetContainingFile());
         }
-
-        public bool IsValid()
-        {
-            return Declaration != null && Declaration.IsValid();
-        }
-
-        public string ToolTip { get { return string.Format("Design: consider converting field to nullable. {0}", _warningMessage); } }
-        public string ErrorStripeToolTip { get { return ToolTip; } }
-        public int NavigationOffsetPatch { get { return 0; } }
     }
 }

@@ -27,7 +27,13 @@ using RGendarme.ManualTests;
 
 namespace MyStuff.Special
 {
-    delegate int MyDelegate(int sendesr, float two);
+    public class Bad
+    {
+        bool hasFoo;
+        int foo;
+    }
+
+//    delegate int MyDelegate(int sendesr, float two);
 
 //    class Bad
 //    {
@@ -38,13 +44,13 @@ namespace MyStuff.Special
 
     // single type inside a namespace
   
-    public class MyClass : ICloneable{
-        public object Clone ()
-        {
-            MyClass myClass = new MyClass ();
-            return myClass;
-        }
-    }
+//    public class MyClass {
+//        public object Clone ()
+//        {
+//            MyClass myClass = new MyClass ();
+//            return myClass;
+//        }
+//    }
 
     enum Position
     {
@@ -113,44 +119,40 @@ namespace RGendarme.ManualTests
 //        }
 //    }
 
-    public  class MyClass
-    {
-        public static void Method()
-        {
-        }
+//    public  class MyClass
+//    {
+//        public static void Method()
+//        {
+//        }
+//
+//        static int i = 3;
+//
+//        public static int P
+//        {
+//            get { return 1; }
+//        }
+//    }
 
-        static int i = 3;
+//    abstract public class AbstractDispose1  //: IDisposable
+//    {
+//        //IntPtr field;
+//
+//        //public abstract  void Dispose();
+//
+//        // the field should be disposed in the type that declares it
+//        public void Dispose()
+//        {
+//            
+//        }
+//    }
 
-        public static int P
-        {
-            get { return 1; }
-        }
-
-        public static 
-
-        
-    }
-
-    abstract public class AbstractDispose1  //: IDisposable
-    {
-        IntPtr field;
-
-        //public abstract  void Dispose();
-
-        // the field should be disposed in the type that declares it
-        public void Dispose()
-        {
-            
-        }
-    }
-
-    public class Outer
-    {
-        public class Inner
-        {
-            // ...
-        }
-    }
+//    public class Outer
+//    {
+//        public class Inner
+//        {
+//            // ...
+//        }
+//    }
 
 //    class DoesNotOverloadAdd
 //    {

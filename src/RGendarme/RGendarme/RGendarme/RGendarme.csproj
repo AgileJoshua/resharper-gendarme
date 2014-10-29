@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Lib\AnalyzerHelper.cs" />
     <Compile Include="Lib\Extenstions\ParameterDeclarationExtensions.cs" />
+    <Compile Include="Lib\Extenstions\SolutionExtensions.cs" />
     <Compile Include="Lib\TypeHelper.cs" />
     <Compile Include="Rules\Custom\SameKeyInDictionaryDeclaration\SameKeyInDictionaryDeclarationAnalyzer.cs" />
     <Compile Include="Rules\Custom\SameKeyInDictionaryDeclaration\SameKeyInDictionaryDeclarationHighlight.cs" />
@@ -78,7 +79,9 @@
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsQuickFix.cs" />
     <Compile Include="Rules\Design\AvoidVisibleNestedTypes\AvoidVisibleNestedTypesAnalyzer.cs" />
     <Compile Include="Rules\Design\AvoidVisibleNestedTypes\AvoidVisibleNestedTypesHighlighting.cs" />
+    <Compile Include="Rules\Design\ConsiderAddingInterface\ConsiderAddingInterfaceDaemonProcess.cs" />
     <Compile Include="Rules\Design\ConsiderAddingInterface\ConsiderAddingInterfaceDaemonStage.cs" />
+    <Compile Include="Rules\Design\ConsiderAddingInterface\ConsiderAddingInterfaceHighlighting.cs" />
     <Compile Include="Rules\Design\ConsiderConvertingFieldToNullable\ConsiderConvertingFieldToNullableAnalyzer.cs" />
     <Compile Include="Rules\Design\ConsiderConvertingFieldToNullable\ConsiderConvertingFieldToNullableHighlighting.cs" />
     <Compile Include="Rules\Design\ConsiderUsingStaticType\ConsiderUsingStaticTypeAnalyzer.cs" />
@@ -158,6 +161,9 @@
   </ItemGroup>
   <ItemGroup>
     <ThemedIconPng Include="Settings\OptionsPageThemedIcons\UseIntMaxValueOptions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Lib\Helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

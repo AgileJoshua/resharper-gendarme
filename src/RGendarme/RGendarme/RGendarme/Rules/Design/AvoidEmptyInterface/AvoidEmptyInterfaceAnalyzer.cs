@@ -10,6 +10,9 @@ namespace RGendarme.Rules.Design.AvoidEmptyInterface
     {
         protected override void Run(IInterfaceDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (element.NameIdentifier == null || string.IsNullOrEmpty(element.NameIdentifier.Name))
+                return;
+
             bool isEmptyInterface = false;
 
             IClassBody body = element.Body;

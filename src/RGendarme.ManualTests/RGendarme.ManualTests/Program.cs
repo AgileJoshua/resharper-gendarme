@@ -27,6 +27,12 @@ using RGendarme.ManualTests;
 
 namespace MyStuff.Special
 {
+
+    public interface TestMyInt
+    {
+        
+    }
+
     class NoFinalizer : IDisposable
     {
         IntPtr field;

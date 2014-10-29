@@ -78,6 +78,7 @@
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsQuickFix.cs" />
     <Compile Include="Rules\Design\AvoidVisibleNestedTypes\AvoidVisibleNestedTypesAnalyzer.cs" />
     <Compile Include="Rules\Design\AvoidVisibleNestedTypes\AvoidVisibleNestedTypesHighlighting.cs" />
+    <Compile Include="Rules\Design\ConsiderAddingInterface\ConsiderAddingInterfaceDaemonStage.cs" />
     <Compile Include="Rules\Design\ConsiderConvertingFieldToNullable\ConsiderConvertingFieldToNullableAnalyzer.cs" />
     <Compile Include="Rules\Design\ConsiderConvertingFieldToNullable\ConsiderConvertingFieldToNullableHighlighting.cs" />
     <Compile Include="Rules\Design\ConsiderUsingStaticType\ConsiderUsingStaticTypeAnalyzer.cs" />

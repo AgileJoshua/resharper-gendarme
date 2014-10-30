@@ -5,6 +5,7 @@ using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using JetBrains.Util;
 
 namespace RGendarme.Lib.Extenstions
 {
@@ -68,6 +69,21 @@ namespace RGendarme.Lib.Extenstions
                         cs.ProcessChildren(handler);
                     }
                 }
+            }
+        }
+
+        public static void ForEachProject(this ISolution solution, Action<IProject> handler)
+        {
+            Assertion.Assert(solution != null, "project != null");
+            Assertion.Assert(handler != null, "handler != null");
+
+            ICollection<IProject> projects = solution.GetAllProjects();
+            if (projects == null)
+                return;
+
+            foreach (IProject project in projects)
+            {
+                handler(project);
             }
         }
     }

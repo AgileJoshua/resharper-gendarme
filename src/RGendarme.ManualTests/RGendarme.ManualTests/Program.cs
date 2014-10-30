@@ -28,25 +28,25 @@ using RGendarme.ManualTests;
 namespace MyStuff.Special
 {
 
-    public interface TestMyInt
-    {
-        
-    }
-
-    class NoFinalizer : IDisposable
-    {
-        IntPtr field;
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
-//        ~NoFinalizer()
+//    public interface TestMyInt
+//    {
+//        
+//    }
+//
+//    class NoFinalizer : IDisposable
+//    {
+//        IntPtr field;
+//
+//        public void Dispose()
 //        {
-//            
+//            throw new NotImplementedException();
 //        }
-    }
+//
+////        ~NoFinalizer()
+////        {
+////            
+////        }
+//    }
 
 //    public class Bad
 //    {
@@ -75,11 +75,11 @@ namespace MyStuff.Special
 //        }
 //    }
 
-    enum Position
-    {
-        First = 1,
-        Second
-    }
+//    enum Position
+//    {
+//        First = 1,
+//        Second
+//    }
 
 //    class MyClass : IComparable
 //    {
@@ -366,25 +366,25 @@ namespace RGendarme.ManualTests
 //        }
 //    }
 
-    class Program
-    {
-        public int value = 3;
-
-        private static string field;
-
-        static void Main(string[] args)
-        {
-            string s = "abc";
-
-            double x = 0.0;
-            double y = System.Math.Pow(x, 2.0);
-            double z = System.Math.Pow(x, 3.0);
-            double n = System.Math.Pow(x, 4.0);
-
-            if (string.IsNullOrEmpty("hello world") == false)
-            {
-
-            }
-        }
-    }
+//    class Program
+//    {
+//        public int value = 3;
+//
+//        private static string field;
+//
+//        static void Main(string[] args)
+//        {
+//            string s = "abc";
+//
+//            double x = 0.0;
+//            double y = System.Math.Pow(x, 2.0);
+//            double z = System.Math.Pow(x, 3.0);
+//            double n = System.Math.Pow(x, 4.0);
+//
+//            if (string.IsNullOrEmpty("hello world") == false)
+//            {
+//
+//            }
+//        }
+//    }
 }

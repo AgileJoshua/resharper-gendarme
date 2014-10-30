@@ -7,11 +7,11 @@ namespace RGendarme.Rules.Design.ConsiderAddingInterface
     [StaticSeverityHighlighting(Severity.WARNING, CSharpLanguage.Name)]
     public class ConsiderAddingInterfaceHighlighting : IHighlighting
     {
-        public IInterfaceDeclaration Declaration { get; private set; }
+        public IClassDeclaration Declaration { get; private set; }
 
         private readonly string _interfaceName;
 
-        public ConsiderAddingInterfaceHighlighting(IInterfaceDeclaration declaration, string interfaceName)
+        public ConsiderAddingInterfaceHighlighting(IClassDeclaration declaration, string interfaceName)
         {
             Declaration = declaration;
             _interfaceName = interfaceName;

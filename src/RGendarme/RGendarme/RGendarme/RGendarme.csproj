@@ -54,7 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Lib\AnalyzerHelper.cs" />
+    <Compile Include="Lib\Extenstions\MethodDeclarationExtensions.cs" />
     <Compile Include="Lib\Extenstions\ParameterDeclarationExtensions.cs" />
+    <Compile Include="Lib\Extenstions\ProjectExtensions.cs" />
     <Compile Include="Lib\Extenstions\SolutionExtensions.cs" />
     <Compile Include="Lib\TypeHelper.cs" />
     <Compile Include="Rules\Custom\SameKeyInDictionaryDeclaration\SameKeyInDictionaryDeclarationAnalyzer.cs" />

@@ -2,6 +2,8 @@
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Resolve;
+using JetBrains.ReSharper.Psi.VB.Util;
+using JetBrains.Util;
 
 namespace RGendarme.Lib
 {
@@ -9,6 +11,8 @@ namespace RGendarme.Lib
     {
         public static bool IsImplement(IClassDeclaration declaration, string baseClass)
         {
+            Assertion.Assert(declaration != null, "declaration != null");
+
             if (declaration == null)
                 throw new ArgumentNullException("declaration");
 
@@ -16,6 +20,40 @@ namespace RGendarme.Lib
                 return false;
 
             return IsImplement(declaration.ExtendsList, baseClass);
+        }
+
+        public static bool IsImplement(IClassDeclaration declaration, IInterfaceDeclaration inter)
+        {
+            Assertion.Assert(declaration != null, "declaration != null");
+            Assertion.Assert(inter != null, "inter != null");
+
+            if (declaration.ExtendsList == null || inter.NameIdentifier == null || string.IsNullOrEmpty(inter.NameIdentifier.Name))
+                return false;
+
+            bool isImplemented = false;
+            foreach (IDeclaredTypeUsage type in declaration.ExtendsList.ExtendedInterfacesEnumerable)
+            {
+                var declaredType = type as IUserDeclaredTypeUsage;
+                if (declaredType == null || declaredType.TypeName == null)
+                    continue;
+
+                ResolveResultWithInfo resolveResult = declaredType.TypeName.Reference.CurrentResolveResult;
+                if (resolveResult == null)
+                    continue;
+
+                var element = resolveResult.Result.DeclaredElement as IInterface;
+                if (element != null)
+                {
+                    string fullClrName = element.GetClrName().FullName;
+                    if (fullClrName.Equals(inter.CLRName))
+                    {
+                        isImplemented = true;
+                        break;
+                    }
+                }
+            }
+            
+            return isImplemented;
         }
 
         /// <summary>

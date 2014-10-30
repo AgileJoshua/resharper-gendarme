@@ -16,6 +16,8 @@ namespace RGendarme.Rules.Design.AvoidVisibleFields
             if (modifiers == null) // if no modifiers - field is private by default
                  return;
             
+#warning it's bad pracise
+            // TODO refactor it using NodeType checking
             foreach (ITokenNode m in modifiers.Modifiers)
             {
                 if (m.GetText().Equals("public"))

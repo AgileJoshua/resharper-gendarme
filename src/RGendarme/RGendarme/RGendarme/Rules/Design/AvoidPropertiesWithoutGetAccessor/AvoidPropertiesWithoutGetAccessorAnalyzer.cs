@@ -12,6 +12,8 @@ namespace RGendarme.Rules.Design.AvoidPropertiesWithoutGetAccessor
         {
             bool isGetDefined = false;
 
+#warning refator it 
+            // TODO: use AccessorDeclarationsEnumerable.FirstOrDefault(accessor => accessor.Kind == AccessorKind.GETTER);
             foreach (IAccessorDeclaration accessor in element.AccessorDeclarationsEnumerable)
             {
                 if (accessor.NameIdentifier == null) continue;

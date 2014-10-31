@@ -65,6 +65,8 @@
     <Compile Include="Rules\Custom\StringIsNullOrEmptyWithFalse\StringIsNullOrEmptyWithFalseBulbItem.cs" />
     <Compile Include="Rules\Custom\StringIsNullOrEmptyWithFalse\StringIsNullOrEmptyWithFalseHighlight.cs" />
     <Compile Include="Rules\Custom\StringIsNullOrEmptyWithFalse\StringIsNullOrEmptyWithFalseQuickFix.cs" />
+    <Compile Include="Rules\Design\AttributeArgumentsShouldHaveAccessors\AttributeArgumentsShouldHaveAccessorsAnalyzer.cs" />
+    <Compile Include="Rules\Design\AttributeArgumentsShouldHaveAccessors\AttributeArgumentsShouldHaveAccessorsighlighting.cs" />
     <Compile Include="Rules\Design\AvoidEmptyInterface\AvoidEmptyInterfaceAnalyzer.cs" />
     <Compile Include="Rules\Design\AvoidEmptyInterface\AvoidEmptyInterfaceHighlighting.cs" />
     <Compile Include="Rules\Design\AvoidMultidimensionalIndexer\AvoidMultidimensionalIndexerAnalyzer.cs" />

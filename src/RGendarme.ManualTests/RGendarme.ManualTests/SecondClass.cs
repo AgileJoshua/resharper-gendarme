@@ -26,6 +26,24 @@ namespace RGendarme.ManualTests
     }
 
     [AttributeUsage(AttributeTargets.All)]
+    public sealed class MyNewAttribute : Attribute
+    {
+        private readonly int _foo;
+        private readonly string _bar;
+
+        public MyNewAttribute(int foo, string bar)
+        {
+            _foo = foo;
+            _bar = bar;
+        }
+
+        public int Foo
+        {
+            get { return _foo; }
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.All)]
     public sealed class AttributeWithRequiredPropertiesAttribute : Attribute
     {
         private readonly int _storedFoo;
@@ -35,7 +53,7 @@ namespace RGendarme.ManualTests
         public AttributeWithRequiredPropertiesAttribute(int foo, string bar)
         {
             _storedFoo = foo;
-            _storedBar = bar;
+            //_storedBar = bar;
         }
 
         public string Bar
@@ -46,12 +64,12 @@ namespace RGendarme.ManualTests
             }
         }
 
-//        public int Foo
-//        {
-//            get
-//            {
-//                return _storedFoo;
-//            }
-//        }
+        public int Foo
+        {
+            get
+            {
+                return _storedFoo;
+            }
+        }
     }
 }

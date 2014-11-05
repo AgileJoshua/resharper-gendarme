@@ -3,11 +3,11 @@ using System.IO;
 
 namespace New_Namespace
 {
-    [Flags]
-    public enum MyCustomValue
+    public enum MyEnum
     {
-//        Foo,
-//        Bar
+        Yes,
+        No,
+        reserved
     }
     
     public class My_Custom_Class

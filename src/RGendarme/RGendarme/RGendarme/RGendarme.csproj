@@ -118,6 +118,8 @@
     <Compile Include="Rules\Naming\DoNotPrefixEventsWithAfterOrBefore\DoNotPrefixEventsWithAfterOrBeforeHighlighting.cs" />
     <Compile Include="Rules\Naming\DoNotPrefixValuesWithEnumName\DoNotPrefixValuesWithEnumNameAnalyzer.cs" />
     <Compile Include="Rules\Naming\DoNotPrefixValuesWithEnumName\DoNotPrefixValuesWithEnumNameHighlighting.cs" />
+    <Compile Include="Rules\Naming\DoNotUseReservedInEnumValueNames\DoNotUseReservedInEnumValueNamesAnalyzer.cs" />
+    <Compile Include="Rules\Naming\DoNotUseReservedInEnumValueNames\DoNotUseReservedInEnumValueNamesHighlighting.cs" />
     <Compile Include="Rules\Naming\UseCorrectPrefix\UseCorrectPrefixAnalyzer.cs" />
     <Compile Include="Rules\Naming\UseCorrectPrefix\UseCorrectPrefixHighlighting.cs" />
     <Compile Include="Rules\Naming\UseCorrectPrefix\UseCorrectPrefixWrongGenericTypeNameHighlighting.cs" />

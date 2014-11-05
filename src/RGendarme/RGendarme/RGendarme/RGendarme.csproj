@@ -123,6 +123,8 @@
     <Compile Include="Rules\Naming\UseCorrectPrefix\UseCorrectPrefixWrongGenericTypeNameHighlighting.cs" />
     <Compile Include="Rules\Naming\UseCorrectSuffix\UseCorrectSuffixAnalyzer.cs" />
     <Compile Include="Rules\Naming\UseCorrectSuffix\UseCorrectSuffixHighlighting.cs" />
+    <Compile Include="Rules\Naming\UsePluralNameInEnumFlags\UsePluralNameInEnumFlagsAnalyzer.cs" />
+    <Compile Include="Rules\Naming\UsePluralNameInEnumFlags\UsePluralNameInEnumFlagsHighlighting.cs" />
     <Compile Include="Rules\Naming\UsePreferredTerms\UsePreferredTermsAnalyzer.cs" />
     <Compile Include="Rules\Naming\UsePreferredTerms\UsePreferredTermsHighlighting.cs" />
     <Compile Include="Rules\Design\ConsiderConvertingMethodToProperty\ConsiderConvertingMethodToPropertyAnalyzer.cs" />

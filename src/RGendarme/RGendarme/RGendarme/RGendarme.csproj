@@ -127,6 +127,8 @@
     <Compile Include="Rules\Naming\UsePreferredTerms\UsePreferredTermsHighlighting.cs" />
     <Compile Include="Rules\Design\ConsiderConvertingMethodToProperty\ConsiderConvertingMethodToPropertyAnalyzer.cs" />
     <Compile Include="Rules\Design\ConsiderConvertingMethodToProperty\ConsiderConvertingMethodToPropertyHighlighting.cs" />
+    <Compile Include="Rules\Naming\UseSingularNameInEnumsUnlessAreFlags\UseSingularNameInEnumsUnlessAreFlagsAnalyzer.cs" />
+    <Compile Include="Rules\Naming\UseSingularNameInEnumsUnlessAreFlags\UseSingularNameInEnumsUnlessAreFlagsHighlighting.cs" />
     <Compile Include="Rules\Tutorial\IntPower\IntPowerHighlighting.cs" />
     <Compile Include="Rules\Tutorial\IntPower\IntPowerInliningFix.cs" />
     <Compile Include="Rules\Tutorial\IntPower\IntPowerProblemAnalyzer.cs" />

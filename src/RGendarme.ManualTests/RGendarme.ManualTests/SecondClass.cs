@@ -1,6 +1,73 @@
 ﻿using System;
 using System.IO;
 
+namespace New_Namespace
+{
+    //[Flags]
+    public enum MyCustomValues
+    {
+//        Foo,
+//        Bar
+    }
+    
+    public class My_Custom_Class
+    {
+
+        public int My_Field;
+
+        public void My_Method(string my_string)
+        {
+        }
+    }
+
+    class PostOffice
+    {
+        public void SendLetter(Letter letter)
+        {
+        }
+        public void SendPackage(Package package)
+        {
+        }
+    }
+
+    public enum SmallEnum : byte
+    {
+        Zero,
+        One
+    }
+
+    public class GoodProtectedFinalizer
+    {
+        // compiler makes it protected
+        public ~GoodProtectedFinalizer()
+        {
+        }
+    }
+
+    public class MissingGetHashCode
+    {
+//        public override bool Equals(object obj)
+//        {
+//            return this == obj;
+//        }
+
+        public override int GetHashCode()
+        {
+            return 1;
+        }
+    }
+
+
+
+}
+
+abstract public class MyClass
+{
+    public MyClass()
+    {
+    }
+}
+
 namespace RGendarme.ManualTests
 {
     public class SecondClasd //: ITestInt
@@ -23,24 +90,6 @@ namespace RGendarme.ManualTests
         void Do(int i, string y);
 
         //int Another(float d);
-    }
-
-    [AttributeUsage(AttributeTargets.All)]
-    public sealed class MyNewAttribute : Attribute
-    {
-        private readonly int _foo;
-        private readonly string _bar;
-
-        public MyNewAttribute(int foo, string bar)
-        {
-            _foo = foo;
-            _bar = bar;
-        }
-
-        public int Foo
-        {
-            get { return _foo; }
-        }
     }
 
     [AttributeUsage(AttributeTargets.All)]

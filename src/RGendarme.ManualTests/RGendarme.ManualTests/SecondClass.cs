@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace New_Namespace
+namespace First.tNew_Namespace
 {
     public enum MyEnum
     {
@@ -20,20 +20,45 @@ namespace New_Namespace
 //        }
 //    }
 
-    class PostOffice
+    namespace Foo.Lang.Compiler
     {
-        public void SendLetter(Letter letter)
-        {
-        }
-        public void SendPackage(Package package)
+        public class  CompilerContext
         {
         }
 
-        public static bool IsPackageValid(Package package)
+        public class Context
         {
-            return package.HasAddress && package.HasStamp;
+            
         }
     }
+
+//    public interface IDo
+//    {
+//        int Print(string me);
+//    }
+//
+//    public class Do : IDo
+//    {
+//        public int Print (string notMe)
+//        {
+//            return 1;
+//        }
+//    }
+
+//    class PostOffice
+//    {
+//        public void SendLetter(Letter letter)
+//        {
+//        }
+//        public void SendPackage(Package package)
+//        {
+//        }
+//
+//        public static bool IsPackageValid(Package package)
+//        {
+//            return package.HasAddress && package.HasStamp;
+//        }
+//    }
 
 //    public enum SmallEnum : byte
 //    {

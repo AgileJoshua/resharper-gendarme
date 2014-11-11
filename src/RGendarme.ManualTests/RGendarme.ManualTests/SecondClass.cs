@@ -30,6 +30,13 @@ namespace First.tNew_Namespace
         {
             
         }
+
+        public class MainClass
+        {
+            public void Main ()
+            {
+            }
+        }
     }
 
 //    public interface IDo

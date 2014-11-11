@@ -22,21 +22,39 @@ namespace First.tNew_Namespace
 
     namespace Foo.Lang.Compiler
     {
-        public class  CompilerContext
+        class DoesNotOverrideEquals
         {
-        }
-
-        public class Context
-        {
-            
-        }
-
-        public class MainClass
-        {
-            public void Main ()
+            public static bool operator ==(DoesNotOverloadOperatorEquals a, DoesNotOverloadOperatorEquals b)
             {
+                return true;
+            }
+
+            public static bool operator !=(DoesNotOverloadOperatorEquals a, DoesNotOverloadOperatorEquals b)
+            {
+                return !(a == b);
+            }
+
+            public override bool Equals(object obj)
+            {
+                return true;
             }
         }
+
+//        public class  CompilerContext
+//        {
+//        }
+//
+//        public class Context
+//        {
+//            
+//        }
+//
+//        public class MainClass
+//        {
+//            public void Main ()
+//            {
+//            }
+//        }
     }
 
 //    public interface IDo

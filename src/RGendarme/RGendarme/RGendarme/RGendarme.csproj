@@ -108,6 +108,8 @@
     <Compile Include="Rules\Design\MainShouldNotBePublic\MainShouldNotBePublicHighlighting.cs" />
     <Compile Include="Rules\Design\MissingAttributeUsageOnCustomAttribute\MissingAttributeUsageOnCustomAttributeAnalyzer.cs" />
     <Compile Include="Rules\Design\MissingAttributeUsageOnCustomAttribute\MissingAttributeUsageOnCustomAttributeHighlighting.cs" />
+    <Compile Include="Rules\Design\OverrideEqualsMethod\OverrideEqualsMethodAnalyzer.cs" />
+    <Compile Include="Rules\Design\OverrideEqualsMethod\OverrideEqualsMethodHighlighting.cs" />
     <Compile Include="Rules\Design\PreferIntegerOrStringForIndexers\PreferIntegerOrStringForIndexersAnalyzer.cs" />
     <Compile Include="Rules\Design\PreferIntegerOrStringForIndexers\PreferIntegerOrStringForIndexersHighlighting.cs" />
     <Compile Include="Rules\Design\TypesWithNativeFieldsShouldBeDisposable\TypesWithNativeFieldsShouldBeDisposableAnalyzer.cs" />

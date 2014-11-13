@@ -2,13 +2,20 @@
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Resolve;
-using JetBrains.ReSharper.Psi.VB.Util;
 using JetBrains.Util;
 
 namespace RGendarme.Lib
 {
     public static class AnalyzerHelper
     {
+        public static bool IsImplement(IClassDeclaration declaration, Type baseClass)
+        {
+            Assertion.Assert(baseClass != null, "baseClass != null");
+            return IsImplement(declaration, baseClass.FullName);
+
+        }
+
+        [Obsolete("Do not use method with magic strings. Use with Type baseClass instead.")]
         public static bool IsImplement(IClassDeclaration declaration, string baseClass)
         {
             Assertion.Assert(declaration != null, "declaration != null");

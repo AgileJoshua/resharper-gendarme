@@ -22,22 +22,23 @@ namespace First.tNew_Namespace
 
     namespace Foo.Lang.Compiler
     {
-        class DoesNotOverrideEquals
+        class DoesNotOverrideEquals : IDisposable
         {
-            public static bool operator ==(DoesNotOverloadOperatorEquals a, DoesNotOverloadOperatorEquals b)
+            public virtual void Dispose()
             {
-                return true;
+                throw new NotImplementedException();
             }
 
-            public static bool operator !=(DoesNotOverloadOperatorEquals a, DoesNotOverloadOperatorEquals b)
+            public void Dispose (bool i, float f)
             {
-                return !(a == b);
+                
             }
 
-            public override bool Equals(object obj)
+            public virtual void Dispose(bool i)
             {
-                return true;
+
             }
+
         }
 
 //        public class  CompilerContext

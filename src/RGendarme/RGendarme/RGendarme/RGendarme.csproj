@@ -114,6 +114,8 @@
     <Compile Include="Rules\Design\PreferIntegerOrStringForIndexers\PreferIntegerOrStringForIndexersHighlighting.cs" />
     <Compile Include="Rules\Design\TypesWithNativeFieldsShouldBeDisposable\TypesWithNativeFieldsShouldBeDisposableAnalyzer.cs" />
     <Compile Include="Rules\Design\TypesWithNativeFieldsShouldBeDisposable\TypesWithNativeFieldsShouldBeDisposableHighlighting.cs" />
+    <Compile Include="Rules\Design\UseCorrectDisposeSignatures\UseCorrectDisposeSignaturesAnalyzer.cs" />
+    <Compile Include="Rules\Design\UseCorrectDisposeSignatures\UseCorrectDisposeSignaturesHighlighting.cs" />
     <Compile Include="Rules\Design\UseFlagsAttribute\UseFlagsAttributeAnalyzer.cs" />
     <Compile Include="Rules\Design\UseFlagsAttribute\UseFlagsAttributeHighlighting.cs" />
     <Compile Include="Rules\Naming\AvoidDeepNamespaceHierarchy\AvoidDeepNamespaceHierarchyAnalyzer.cs" />

@@ -30,6 +30,7 @@ namespace RGendarme.Rules.Design.OverrideEqualsMethod
                 return;
 
             // 2. Class do not implemnet Equals method
+#warning remove System.Object magic string, use typeof(object).FullName instead, Use IsImplicitlyConvertibleTo
             bool isImplEqualsMethod = false;
             foreach (IMethodDeclaration method in element.MethodDeclarationsEnumerable)
             {

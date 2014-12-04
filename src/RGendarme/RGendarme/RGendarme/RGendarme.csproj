@@ -132,6 +132,7 @@
     <Compile Include="Rules\Naming\DoNotUseReservedInEnumValueNames\DoNotUseReservedInEnumValueNamesAnalyzer.cs" />
     <Compile Include="Rules\Naming\DoNotUseReservedInEnumValueNames\DoNotUseReservedInEnumValueNamesHighlighting.cs" />
     <Compile Include="Rules\Naming\ParameterNamesShouldMatchOverriddenMethod\ParameterNamesShouldMatchOverriddenMethodAnalyzer.cs" />
+    <Compile Include="Rules\Naming\ParameterNamesShouldMatchOverriddenMethod\ParameterNamesShouldMatchOverriddenMethodHighlighting.cs" />
     <Compile Include="Rules\Naming\UseCorrectPrefix\UseCorrectPrefixAnalyzer.cs" />
     <Compile Include="Rules\Naming\UseCorrectPrefix\UseCorrectPrefixHighlighting.cs" />
     <Compile Include="Rules\Naming\UseCorrectPrefix\UseCorrectPrefixWrongGenericTypeNameHighlighting.cs" />

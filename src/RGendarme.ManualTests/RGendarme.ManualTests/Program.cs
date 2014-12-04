@@ -22,8 +22,41 @@ using System.Security.Policy;
 //    }
 
 //}
-using RGendarme.ManualTests;
+//using RGendarme.ManualTests;
 
+//namespace New_Namespace
+//{
+//    public class My_Custom_Class
+//    {
+//         
+//        //public int My_Field;
+//
+//        public void My_Method(string my_string)
+//        {
+//
+//        }
+//    }
+//}
+
+//public interface IBase
+//{
+//    void Write(string text);
+//}
+
+public interface IBase
+{
+    void Write(string text111);
+}
+
+public class SubType : IBase //: IBase
+{
+    public void Write(string t)
+    {
+        //...
+    }
+
+    
+}
 
 namespace MyStuff.Special
 {

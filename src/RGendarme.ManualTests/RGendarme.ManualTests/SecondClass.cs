@@ -3,12 +3,12 @@ using System.IO;
 
 namespace First.tNew_Namespace
 {
-    public enum MyEnum
-    {
-        Yes,
-        No,
-        reserved
-    }
+//    public enum MyEnum
+//    {
+//        Yes,
+//        No,
+//        reserved
+//    }
     
 //    public class My_Custom_Class
 //    {
@@ -20,26 +20,26 @@ namespace First.tNew_Namespace
 //        }
 //    }
 
-    namespace Foo.Lang.Compiler
-    {
-        class DoesNotOverrideEquals : IDisposable
-        {
-            public virtual void Dispose()
-            {
-                throw new NotImplementedException();
-            }
-
-            public void Dispose (bool i, float f)
-            {
-                
-            }
-
-            public virtual void Dispose(bool i)
-            {
-
-            }
-
-        }
+//    namespace Foo.Lang.Compiler
+//    {
+//        class DoesNotOverrideEquals : IDisposable
+//        {
+//            public virtual void Dispose()
+//            {
+//                throw new NotImplementedException();
+//            }
+//
+//            public void Dispose (bool i, float f)
+//            {
+//                
+//            }
+//
+//            public virtual void Dispose(bool i)
+//            {
+//
+//            }
+//
+//        }
 
 //        public class  CompilerContext
 //        {
@@ -56,7 +56,7 @@ namespace First.tNew_Namespace
 //            {
 //            }
 //        }
-    }
+//    }
 
 //    public interface IDo
 //    {

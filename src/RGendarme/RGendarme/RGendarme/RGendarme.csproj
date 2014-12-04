@@ -125,6 +125,9 @@
     <Compile Include="Rules\Naming\AvoidRedundancyInMethodName\AvoidRedundancyInMethodNameAnalyzer.cs" />
     <Compile Include="Rules\Naming\AvoidRedundancyInMethodName\AvoidRedundancyInMethodNameHighlighting.cs" />
     <Compile Include="Rules\Naming\AvoidRedundancyInTypeName\AvoidRedundancyInTypeNameAnalyzer.cs" />
+    <Compile Include="Rules\Naming\AvoidTypeInterfaceInconsistency\AvoidTypeInterfaceInconsistencyAnalyzer.cs" />
+    <Compile Include="Rules\Naming\AvoidTypeInterfaceInconsistency\AvoidTypeInterfaceInconsistencyDaemonProcess.cs" />
+    <Compile Include="Rules\Naming\AvoidTypeInterfaceInconsistency\AvoidTypeInterfaceInconsistencyHighlighting.cs" />
     <Compile Include="Rules\Naming\DoNotPrefixEventsWithAfterOrBefore\DoNotPrefixEventsWithAfterOrBeforeAnalyzer.cs" />
     <Compile Include="Rules\Naming\DoNotPrefixEventsWithAfterOrBefore\DoNotPrefixEventsWithAfterOrBeforeHighlighting.cs" />
     <Compile Include="Rules\Naming\DoNotPrefixValuesWithEnumName\DoNotPrefixValuesWithEnumNameAnalyzer.cs" />

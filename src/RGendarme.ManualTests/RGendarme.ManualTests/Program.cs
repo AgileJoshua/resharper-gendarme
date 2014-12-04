@@ -43,20 +43,38 @@ using System.Security.Policy;
 //    void Write(string text);
 //}
 
-public interface IBase
+public interface IMember
 {
-    void Write(string text111);
-}
-
-public class SubType : IBase //: IBase
-{
-    public void Write(string t)
+    string Name
     {
-        //...
+        get;
     }
-
-    
 }
+
+public class Member
+{
+    public string Name
+    {
+        get
+        {
+            return String.Empty;
+        }
+    }
+}
+
+//public interface IBase
+//{
+//    void Write(string text111);
+//}
+//
+//public class SubType : IBase //: IBase
+//{
+//    public void Write(string t)
+//    {
+//        //...
+//    }
+//    
+//}
 
 namespace MyStuff.Special
 {

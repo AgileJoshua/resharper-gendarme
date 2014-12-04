@@ -40,6 +40,7 @@ namespace RGendarme.Rules.Design.ConsiderAddingInterface
             var interaces = new List<IInterfaceDeclaration>();
             p.ProcessCSharpNodes<IInterfaceDeclaration>(interaces.Add);
 
+            // todo fefactor it - use lambda instead of foreach loop
             var classes = new List<IClassDeclaration>();
             p.ProcessCSharpNodes<IClassDeclaration>(classes.Add);
 

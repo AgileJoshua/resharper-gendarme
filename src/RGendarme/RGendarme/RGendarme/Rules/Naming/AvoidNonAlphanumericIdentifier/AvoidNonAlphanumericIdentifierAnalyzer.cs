@@ -28,8 +28,6 @@ namespace RGendarme.Rules.Naming.AvoidNonAlphanumericIdentifier
                     consumer.AddHighlighting(new AvoidNonAlphanumericIdentifierHighlighting(methodDecl), methodDecl.NameIdentifier.GetDocumentRange(), methodDecl.GetContainingFile());
                 }
             }
-
-            // TODO: throw new System.NotImplementedException();
         }
 
         #region Private methods (from Gendarme)

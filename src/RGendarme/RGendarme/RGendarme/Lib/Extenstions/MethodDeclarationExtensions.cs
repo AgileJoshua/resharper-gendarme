@@ -1,4 +1,6 @@
-﻿using JetBrains.ReSharper.Psi.CSharp.Tree;
+﻿using JetBrains.Annotations;
+using JetBrains.ReSharper.Psi.CSharp.Parsing;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
 
@@ -46,6 +48,16 @@ namespace RGendarme.Lib.Extenstions
                 return false;
 
             return true;
+        }
+
+        public static bool IsPublic([NotNull]this IMethodDeclaration method)
+        {
+            Assertion.Assert(method != null, "method != null");
+
+            if (method.ModifiersList == null || method.ModifiersList.IsEmpty())
+                return false;
+
+            return method.ModifiersList.HasModifier(CSharpTokenType.PUBLIC_KEYWORD);
         }
     }
 }

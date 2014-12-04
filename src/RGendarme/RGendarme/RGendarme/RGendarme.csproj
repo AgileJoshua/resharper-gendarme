@@ -120,6 +120,8 @@
     <Compile Include="Rules\Design\UseFlagsAttribute\UseFlagsAttributeHighlighting.cs" />
     <Compile Include="Rules\Naming\AvoidDeepNamespaceHierarchy\AvoidDeepNamespaceHierarchyAnalyzer.cs" />
     <Compile Include="Rules\Naming\AvoidDeepNamespaceHierarchy\AvoidDeepNamespaceHierarchyHighlighting.cs" />
+    <Compile Include="Rules\Naming\AvoidNonAlphanumericIdentifier\AvoidNonAlphanumericIdentifierAnalyzer.cs" />
+    <Compile Include="Rules\Naming\AvoidNonAlphanumericIdentifier\AvoidNonAlphanumericIdentifierHighlighting.cs" />
     <Compile Include="Rules\Naming\AvoidRedundancyInMethodName\AvoidRedundancyInMethodNameAnalyzer.cs" />
     <Compile Include="Rules\Naming\AvoidRedundancyInMethodName\AvoidRedundancyInMethodNameHighlighting.cs" />
     <Compile Include="Rules\Naming\AvoidRedundancyInTypeName\AvoidRedundancyInTypeNameAnalyzer.cs" />

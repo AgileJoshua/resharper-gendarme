@@ -3,6 +3,24 @@ using System.IO;
 
 namespace First.tNew_Namespace
 {
+
+    public class MissingGetHashCode
+    {
+        public override bool Equals(object obj)
+        {
+            return this == obj;
+        }
+    }
+
+    // 
+    public class MissingEquals 
+    {
+        public override int GetHashCode()
+        {
+            return 42;
+        }
+    }
+
 //    public enum MyEnum
 //    {
 //        Yes,

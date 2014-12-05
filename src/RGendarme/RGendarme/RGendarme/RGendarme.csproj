@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Lib\AnalyzerHelper.cs" />
+    <Compile Include="Lib\CommonMethodName.cs" />
     <Compile Include="Lib\Extenstions\CSharpDeclarationEx.cs" />
     <Compile Include="Lib\Extenstions\MethodDeclarationExtensions.cs" />
     <Compile Include="Lib\Extenstions\ParameterDeclarationExtensions.cs" />
@@ -101,6 +102,8 @@
     <Compile Include="Rules\Design\EnumsShouldDefineAZeroValue\EnumsShouldDefineAZeroValueHighlighting.cs" />
     <Compile Include="Rules\Design\FlagsShouldNotDefineAZeroValue\FlagsShouldNotDefineAZeroValueAnalyzer.cs" />
     <Compile Include="Rules\Design\FlagsShouldNotDefineAZeroValue\FlagsShouldNotDefineAZeroValueHighlighting.cs" />
+    <Compile Include="Rules\Design\ImplementEqualsAndGetHashCodeInPair\ImplementEqualsAndGetHashCodeInPairAnalyzer.cs" />
+    <Compile Include="Rules\Design\ImplementEqualsAndGetHashCodeInPair\ImplementEqualsAndGetHashCodeInPairHighlighting.cs" />
     <Compile Include="Rules\Design\ImplementICloneableCorrectly\ImplementICloneableCorrectlyAnalyzer.cs" />
     <Compile Include="Rules\Design\ImplementICloneableCorrectly\ImplementICloneableCorrectlyHighlighting.cs" />
     <Compile Include="Rules\Design\ImplementIComparableCorrectly\ImplementIComparableCorrectlyAnalyzer.cs" />

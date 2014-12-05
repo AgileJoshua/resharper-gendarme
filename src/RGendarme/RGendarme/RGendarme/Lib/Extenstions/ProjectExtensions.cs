@@ -4,7 +4,6 @@ using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
-using JetBrains.Util;
 
 namespace RGendarme.Lib.Extenstions
 {
@@ -12,7 +11,7 @@ namespace RGendarme.Lib.Extenstions
     {
         public static void ProcessCSharpNodes<T>([NotNull] this IProject project, [NotNull] Action<T> handler) where T : class, ITreeNode
         {
-            foreach (IProjectItem item in project.GetSubItems())
+            foreach (IProjectItem item in project.GetSubItemsRecursively())
             {
                 var projFile = item as IProjectFile;
                 if (projFile == null)

@@ -13,5 +13,13 @@ namespace RGendarme.Lib.Extenstions
 
             return declaration.ModifiersList.HasModifier(CSharpTokenType.PUBLIC_KEYWORD);
         }
+
+        public static bool IsAbstract(this ICSharpModifiersOwnerDeclaration declaration)
+        {
+            if (declaration.ModifiersList == null || declaration.ModifiersList.IsEmpty())
+                return false;
+
+            return declaration.ModifiersList.HasModifier(CSharpTokenType.ABSTRACT_KEYWORD);
+        }
     }
 }

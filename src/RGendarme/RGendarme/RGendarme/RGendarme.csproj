@@ -117,6 +117,8 @@
     <Compile Include="Rules\Design\PreferXmlAbstractions\PreferXmlAbstractionsHighlighting.cs" />
     <Compile Include="Rules\Design\TypesShouldBeInsideNamespaces\TypesShouldBeInsideNamespacesAnalyzer.cs" />
     <Compile Include="Rules\Design\TypesShouldBeInsideNamespaces\TypesShouldBeInsideNamespacesHighlighting.cs" />
+    <Compile Include="Rules\Design\TypesWithDisposableFieldsShouldBeDisposable\TypesWithDisposableFieldsShouldBeDisposableAnalyzer.cs" />
+    <Compile Include="Rules\Design\TypesWithDisposableFieldsShouldBeDisposable\TypesWithDisposableFieldsShouldBeDisposableHighlighting.cs" />
     <Compile Include="Rules\Design\TypesWithNativeFieldsShouldBeDisposable\TypesWithNativeFieldsShouldBeDisposableAnalyzer.cs" />
     <Compile Include="Rules\Design\TypesWithNativeFieldsShouldBeDisposable\TypesWithNativeFieldsShouldBeDisposableHighlighting.cs" />
     <Compile Include="Rules\Design\UseCorrectDisposeSignatures\UseCorrectDisposeSignaturesAnalyzer.cs" />

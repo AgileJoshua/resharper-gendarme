@@ -8,9 +8,26 @@ using System.Security.Policy;
 using System.Xml;
 using System.Xml.XPath;
 
-public class HelloWorld
+//public class HelloWorld
+//{
+//    private int f = 3;
+//}
+
+namespace MyNamespace
 {
-    private int f = 3;
+    class DoesNotImplementIDisposable //: System.IDisposable
+    {
+        IDisposable field;
+    }
+
+    abstract class AbstractDispose : IDisposable 
+    {
+        IDisposable field;
+
+        // the field should be disposed in the type that declares it
+        public abstract void Dispose();
+    }
+
 }
 
 //namespace MyNamespace

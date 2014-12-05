@@ -23,6 +23,7 @@ namespace RGendarme.Rules.Design.DisposableTypesShouldHaveFinalizer
             if (!AnalyzerHelper.IsImplement(element, "System.IDisposable") || element.FieldDeclarations.IsEmpty)
                 return;
 
+#warning do not use magic strings
             var unsafeTypes = new[] { "System.IntPtr", "System.UIntPtr", "System.Runtime.InteropServices.HandleRef" };
             bool hasUnsafeFields = false; //= element.FieldDeclarationsEnumerable.Any(field => field.IsUnsafe);
             foreach (IFieldDeclaration field in element.FieldDeclarationsEnumerable)

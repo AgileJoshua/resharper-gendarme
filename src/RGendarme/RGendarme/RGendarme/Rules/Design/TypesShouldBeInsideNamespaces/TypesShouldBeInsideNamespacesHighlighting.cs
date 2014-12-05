@@ -1,15 +1,15 @@
-using JetBrains.ReSharper.Daemon;
+﻿using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 
-namespace RGendarme.Rules.Design.PreferXmlAbstractions
+namespace RGendarme.Rules.Design.TypesShouldBeInsideNamespaces
 {
     [StaticSeverityHighlighting(Severity.WARNING, CSharpLanguage.Name)]
-    public class PreferXmlAbstractionshlighting : IHighlighting
+    public class TypesShouldBeInsideNamespacesHighlighting : IHighlighting
     {
-        public ICSharpDeclaration Declaration { get; private set; }
+        public ICSharpTypeDeclaration Declaration { get; private set; }
 
-        public PreferXmlAbstractionshlighting(ICSharpDeclaration declaration)
+        public TypesShouldBeInsideNamespacesHighlighting(ICSharpTypeDeclaration declaration)
         {
             Declaration = declaration;
         }
@@ -19,7 +19,7 @@ namespace RGendarme.Rules.Design.PreferXmlAbstractions
             return Declaration != null && Declaration.IsValid();
         }
 
-        public string ToolTip { get { return "Design: prefer xml abstractions. Instead use abstract types like IXPathNavigable, XmlReader, XmlWriter, or subtypes of XmlNode"; } }
+        public string ToolTip { get { return "Design: types should be inside namespaces."; } }
         public string ErrorStripeToolTip { get { return ToolTip; } }
         public int NavigationOffsetPatch { get { return 0; } }
     }

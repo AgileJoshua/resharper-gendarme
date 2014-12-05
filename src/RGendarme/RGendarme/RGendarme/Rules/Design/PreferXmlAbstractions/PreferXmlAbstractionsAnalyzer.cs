@@ -12,7 +12,7 @@ using RGendarme.Lib.Extenstions;
 
 namespace RGendarme.Rules.Design.PreferXmlAbstractions
 {
-    [ElementProblemAnalyzer(new []{typeof(IClassDeclaration)}, HighlightingTypes = new []{typeof(PreferXmlAbstractionshlighting)})]
+    [ElementProblemAnalyzer(new []{typeof(IClassDeclaration)}, HighlightingTypes = new []{typeof(PreferXmlAbstractionsHighlighting)})]
     public class PreferXmlAbstractionsAnalyzer : ElementProblemAnalyzer<IClassDeclaration>
     {
         private readonly ISettingsStore _settings;
@@ -58,7 +58,7 @@ namespace RGendarme.Rules.Design.PreferXmlAbstractions
                             ClrPredefinedTypeConversionRule.INSTANCE)))
             {
                 // todo highlight return type
-                consumer.AddHighlighting(new PreferXmlAbstractionshlighting(property), property.NameIdentifier.GetDocumentRange(), property.GetContainingFile());
+                consumer.AddHighlighting(new PreferXmlAbstractionsHighlighting(property), property.NameIdentifier.GetDocumentRange(), property.GetContainingFile());
             }
         }
 
@@ -78,7 +78,7 @@ namespace RGendarme.Rules.Design.PreferXmlAbstractions
                                 ClrPredefinedTypeConversionRule.INSTANCE)))
                 {
                     // todo highlight return type
-                    consumer.AddHighlighting(new PreferXmlAbstractionshlighting(param), param.NameIdentifier.GetDocumentRange(), param.GetContainingFile());
+                    consumer.AddHighlighting(new PreferXmlAbstractionsHighlighting(param), param.NameIdentifier.GetDocumentRange(), param.GetContainingFile());
                 }
             }
         }

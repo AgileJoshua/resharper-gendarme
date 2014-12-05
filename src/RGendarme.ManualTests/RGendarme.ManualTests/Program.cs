@@ -8,32 +8,37 @@ using System.Security.Policy;
 using System.Xml;
 using System.Xml.XPath;
 
-namespace MyNamespace
+public class HelloWorld
 {
-    // property
-    public class Application1
-    {
-        private XmlDocument userData;
-
-        public XmlNode UserData
-        {
-            get
-            {
-                return userData;
-            }
-        }
-    }
-
-    // method parameter
-    public class Application
-    {
-        public bool IsValidUserData(XmlDocument userData, XmlNode node, XPathDocument path)
-        {
-            /* implementation */
-            return true;
-        }
-    }
+    private int f = 3;
 }
+
+//namespace MyNamespace
+//{
+//    // property
+//    public class Application1
+//    {
+//        private XmlDocument userData;
+//
+//        public XmlNode UserData
+//        {
+//            get
+//            {
+//                return userData;
+//            }
+//        }
+//    }
+//
+//    // method parameter
+//    public class Application
+//    {
+//        public bool IsValidUserData(XmlDocument userData, XmlNode node, XPathDocument path)
+//        {
+//            /* implementation */
+//            return true;
+//        }
+//    }
+//}
 
 //namespace One.Two.Three.Four.Five
 //{

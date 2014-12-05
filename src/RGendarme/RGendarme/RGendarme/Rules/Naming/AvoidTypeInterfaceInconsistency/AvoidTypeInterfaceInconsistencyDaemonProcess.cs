@@ -6,6 +6,7 @@ using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using RGendarme.Lib;
 using RGendarme.Lib.Extenstions;
 
 namespace RGendarme.Rules.Naming.AvoidTypeInterfaceInconsistency
@@ -41,7 +42,7 @@ namespace RGendarme.Rules.Naming.AvoidTypeInterfaceInconsistency
             p.ProcessCSharpNodes<IClassDeclaration>(c => AnalyzeClass(c, interaces, highlightings));
         }
 
-        private void AnalyzeClass(IClassDeclaration classDeclaration, IList<IInterfaceDeclaration> interfaces, IList<HighlightingInfo> highlightings)
+        private void AnalyzeClass(IClassDeclaration classDeclaration, IEnumerable<IInterfaceDeclaration> interfaces, IList<HighlightingInfo> highlightings)
         {
             if (classDeclaration.NameIdentifier == null)
                 return;
@@ -51,7 +52,7 @@ namespace RGendarme.Rules.Naming.AvoidTypeInterfaceInconsistency
                 interfaces.FirstOrDefault(
                     i => !string.IsNullOrEmpty(i.DeclaredName) && i.DeclaredName.Equals(interfaceName));
 
-            if (existedInterface != null)
+            if (existedInterface != null && !AnalyzerHelper.IsImplement(classDeclaration, existedInterface))
             {
                 highlightings.Add(new HighlightingInfo(classDeclaration.NameIdentifier.GetDocumentRange(), new AvoidTypeInterfaceInconsistencyHighlighting(classDeclaration, existedInterface)));
             }

@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Resolve;
@@ -29,7 +30,7 @@ namespace RGendarme.Lib
             return IsImplement(declaration.ExtendsList, baseClass);
         }
 
-        public static bool IsImplement(IClassDeclaration declaration, IInterfaceDeclaration inter)
+        public static bool IsImplement([NotNull]IClassDeclaration declaration, [NotNull]IInterfaceDeclaration inter)
         {
             Assertion.Assert(declaration != null, "declaration != null");
             Assertion.Assert(inter != null, "inter != null");

@@ -54,6 +54,7 @@ namespace RGendarme.Rules.Design.DeclareEventHandlersCorrectly
                 ThrowWarning(element, consumer, "First argument must has 'sender' name.");
             }
 
+#warning do not use magic string, use typeof(System.EventArgs).FullName instead.
             IDeclaredType sysType = TypeFactory.CreateTypeByCLRName("System.EventArgs", element.GetPsiModule(), element.GetResolveContext());
 
             IParameter second = method.Parameters[1];

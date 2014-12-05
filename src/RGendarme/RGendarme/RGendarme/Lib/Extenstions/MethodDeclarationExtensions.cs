@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using JetBrains.Annotations;
 using JetBrains.ReSharper.Psi.CSharp.Parsing;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
@@ -8,6 +9,7 @@ namespace RGendarme.Lib.Extenstions
 {
     public static class MethodDeclarationExtensions
     {
+        [Obsolete("Use CSharpDeclarationEx.IsPublic instead.")]
         public static bool HasSameSignatureAs(this IMethodDeclaration first, IMethodDeclaration second)
         {
             Assertion.Assert(first != null, "first != null");

@@ -5,6 +5,35 @@ using System.IO;
 using System.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Policy;
+using System.Xml;
+using System.Xml.XPath;
+
+namespace MyNamespace
+{
+    // property
+    public class Application1
+    {
+        private XmlDocument userData;
+
+        public XmlNode UserData
+        {
+            get
+            {
+                return userData;
+            }
+        }
+    }
+
+    // method parameter
+    public class Application
+    {
+        public bool IsValidUserData(XmlDocument userData, XmlNode node, XPathDocument path)
+        {
+            /* implementation */
+            return true;
+        }
+    }
+}
 
 //namespace One.Two.Three.Four.Five
 //{
@@ -43,24 +72,24 @@ using System.Security.Policy;
 //    void Write(string text);
 //}
 
-public interface IMember
-{
-    string Name
-    {
-        get;
-    }
-}
-
-public class Member
-{
-    public string Name
-    {
-        get
-        {
-            return String.Empty;
-        }
-    }
-}
+//public interface IMember
+//{
+//    string Name
+//    {
+//        get;
+//    }
+//}
+//
+//public class Member //: IMember
+//{
+//    public string Name
+//    {
+//        get
+//        {
+//            return String.Empty;
+//        }
+//    }
+//}
 
 //public interface IBase
 //{

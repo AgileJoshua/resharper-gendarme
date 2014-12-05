@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>JET_MODE_ASSERT;DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;JET_MODE_ASSERT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Lib\AnalyzerHelper.cs" />
+    <Compile Include="Lib\Extenstions\CSharpDeclarationEx.cs" />
     <Compile Include="Lib\Extenstions\MethodDeclarationExtensions.cs" />
     <Compile Include="Lib\Extenstions\ParameterDeclarationExtensions.cs" />
     <Compile Include="Lib\Extenstions\ProjectExtensions.cs" />
@@ -112,6 +113,8 @@
     <Compile Include="Rules\Design\OverrideEqualsMethod\OverrideEqualsMethodHighlighting.cs" />
     <Compile Include="Rules\Design\PreferIntegerOrStringForIndexers\PreferIntegerOrStringForIndexersAnalyzer.cs" />
     <Compile Include="Rules\Design\PreferIntegerOrStringForIndexers\PreferIntegerOrStringForIndexersHighlighting.cs" />
+    <Compile Include="Rules\Design\PreferXmlAbstractions\PreferXmlAbstractionsAnalyzer.cs" />
+    <Compile Include="Rules\Design\PreferXmlAbstractions\PreferXmlAbstractionshlighting.cs" />
     <Compile Include="Rules\Design\TypesWithNativeFieldsShouldBeDisposable\TypesWithNativeFieldsShouldBeDisposableAnalyzer.cs" />
     <Compile Include="Rules\Design\TypesWithNativeFieldsShouldBeDisposable\TypesWithNativeFieldsShouldBeDisposableHighlighting.cs" />
     <Compile Include="Rules\Design\UseCorrectDisposeSignatures\UseCorrectDisposeSignaturesAnalyzer.cs" />
@@ -125,7 +128,7 @@
     <Compile Include="Rules\Naming\AvoidRedundancyInMethodName\AvoidRedundancyInMethodNameAnalyzer.cs" />
     <Compile Include="Rules\Naming\AvoidRedundancyInMethodName\AvoidRedundancyInMethodNameHighlighting.cs" />
     <Compile Include="Rules\Naming\AvoidRedundancyInTypeName\AvoidRedundancyInTypeNameAnalyzer.cs" />
-    <Compile Include="Rules\Naming\AvoidTypeInterfaceInconsistency\AvoidTypeInterfaceInconsistencyAnalyzer.cs" />
+    <Compile Include="Rules\Naming\AvoidTypeInterfaceInconsistency\AvoidTypeInterfaceInconsistencyDeamonStage.cs" />
     <Compile Include="Rules\Naming\AvoidTypeInterfaceInconsistency\AvoidTypeInterfaceInconsistencyDaemonProcess.cs" />
     <Compile Include="Rules\Naming\AvoidTypeInterfaceInconsistency\AvoidTypeInterfaceInconsistencyHighlighting.cs" />
     <Compile Include="Rules\Naming\DoNotPrefixEventsWithAfterOrBefore\DoNotPrefixEventsWithAfterOrBeforeAnalyzer.cs" />

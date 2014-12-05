@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using JetBrains.Annotations;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Daemon;
@@ -53,8 +54,8 @@ namespace RGendarme.Rules.Design.MarkAssemblyWith
                 }
             }
 
-            CheckAttributeExistence(typeof(System.Runtime.InteropServices.ComVisibleAttribute), sections, hightlighings, assemblyInfoFile);
-
+            CheckAttributeExistence(typeof(ComVisibleAttribute), sections, hightlighings, assemblyInfoFile);
+            CheckAttributeExistence(typeof(CLSCompliantAttribute), sections, hightlighings, assemblyInfoFile);
         }
 
         private void CheckAttributeExistence(Type attributeType, IList<IAttributeSection> sections, IList<HighlightingInfo> highlightings, ICSharpFile assemblyInfo)

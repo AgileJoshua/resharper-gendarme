@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime.InteropServices;
 using JetBrains.ActionManagement;
 using JetBrains.Application.PluginSupport;
 
@@ -23,3 +24,7 @@ using JetBrains.Application.PluginSupport;
 [assembly: PluginTitle("RGendarme")]
 [assembly: PluginDescription("Gendarme for Resharper")]
 [assembly: PluginVendor("Anton Zhidkov")]
+
+// Disable Com interoperability
+[assembly: ComVisible(false)]
+[assembly: Guid("845e7570-d2c5-4073-a0b3-6059e992ce4e")]

@@ -107,6 +107,9 @@
     <Compile Include="Rules\Design\ImplementIComparableCorrectly\ImplementIComparableCorrectlyHighlight.cs" />
     <Compile Include="Rules\Design\MainShouldNotBePublic\MainShouldNotBePublicAnalyzer.cs" />
     <Compile Include="Rules\Design\MainShouldNotBePublic\MainShouldNotBePublicHighlighting.cs" />
+    <Compile Include="Rules\Design\MarkAssemblyWith\MarkAssemblyWithDaemonProcess.cs" />
+    <Compile Include="Rules\Design\MarkAssemblyWith\MarkAssemblyWithDaemonStage.cs" />
+    <Compile Include="Rules\Design\MarkAssemblyWith\MarkAssemblyWithHighlighting.cs" />
     <Compile Include="Rules\Design\MissingAttributeUsageOnCustomAttribute\MissingAttributeUsageOnCustomAttributeAnalyzer.cs" />
     <Compile Include="Rules\Design\MissingAttributeUsageOnCustomAttribute\MissingAttributeUsageOnCustomAttributeHighlighting.cs" />
     <Compile Include="Rules\Design\OverrideEqualsMethod\OverrideEqualsMethodAnalyzer.cs" />
@@ -195,9 +198,7 @@
   <ItemGroup>
     <ThemedIconPng Include="Settings\OptionsPageThemedIcons\UseIntMaxValueOptions.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Lib\Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

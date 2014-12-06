@@ -1,4 +1,4 @@
 resharper-gendarme
 ==================
 
-ReSharper Gendarme plugin
+Gendarme plugin for ReSharper.

@@ -5,35 +5,35 @@ using System.IO;
 
 namespace First.New_Namespace
 {
-    public delegate void MouseUpCallback(int x, int y, MouseButtons buttons);
-
-    public class MouseController
-    {
-        private MouseUpCallback mouse_up_callback;
-
-        public void RaiseMouseUp(Message msg)
-        {
-            if (mouse_up_callback != null)
-            {
-                mouse_up_callback(msg.X, msg.Y, msg.Buttons);
-            }
-        }
-
-        public void ProcessMessage(Message msg)
-        {
-            switch (msg.Id)
-            {
-                case MessageId.MouseUp:
-                    {
-                        RaiseMouseUp(msg);
-                        break;
-                    }
-                // ... more ...
-                default:
-                    break;
-            }
-        }
-    }
+//    public delegate void MouseUpCallback(int x, int y, MouseButtons buttons);
+//
+//    public class MouseController
+//    {
+//        private MouseUpCallback mouse_up_callback;
+//
+//        public void RaiseMouseUp(Message msg)
+//        {
+//            if (mouse_up_callback != null)
+//            {
+//                mouse_up_callback(msg.X, msg.Y, msg.Buttons);
+//            }
+//        }
+//
+//        public void ProcessMessage(Message msg)
+//        {
+//            switch (msg.Id)
+//            {
+//                case MessageId.MouseUp:
+//                    {
+//                        RaiseMouseUp(msg);
+//                        break;
+//                    }
+//                // ... more ...
+//                default:
+//                    break;
+//            }
+//        }
+//    }
 
 //    public class DoesNotOverloadOperatorEquals
 //    {

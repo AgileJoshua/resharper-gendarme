@@ -13,20 +13,32 @@ using System.Xml.XPath;
 //    private int f = 3;
 //}
 
-namespace MyNamespace
+//namespace MyNamespace
+//{
+//    class DoesNotImplementIDisposable //: System.IDisposable
+//    {
+//        IDisposable field;
+//    }
+//
+//    abstract class AbstractDispose : IDisposable 
+//    {
+//        IDisposable field;
+//
+//        // the field should be disposed in the type that declares it
+//        public abstract void Dispose();
+//    }
+//}
+
+namespace Foo.Lang.Compiler
 {
-    class DoesNotImplementIDisposable //: System.IDisposable
+    public class CompilerContext
     {
-        IDisposable field;
     }
 
-    abstract class AbstractDispose : IDisposable 
-    {
-        IDisposable field;
-
-        // the field should be disposed in the type that declares it
-        public abstract void Dispose();
-    }
+//    public class Context
+//    {
+//
+//    }
 
 }
 

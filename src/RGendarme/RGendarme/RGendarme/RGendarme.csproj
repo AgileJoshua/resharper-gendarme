@@ -147,7 +147,9 @@
     <Compile Include="Rules\Naming\AvoidNonAlphanumericIdentifier\AvoidNonAlphanumericIdentifierHighlighting.cs" />
     <Compile Include="Rules\Naming\AvoidRedundancyInMethodName\AvoidRedundancyInMethodNameAnalyzer.cs" />
     <Compile Include="Rules\Naming\AvoidRedundancyInMethodName\AvoidRedundancyInMethodNameHighlighting.cs" />
-    <Compile Include="Rules\Naming\AvoidRedundancyInTypeName\AvoidRedundancyInTypeNameAnalyzer.cs" />
+    <Compile Include="Rules\Naming\AvoidRedundancyInTypeName\AvoidRedundancyInTypeNameDaemonStage.cs" />
+    <Compile Include="Rules\Naming\AvoidRedundancyInTypeName\AvoidRedundancyInTypeNameDaemonProcess.cs" />
+    <Compile Include="Rules\Naming\AvoidRedundancyInTypeName\AvoidRedundancyInTypeNameHighlighting.cs" />
     <Compile Include="Rules\Naming\AvoidTypeInterfaceInconsistency\AvoidTypeInterfaceInconsistencyDeamonStage.cs" />
     <Compile Include="Rules\Naming\AvoidTypeInterfaceInconsistency\AvoidTypeInterfaceInconsistencyDaemonProcess.cs" />
     <Compile Include="Rules\Naming\AvoidTypeInterfaceInconsistency\AvoidTypeInterfaceInconsistencyHighlighting.cs" />

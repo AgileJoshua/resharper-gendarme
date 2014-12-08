@@ -6,6 +6,7 @@ using JetBrains.ReSharper.Psi.CSharp.Tree;
 
 namespace RGendarme.Rules.Design.AvoidSmallNamespace
 {
+#if false
     [ElementProblemAnalyzer(new[] { typeof(ICSharpNamespaceDeclaration) }, HighlightingTypes = new[] { typeof(AvoidSmallNamespaceHighlighting) })]
     public class AvoidSmallNamespaceAnalyzer : ElementProblemAnalyzer<ICSharpNamespaceDeclaration>
     {
@@ -39,4 +40,5 @@ namespace RGendarme.Rules.Design.AvoidSmallNamespace
         public string ErrorStripeToolTip { get { return ToolTip; } }
         public int NavigationOffsetPatch { get { return 0; } }
     }
+#endif
 }

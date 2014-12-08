@@ -14,7 +14,7 @@ namespace RGendarme.Rules.Naming.AvoidNonAlphanumericIdentifier
             var namespaceDecl = element as ICSharpNamespaceDeclaration;
             if (namespaceDecl != null)
             {
-                if (!CheckName(namespaceDecl.QualifiedName, false) && namespaceDecl.NameIdentifier != null)
+                if (!CheckName(namespaceDecl.DeclaredName, false) && namespaceDecl.NameIdentifier != null)
                 {
                     consumer.AddHighlighting(new AvoidNonAlphanumericIdentifierHighlighting(namespaceDecl), namespaceDecl.NameIdentifier.GetDocumentRange(), namespaceDecl.GetContainingFile());
                 }

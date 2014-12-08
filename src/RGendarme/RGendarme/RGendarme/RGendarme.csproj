@@ -119,6 +119,8 @@
     <Compile Include="Rules\Design\MarkAssemblyWith\MarkAssemblyWithHighlighting.cs" />
     <Compile Include="Rules\Design\MissingAttributeUsageOnCustomAttribute\MissingAttributeUsageOnCustomAttributeAnalyzer.cs" />
     <Compile Include="Rules\Design\MissingAttributeUsageOnCustomAttribute\MissingAttributeUsageOnCustomAttributeHighlighting.cs" />
+    <Compile Include="Rules\Design\OperatorEqualsShouldBeOverloaded\OperatorEqualsShouldBeOverloadedAnalyzer.cs" />
+    <Compile Include="Rules\Design\OperatorEqualsShouldBeOverloaded\OperatorEqualsShouldBeOverloadedHighlighting.cs" />
     <Compile Include="Rules\Design\OverrideEqualsMethod\OverrideEqualsMethodAnalyzer.cs" />
     <Compile Include="Rules\Design\OverrideEqualsMethod\OverrideEqualsMethodHighlighting.cs" />
     <Compile Include="Rules\Design\PreferIntegerOrStringForIndexers\PreferIntegerOrStringForIndexersAnalyzer.cs" />

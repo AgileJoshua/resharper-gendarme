@@ -5,18 +5,39 @@ using System.IO;
 
 namespace First.New_Namespace
 {
-    class DoesNotImplementAlternative
+    public class DoesNotOverloadOperatorEquals
     {
-        public static int operator - (DoesNotImplementAlternative a, DoesNotImplementAlternative b)
+        public static int operator +(DoesNotOverloadOperatorEquals a)
         {
             return 0;
         }
 
-        public void Add(int i, int y)
+        public static int operator -(DoesNotOverloadOperatorEquals a)
         {
-            
+            return 0;
         }
     }
+
+    struct OverridesEquals
+    {
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+    }
+
+//    class DoesNotImplementAlternative
+//    {
+//        public static int operator - (DoesNotImplementAlternative a, DoesNotImplementAlternative b)
+//        {
+//            return 0;
+//        }
+//
+//        public void Add(int i, int y)
+//        {
+//            
+//        }
+//    }
 
 //    namespace MyStuff.Internal
 //    {

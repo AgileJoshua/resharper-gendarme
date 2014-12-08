@@ -122,6 +122,12 @@ namespace RGendarme.Lib
             return result;
         }
 
+        public static bool HasAttribute([NotNull]ICSharpTypeDeclaration declaration, [NotNull]Type type)
+        {
+            return HasAttribute(declaration, type.FullName);
+        }
+
+        [Obsolete("Use HasAttribute method with Type paramter.")]
         public static bool HasAttribute(ICSharpTypeDeclaration declaration, string baseClass)
         {
             var attributes = declaration.Attributes;

@@ -100,6 +100,8 @@
     <Compile Include="Rules\Design\EnsureSymmetryForOverloadedOperators\EnsureSymmetryForOverloadedOperatorsHighlighting.cs" />
     <Compile Include="Rules\Design\EnumsShouldDefineAZeroValue\EnumsShouldDefineAZeroValueAnalyzer.cs" />
     <Compile Include="Rules\Design\EnumsShouldDefineAZeroValue\EnumsShouldDefineAZeroValueHighlighting.cs" />
+    <Compile Include="Rules\Design\EnumsShouldUseInt32\EnumsShouldUseInt32Analyzer.cs" />
+    <Compile Include="Rules\Design\EnumsShouldUseInt32\EnumsShouldUseInt32Highlighting.cs" />
     <Compile Include="Rules\Design\FlagsShouldNotDefineAZeroValue\FlagsShouldNotDefineAZeroValueAnalyzer.cs" />
     <Compile Include="Rules\Design\FlagsShouldNotDefineAZeroValue\FlagsShouldNotDefineAZeroValueHighlighting.cs" />
     <Compile Include="Rules\Design\ImplementEqualsAndGetHashCodeInPair\ImplementEqualsAndGetHashCodeInPairAnalyzer.cs" />

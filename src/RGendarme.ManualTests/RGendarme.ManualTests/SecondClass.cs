@@ -1,25 +1,30 @@
 ﻿using System;
 using System.IO;
 
-namespace First.tNew_Namespace
+namespace First.New_Namespace
 {
-
-    public class MissingGetHashCode
+    public enum SmallEnum : ushort 
     {
-        public override bool Equals(object obj)
-        {
-            return this == obj;
-        }
+        Zero,
+        One
     }
 
-    // 
-    public class MissingEquals 
-    {
-        public override int GetHashCode()
-        {
-            return 42;
-        }
-    }
+//    public class MissingGetHashCode
+//    {
+//        public override bool Equals(object obj)
+//        {
+//            return this == obj;
+//        }
+//    }
+//
+//    // 
+//    public class MissingEquals 
+//    {
+//        public override int GetHashCode()
+//        {
+//            return 42;
+//        }
+//    }
 
 //    public enum MyEnum
 //    {

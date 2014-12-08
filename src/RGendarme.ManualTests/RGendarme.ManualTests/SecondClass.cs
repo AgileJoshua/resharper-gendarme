@@ -3,11 +3,18 @@ using System.IO;
 
 namespace First.New_Namespace
 {
-    public enum SmallEnum : ushort 
+    namespace MyStuff.Internal
     {
-        Zero,
-        One
+        public class Helper 
+        {
+        }
     }
+
+//    public enum SmallEnum : ushort 
+//    {
+//        Zero,
+//        One
+//    }
 
 //    public class MissingGetHashCode
 //    {

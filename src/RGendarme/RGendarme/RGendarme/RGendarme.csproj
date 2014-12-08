@@ -110,6 +110,8 @@
     <Compile Include="Rules\Design\ImplementICloneableCorrectly\ImplementICloneableCorrectlyHighlighting.cs" />
     <Compile Include="Rules\Design\ImplementIComparableCorrectly\ImplementIComparableCorrectlyAnalyzer.cs" />
     <Compile Include="Rules\Design\ImplementIComparableCorrectly\ImplementIComparableCorrectlyHighlight.cs" />
+    <Compile Include="Rules\Design\InternalNamespacesShouldNotExposeTypes\InternalNamespacesShouldNotExposeTypesAnalyzer.cs" />
+    <Compile Include="Rules\Design\InternalNamespacesShouldNotExposeTypes\InternalNamespacesShouldNotExposeTypesHighlighting.cs" />
     <Compile Include="Rules\Design\MainShouldNotBePublic\MainShouldNotBePublicAnalyzer.cs" />
     <Compile Include="Rules\Design\MainShouldNotBePublic\MainShouldNotBePublicHighlighting.cs" />
     <Compile Include="Rules\Design\MarkAssemblyWith\MarkAssemblyWithDaemonProcess.cs" />

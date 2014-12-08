@@ -5,26 +5,56 @@ using System.IO;
 
 namespace First.New_Namespace
 {
-    public class DoesNotOverloadOperatorEquals
+    public delegate void MouseUpCallback(int x, int y, MouseButtons buttons);
+
+    public class MouseController
     {
-        public static int operator +(DoesNotOverloadOperatorEquals a)
+        private MouseUpCallback mouse_up_callback;
+
+        public void RaiseMouseUp(Message msg)
         {
-            return 0;
+            if (mouse_up_callback != null)
+            {
+                mouse_up_callback(msg.X, msg.Y, msg.Buttons);
+            }
         }
 
-        public static int operator -(DoesNotOverloadOperatorEquals a)
+        public void ProcessMessage(Message msg)
         {
-            return 0;
+            switch (msg.Id)
+            {
+                case MessageId.MouseUp:
+                    {
+                        RaiseMouseUp(msg);
+                        break;
+                    }
+                // ... more ...
+                default:
+                    break;
+            }
         }
     }
 
-    struct OverridesEquals
-    {
-        public override bool Equals(object obj)
-        {
-            return base.Equals(obj);
-        }
-    }
+//    public class DoesNotOverloadOperatorEquals
+//    {
+//        public static int operator +(DoesNotOverloadOperatorEquals a)
+//        {
+//            return 0;
+//        }
+//
+//        public static int operator -(DoesNotOverloadOperatorEquals a)
+//        {
+//            return 0;
+//        }
+//    }
+//
+//    struct OverridesEquals
+//    {
+//        public override bool Equals(object obj)
+//        {
+//            return base.Equals(obj);
+//        }
+//    }
 
 //    class DoesNotImplementAlternative
 //    {

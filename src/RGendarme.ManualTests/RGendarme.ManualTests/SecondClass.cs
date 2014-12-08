@@ -1,14 +1,29 @@
 ﻿using System;
 using System.IO;
 
+
+
 namespace First.New_Namespace
 {
-    namespace MyStuff.Internal
+    class DoesNotImplementAlternative
     {
-        public class Helper 
+        public static int operator - (DoesNotImplementAlternative a, DoesNotImplementAlternative b)
         {
+            return 0;
+        }
+
+        public void Add(int i, int y)
+        {
+            
         }
     }
+
+//    namespace MyStuff.Internal
+//    {
+//        public class Helper 
+//        {
+//        }
+//    }
 
 //    public enum SmallEnum : ushort 
 //    {

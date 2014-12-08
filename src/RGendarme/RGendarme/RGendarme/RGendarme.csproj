@@ -125,6 +125,8 @@
     <Compile Include="Rules\Design\PreferIntegerOrStringForIndexers\PreferIntegerOrStringForIndexersHighlighting.cs" />
     <Compile Include="Rules\Design\PreferXmlAbstractions\PreferXmlAbstractionsAnalyzer.cs" />
     <Compile Include="Rules\Design\PreferXmlAbstractions\PreferXmlAbstractionsHighlighting.cs" />
+    <Compile Include="Rules\Design\ProvideAlternativeNamesForOperatorOverloads\ProvideAlternativeNamesForOperatorOverloadsAnalyzer.cs" />
+    <Compile Include="Rules\Design\ProvideAlternativeNamesForOperatorOverloads\ProvideAlternativeNamesForOperatorOverloadsHighlighting.cs" />
     <Compile Include="Rules\Design\TypesShouldBeInsideNamespaces\TypesShouldBeInsideNamespacesAnalyzer.cs" />
     <Compile Include="Rules\Design\TypesShouldBeInsideNamespaces\TypesShouldBeInsideNamespacesHighlighting.cs" />
     <Compile Include="Rules\Design\TypesWithDisposableFieldsShouldBeDisposable\TypesWithDisposableFieldsShouldBeDisposableAnalyzer.cs" />

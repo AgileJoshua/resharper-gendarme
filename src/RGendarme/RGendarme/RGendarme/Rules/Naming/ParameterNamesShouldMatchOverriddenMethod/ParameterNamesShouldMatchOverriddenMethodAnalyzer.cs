@@ -1,17 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Application.DataContext;
 using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using RGendarme.Lib;
 using RGendarme.Lib.Extenstions;
+using RGendarme.Settings.Naming;
 
 namespace RGendarme.Rules.Naming.ParameterNamesShouldMatchOverriddenMethod
 {
     [ElementProblemAnalyzer(new[] { typeof(IClassDeclaration) }, HighlightingTypes = new[] { typeof(ParameterNamesShouldMatchOverriddenMethodHighlighting) })]
-    public class ParameterNamesShouldMatchOverriddenMethodAnalyzer : ElementProblemAnalyzer<IClassDeclaration>
+    public class ParameterNamesShouldMatchOverriddenMethodAnalyzer : ElementProblemAnalyzer<IClassDeclaration>, IRGendarmeRule
     {
         private readonly ISettingsStore _settings;
         public ParameterNamesShouldMatchOverriddenMethodAnalyzer(ISettingsStore settings)
@@ -21,6 +26,9 @@ namespace RGendarme.Rules.Naming.ParameterNamesShouldMatchOverriddenMethod
 
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             if (element.ExtendsList == null || element.ExtendsList.IsEmpty() || element.MethodDeclarations.IsEmpty)
                 return;
 
@@ -95,6 +103,14 @@ namespace RGendarme.Rules.Naming.ParameterNamesShouldMatchOverriddenMethod
                     consumer.AddHighlighting(new ParameterNamesShouldMatchOverriddenMethodHighlighting(classParam, interfaceParam.DeclaredName), classParam.NameIdentifier.GetDocumentRange(), classParam.GetContainingFile());
                 }
             }
+        }
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<NamingRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.ParameterNamesShouldMatchOverriddenMethodEnabled;
         }
     }
 }

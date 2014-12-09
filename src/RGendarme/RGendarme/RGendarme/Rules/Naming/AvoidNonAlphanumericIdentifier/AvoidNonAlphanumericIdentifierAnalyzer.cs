@@ -1,14 +1,19 @@
-﻿using JetBrains.Application.Settings;
+﻿using System;
+using JetBrains.Application.DataContext;
+using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using RGendarme.Lib;
 using RGendarme.Lib.Extenstions;
+using RGendarme.Settings.Naming;
 
 namespace RGendarme.Rules.Naming.AvoidNonAlphanumericIdentifier
 {
     [ElementProblemAnalyzer(new[] { typeof(ICSharpDeclaration) }, HighlightingTypes = new[] { typeof(AvoidNonAlphanumericIdentifierHighlighting) })]
-    public class AvoidNonAlphanumericIdentifierAnalyzer : ElementProblemAnalyzer<ICSharpDeclaration>
+    public class AvoidNonAlphanumericIdentifierAnalyzer : ElementProblemAnalyzer<ICSharpDeclaration>, IRGendarmeRule
     {
         private readonly ISettingsStore _settings;
 
@@ -19,6 +24,9 @@ namespace RGendarme.Rules.Naming.AvoidNonAlphanumericIdentifier
 
         protected override void Run(ICSharpDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             var namespaceDecl = element as ICSharpNamespaceDeclaration;
             if (namespaceDecl != null)
             {
@@ -47,5 +55,13 @@ namespace RGendarme.Rules.Naming.AvoidNonAlphanumericIdentifier
             return (name.IndexOf('_', start) == -1);
         }
         #endregion
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<NamingRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.AvoidNonAlphanumericIdentifierEnabled;
+        }
     }
 }

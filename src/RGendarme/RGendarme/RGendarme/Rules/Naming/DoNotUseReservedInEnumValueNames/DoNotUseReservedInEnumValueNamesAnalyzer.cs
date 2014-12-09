@@ -1,14 +1,18 @@
 ﻿using System;
+using JetBrains.Application.DataContext;
 using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using RGendarme.Lib;
+using RGendarme.Settings.Naming;
 
 namespace RGendarme.Rules.Naming.DoNotUseReservedInEnumValueNames
 {
     [ElementProblemAnalyzer(new[] { typeof(IEnumDeclaration) }, HighlightingTypes = new[] { typeof(DoNotUseReservedInEnumValueNamesHighlighting) })]
-    public class DoNotUseReservedInEnumValueNamesAnalyzer : ElementProblemAnalyzer<IEnumDeclaration>
+    public class DoNotUseReservedInEnumValueNamesAnalyzer : ElementProblemAnalyzer<IEnumDeclaration>, IRGendarmeRule
     {
         private readonly ISettingsStore _settings;
 
@@ -19,6 +23,9 @@ namespace RGendarme.Rules.Naming.DoNotUseReservedInEnumValueNames
 
         protected override void Run(IEnumDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             if (element.EnumMemberDeclarations.IsEmpty || element.NameIdentifier == null)
                 return;
 
@@ -31,6 +38,14 @@ namespace RGendarme.Rules.Naming.DoNotUseReservedInEnumValueNames
                     consumer.AddHighlighting(new DoNotUseReservedInEnumValueNamesHighlighting(element), item.GetDocumentRange(), item.GetContainingFile());
                 }
             }
+        }
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<NamingRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.DoNotUseReservedInEnumValueNamesEnabled;
         }
     }
 }

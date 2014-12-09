@@ -1,8 +1,13 @@
-﻿using JetBrains.Application.Settings;
+﻿using System;
+using JetBrains.Application.DataContext;
+using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using RGendarme.Lib;
+using RGendarme.Settings.Naming;
 
 namespace RGendarme.Rules.Naming.UseCorrectPrefix
 {
@@ -13,7 +18,7 @@ namespace RGendarme.Rules.Naming.UseCorrectPrefix
     /// Interface rule already implemented in R#.
     /// </note>
     [ElementProblemAnalyzer(new[] { typeof(IClassDeclaration) }, HighlightingTypes = new[] { typeof(UseCorrectPrefixHighlighting), typeof(UseCorrectPrefixWrongGenericTypeNameHighlighting) })]
-    public class UseCorrectPrefixAnalyzer : ElementProblemAnalyzer<IClassDeclaration>
+    public class UseCorrectPrefixAnalyzer : ElementProblemAnalyzer<IClassDeclaration>, IRGendarmeRule
     {
         private readonly ISettingsStore _settings;
 
@@ -24,6 +29,9 @@ namespace RGendarme.Rules.Naming.UseCorrectPrefix
 
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             AnalyzeCPrefix(element, consumer);
             AnalyzeGenericType(element, consumer);
         }
@@ -62,6 +70,14 @@ namespace RGendarme.Rules.Naming.UseCorrectPrefix
                     consumer.AddHighlighting(new UseCorrectPrefixHighlighting(element), element.NameIdentifier.GetDocumentRange(), element.GetContainingFile());
                 }
             }
+        }
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<NamingRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.UseCorrectPrefixEnabled;
         }
     }
 }

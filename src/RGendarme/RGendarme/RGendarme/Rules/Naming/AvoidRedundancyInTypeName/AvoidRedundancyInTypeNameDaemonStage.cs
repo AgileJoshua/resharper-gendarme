@@ -4,6 +4,7 @@ using JetBrains.Application.Settings;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Psi;
 using RGendarme.Lib.Extenstions;
+using RGendarme.Settings.Naming;
 
 namespace RGendarme.Rules.Naming.AvoidRedundancyInTypeName
 {
@@ -12,7 +13,9 @@ namespace RGendarme.Rules.Naming.AvoidRedundancyInTypeName
     {
         public IEnumerable<IDaemonStageProcess> CreateProcess(IDaemonProcess process, IContextBoundSettingsStore settings, DaemonProcessKind processKind)
         {
-            if (!process.Solution.HasCSharpFile())
+            var s = settings.GetKey<NamingRulesSettings>(SettingsOptimization.OptimizeDefault);
+            
+            if (!s.AvoidRedundancyInTypeNameEnabled || !process.Solution.HasCSharpFile())
                 return Enumerable.Empty<IDaemonStageProcess>();
 
             return new[] {new AvoidRedundancyInTypeNameDaemonProcess(process)};

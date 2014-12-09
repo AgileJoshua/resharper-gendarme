@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JetBrains.Application.DataContext;
 using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using RGendarme.Lib;
+using RGendarme.Settings.Naming;
 
 namespace RGendarme.Rules.Naming.UseCorrectSuffix
 {
     [ElementProblemAnalyzer(new[] { typeof(IClassDeclaration) }, HighlightingTypes = new[] { typeof(UseCorrectSuffixHighlighting) })]
-    public class UseCorrectSuffixAnalyzer : ElementProblemAnalyzer<IClassDeclaration>
+    public class UseCorrectSuffixAnalyzer : ElementProblemAnalyzer<IClassDeclaration>, IRGendarmeRule
     {
         private readonly ISettingsStore _settings;
 
@@ -24,6 +27,9 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix
 
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             // key - name, value - base type
             // todo do not use magic strings
             var dict = new Dictionary<string, string>
@@ -136,6 +142,14 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix
                 ICSharpIdentifier nameIdentifier = element.NameIdentifier;
                 consumer.AddHighlighting(highlighting(nameIdentifier, errorMsg), nameIdentifier.GetDocumentRange(), nameIdentifier.GetContainingFile());
             }
+        }
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<NamingRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.UseCorrectSuffixEnabled;
         }
     }
 }

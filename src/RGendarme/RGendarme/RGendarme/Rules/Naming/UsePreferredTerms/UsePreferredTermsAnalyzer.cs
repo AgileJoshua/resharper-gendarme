@@ -1,14 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using JetBrains.Application.DataContext;
 using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using RGendarme.Lib;
+using RGendarme.Settings.Naming;
 
 namespace RGendarme.Rules.Naming.UsePreferredTerms
 {
     [ElementProblemAnalyzer(new[] { typeof(ICSharpDeclaration) }, HighlightingTypes = new[] { typeof(UsePreferredTermsHighlighting) })]
-    public class UsePreferredTermsAnalyzer : ElementProblemAnalyzer<ICSharpDeclaration>
+    public class UsePreferredTermsAnalyzer : ElementProblemAnalyzer<ICSharpDeclaration>, IRGendarmeRule
     {
         private readonly IDictionary<string, string> _rules;
 
@@ -48,6 +53,9 @@ namespace RGendarme.Rules.Naming.UsePreferredTerms
 
         protected override void Run(ICSharpDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             if (element.NameIdentifier == null) return;
 
             string name = element.NameIdentifier.Name;
@@ -60,6 +68,14 @@ namespace RGendarme.Rules.Naming.UsePreferredTerms
                     consumer.AddHighlighting(new UsePreferredTermsHighlighting(element, rule.Key, rule.Value), element.NameIdentifier.GetDocumentRange(), element.GetContainingFile());
                 }
             }
+        }
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<NamingRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.UsePreferredTermsEnabled;
         }
     }
 }

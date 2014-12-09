@@ -1,13 +1,18 @@
-﻿using JetBrains.Application.Settings;
+﻿using System;
+using JetBrains.Application.DataContext;
+using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using RGendarme.Lib;
+using RGendarme.Settings.Naming;
 
 namespace RGendarme.Rules.Naming.DoNotPrefixValuesWithEnumName
 {
     [ElementProblemAnalyzer(new[] { typeof(IEnumDeclaration) }, HighlightingTypes = new[] { typeof(DoNotPrefixValuesWithEnumNameHighlighting) })]
-    public class DoNotPrefixValuesWithEnumNameAnalyzer : ElementProblemAnalyzer<IEnumDeclaration>
+    public class DoNotPrefixValuesWithEnumNameAnalyzer : ElementProblemAnalyzer<IEnumDeclaration>, IRGendarmeRule
     {
         private readonly ISettingsStore _settings;
 
@@ -18,6 +23,9 @@ namespace RGendarme.Rules.Naming.DoNotPrefixValuesWithEnumName
 
         protected override void Run(IEnumDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             ICSharpIdentifier enumIdentifier = element.NameIdentifier;
             if (enumIdentifier == null) return;
 
@@ -41,6 +49,14 @@ namespace RGendarme.Rules.Naming.DoNotPrefixValuesWithEnumName
                     consumer.AddHighlighting(new DoNotPrefixValuesWithEnumNameHighlighting(item), item.GetDocumentRange(), item.GetContainingFile());
                 }
             }
+        }
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<NamingRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.DoNotPrefixValuesWithEnumNameEnabled;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JetBrains.Application.Settings;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
@@ -14,9 +15,17 @@ namespace RGendarme.Rules.Naming.UseCorrectSuffix
     [ElementProblemAnalyzer(new[] { typeof(IClassDeclaration) }, HighlightingTypes = new[] { typeof(UseCorrectSuffixHighlighting) })]
     public class UseCorrectSuffixAnalyzer : ElementProblemAnalyzer<IClassDeclaration>
     {
+        private readonly ISettingsStore _settings;
+
+        public UseCorrectSuffixAnalyzer(ISettingsStore settings)
+        {
+            _settings = settings;
+        }
+
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
             // key - name, value - base type
+            // todo do not use magic strings
             var dict = new Dictionary<string, string>
             {
                 {"Attribute", "System.Attribute"},

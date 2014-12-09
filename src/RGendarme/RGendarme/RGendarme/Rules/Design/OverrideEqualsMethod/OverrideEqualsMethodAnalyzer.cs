@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Application.Settings;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Parsing;
@@ -10,6 +11,13 @@ namespace RGendarme.Rules.Design.OverrideEqualsMethod
     [ElementProblemAnalyzer(new[] { typeof(IClassDeclaration) }, HighlightingTypes = new[] { typeof(OverrideEqualsMethodHighlighting) })]
     public class OverrideEqualsMethodAnalyzer : ElementProblemAnalyzer<IClassDeclaration>
     {
+        private readonly ISettingsStore _settings;
+
+        public OverrideEqualsMethodAnalyzer(ISettingsStore settings)
+        {
+            _settings = settings;
+        }
+
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
             if (element.Body == null || element.Body.Operators.Count == 0)

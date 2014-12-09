@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using JetBrains.Application.Settings;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Parsing;
@@ -12,6 +13,13 @@ namespace RGendarme.Rules.Design.UseCorrectDisposeSignatures
     [ElementProblemAnalyzer(new[] { typeof(IClassDeclaration) }, HighlightingTypes = new[] { typeof(UseCorrectDisposeSignaturesHighlighting) })]
     public class UseCorrectDisposeSignaturesAnalyzer : ElementProblemAnalyzer<IClassDeclaration>
     {
+        private readonly ISettingsStore _settings;
+
+        public UseCorrectDisposeSignaturesAnalyzer(ISettingsStore settings)
+        {
+            _settings = settings;
+        }
+
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
             // 1. have to implement IDisposable interface

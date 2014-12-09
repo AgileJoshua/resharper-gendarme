@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Application.Settings;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Parsing;
@@ -10,6 +11,13 @@ namespace RGendarme.Rules.Design.MainShouldNotBePublic
     [ElementProblemAnalyzer(new []{typeof(IMethodDeclaration)}, HighlightingTypes = new []{typeof(MainShouldNotBePublicHighlighting)})]
     public class MainShouldNotBePublicAnalyzer : ElementProblemAnalyzer<IMethodDeclaration>
     {
+        private readonly ISettingsStore _settings;
+
+        public MainShouldNotBePublicAnalyzer(ISettingsStore settings)
+        {
+            _settings = settings;
+        }
+
         protected override void Run(IMethodDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
             // 1. if method is not main - exit

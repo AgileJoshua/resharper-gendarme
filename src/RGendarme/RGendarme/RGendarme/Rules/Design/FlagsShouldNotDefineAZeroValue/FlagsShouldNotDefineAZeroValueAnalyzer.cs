@@ -1,4 +1,5 @@
-﻿using JetBrains.ReSharper.Daemon.Stages;
+﻿using JetBrains.Application.Settings;
+using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
@@ -10,6 +11,13 @@ namespace RGendarme.Rules.Design.FlagsShouldNotDefineAZeroValue
     [ElementProblemAnalyzer(new[] { typeof(IEnumDeclaration) }, HighlightingTypes = new[] { typeof(FlagsShouldNotDefineAZeroValueHighlighting) })]
     public class FlagsShouldNotDefineAZeroValueAnalyzer : ElementProblemAnalyzer<IEnumDeclaration>
     {
+        private readonly ISettingsStore _settings;
+
+        public FlagsShouldNotDefineAZeroValueAnalyzer(ISettingsStore settings)
+        {
+            _settings = settings;
+        }
+
         protected override void Run(IEnumDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
             // 1. check for Flags attribute

@@ -60,6 +60,7 @@
     <Compile Include="Lib\Extenstions\ParameterDeclarationExtensions.cs" />
     <Compile Include="Lib\Extenstions\ProjectExtensions.cs" />
     <Compile Include="Lib\Extenstions\SolutionExtensions.cs" />
+    <Compile Include="Lib\IRGendarmeRule.cs" />
     <Compile Include="Lib\TypeHelper.cs" />
     <Compile Include="Rules\Custom\SameKeyInDictionaryDeclaration\SameKeyInDictionaryDeclarationAnalyzer.cs" />
     <Compile Include="Rules\Custom\SameKeyInDictionaryDeclaration\SameKeyInDictionaryDeclarationHighlight.cs" />
@@ -180,9 +181,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AboutAction.cs" />
     <Compile Include="Rules\Tutorial\ReverseString\ReverseStringAction.cs" />
-    <Compile Include="Settings\NamingOptionPage.xaml.cs">
+    <Compile Include="Settings\Naming\NamingOptionPage.xaml.cs">
       <DependentUpon>NamingOptionPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Settings\Naming\NamingRulesSettings.cs" />
     <Compile Include="Settings\OptionsPageThemedIcons\ThemedIcons.OptionsPage.Generated.cs" />
     <Compile Include="Settings\SampleOptionPage.xaml.cs">
       <DependentUpon>SampleOptionPage.xaml</DependentUpon>
@@ -197,7 +199,7 @@
     <EmbeddedResource Include="Actions.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Settings\NamingOptionPage.xaml">
+    <Page Include="Settings\Naming\NamingOptionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

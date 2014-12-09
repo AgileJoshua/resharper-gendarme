@@ -1,4 +1,5 @@
-﻿using JetBrains.ReSharper.Daemon.Stages;
+﻿using JetBrains.Application.Settings;
+using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
@@ -9,6 +10,13 @@ namespace RGendarme.Rules.Design.UseFlagsAttribute
     [ElementProblemAnalyzer(new[] { typeof(IEnumDeclaration) }, HighlightingTypes = new[] { typeof(UseFlagsAttributeHighlighting) })]
     public class UseFlagsAttributeAnalyzer : ElementProblemAnalyzer<IEnumDeclaration>
     {
+        private readonly ISettingsStore _settings;
+
+        public UseFlagsAttributeAnalyzer(ISettingsStore settings)
+        {
+            _settings = settings;
+        }
+
         protected override void Run(IEnumDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
             if (element.EnumBody == null)

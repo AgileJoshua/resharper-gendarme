@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="RGendarme.Settings.Naming.NamingOptionPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="urn:schemas-jetbrains-com:jetbrains-ui-controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel>
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbAvoidDeepNamespaceHierarchy" VerticalAlignment="Center" Content="Avoid deep namespace hierarchy" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbAvoidNonAlphanumericIdentifier" VerticalAlignment="Center" Content="Avoid non alphanumeric identifier" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbAvoidRedundancyInMethodName" VerticalAlignment="Center" Content="Avoid redundancy in method name" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbAvoidRedundancyInTypeName" VerticalAlignment="Center" Content="Avoid redundancy in type name" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbAvoidTypeInterfaceInconsistency" VerticalAlignment="Center" Content="Avoid type interface inconsistency" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbDoNotPrefixEventsWithAfterOrBefore" VerticalAlignment="Center" Content="Do not prefix events with After or Before" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbDoNotPrefixValuesWithEnumName" VerticalAlignment="Center" Content="Do not prefix values with enum name" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbDoNotUseReservedInEnumValueNames" VerticalAlignment="Center" Content="Do not use reserved in enum value names" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbParameterNamesShouldMatchOverriddenMethod" VerticalAlignment="Center" Content="Parameter names should match overridden method" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbUseCorrectPrefix" VerticalAlignment="Center" Content="Use correct prefix" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbUseCorrectSuffix" VerticalAlignment="Center" Content="Use correct suffix" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbUsePluralNameInEnumFlags" VerticalAlignment="Center" Content="Use plural name in enum flags" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbUsePreferredTerms" VerticalAlignment="Center" Content="Use preferred terms" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbUseSingularNameInEnumsUnlessAreFlags" VerticalAlignment="Center" Content="Use singular name in enums unless are flags" x:FieldModifier="private" />
+    </StackPanel>
+</UserControl>

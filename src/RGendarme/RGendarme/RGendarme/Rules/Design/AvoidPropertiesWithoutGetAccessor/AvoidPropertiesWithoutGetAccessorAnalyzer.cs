@@ -1,4 +1,5 @@
-﻿using JetBrains.ReSharper.Daemon.Stages;
+﻿using JetBrains.Application.Settings;
+using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
@@ -8,6 +9,13 @@ namespace RGendarme.Rules.Design.AvoidPropertiesWithoutGetAccessor
     [ElementProblemAnalyzer(new[] { typeof(IPropertyDeclaration) }, HighlightingTypes = new[] { typeof(AvoidPropertiesWithoutGetAccessorHighlighting) })]
     public class AvoidPropertiesWithoutGetAccessorAnalyzer : ElementProblemAnalyzer<IPropertyDeclaration>
     {
+        private readonly ISettingsStore _settings;
+
+        public AvoidPropertiesWithoutGetAccessorAnalyzer(ISettingsStore settings)
+        {
+            _settings = settings;
+        }
+
         protected override void Run(IPropertyDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
             bool isGetDefined = false;

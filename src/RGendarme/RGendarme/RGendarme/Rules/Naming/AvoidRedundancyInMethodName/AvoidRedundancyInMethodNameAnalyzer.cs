@@ -1,4 +1,5 @@
-﻿using JetBrains.ReSharper.Daemon.Stages;
+﻿using JetBrains.Application.Settings;
+using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
@@ -8,6 +9,13 @@ namespace RGendarme.Rules.Naming.AvoidRedundancyInMethodName
     [ElementProblemAnalyzer(new[] { typeof(IMethodDeclaration) }, HighlightingTypes = new[] { typeof(AvoidRedundancyInMethodNameHighlighting) })]
     public class AvoidRedundancyInMethodNameAnalyzer : ElementProblemAnalyzer<IMethodDeclaration>
     {
+        private readonly ISettingsStore _settings;
+
+        public AvoidRedundancyInMethodNameAnalyzer(ISettingsStore settings)
+        {
+            _settings = settings;
+        }
+
         protected override void Run(IMethodDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
             if (string.IsNullOrEmpty(element.DeclaredName) || element.ParameterDeclarations.IsEmpty || element.NameIdentifier == null)

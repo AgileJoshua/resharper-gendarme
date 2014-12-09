@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using JetBrains.Application.Settings;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
@@ -11,8 +12,12 @@ namespace RGendarme.Rules.Naming.UsePreferredTerms
     {
         private readonly IDictionary<string, string> _rules;
 
-        public UsePreferredTermsAnalyzer()
+        private readonly ISettingsStore _settings;
+
+        public UsePreferredTermsAnalyzer(ISettingsStore settings)
         {
+            _settings = settings;
+
             _rules = new Dictionary<string, string>
             {
                 {"Arent", "AreNot"},

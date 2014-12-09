@@ -1,4 +1,5 @@
-﻿using JetBrains.ReSharper.Daemon.Stages;
+﻿using JetBrains.Application.Settings;
+using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
@@ -14,6 +15,13 @@ namespace RGendarme.Rules.Naming.UseCorrectPrefix
     [ElementProblemAnalyzer(new[] { typeof(IClassDeclaration) }, HighlightingTypes = new[] { typeof(UseCorrectPrefixHighlighting), typeof(UseCorrectPrefixWrongGenericTypeNameHighlighting) })]
     public class UseCorrectPrefixAnalyzer : ElementProblemAnalyzer<IClassDeclaration>
     {
+        private readonly ISettingsStore _settings;
+
+        public UseCorrectPrefixAnalyzer(ISettingsStore settings)
+        {
+            _settings = settings;
+        }
+
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
             AnalyzeCPrefix(element, consumer);

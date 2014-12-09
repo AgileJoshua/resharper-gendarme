@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using JetBrains.Application.Settings;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
@@ -10,6 +11,13 @@ namespace RGendarme.Rules.Naming.UsePluralNameInEnumFlags
     [ElementProblemAnalyzer(new[] { typeof(IEnumDeclaration) }, HighlightingTypes = new[] { typeof(UsePluralNameInEnumFlagsHighlighting) })]
     public class UsePluralNameInEnumFlagsAnalyzer : ElementProblemAnalyzer<IEnumDeclaration>
     {
+        private readonly ISettingsStore _settings;
+
+        public UsePluralNameInEnumFlagsAnalyzer(ISettingsStore settings)
+        {
+            _settings = settings;
+        }
+
         protected override void Run(IEnumDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
             if (!AnalyzerHelper.HasAttribute(element, "System.FlagsAttribute") || element.NameIdentifier == null)

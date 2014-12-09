@@ -1,4 +1,5 @@
-﻿using JetBrains.ReSharper.Daemon.Stages;
+﻿using JetBrains.Application.Settings;
+using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
@@ -9,6 +10,13 @@ namespace RGendarme.Rules.Naming.AvoidNonAlphanumericIdentifier
     [ElementProblemAnalyzer(new[] { typeof(ICSharpDeclaration) }, HighlightingTypes = new[] { typeof(AvoidNonAlphanumericIdentifierHighlighting) })]
     public class AvoidNonAlphanumericIdentifierAnalyzer : ElementProblemAnalyzer<ICSharpDeclaration>
     {
+        private readonly ISettingsStore _settings;
+
+        public AvoidNonAlphanumericIdentifierAnalyzer(ISettingsStore settings)
+        {
+            _settings = settings;
+        }
+
         protected override void Run(ICSharpDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
             var namespaceDecl = element as ICSharpNamespaceDeclaration;

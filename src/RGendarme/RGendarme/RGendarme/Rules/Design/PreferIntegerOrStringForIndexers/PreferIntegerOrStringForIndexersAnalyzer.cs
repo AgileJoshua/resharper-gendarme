@@ -1,4 +1,5 @@
-﻿using JetBrains.ReSharper.Daemon.Stages;
+﻿using JetBrains.Application.Settings;
+using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
@@ -9,6 +10,13 @@ namespace RGendarme.Rules.Design.PreferIntegerOrStringForIndexers
     [ElementProblemAnalyzer(new[] { typeof(IIndexerDeclaration) }, HighlightingTypes = new[] { typeof(PreferIntegerOrStringForIndexersHighlighting) })]
     public class PreferIntegerOrStringForIndexersAnalyzer : ElementProblemAnalyzer<IIndexerDeclaration>
     {
+        private readonly ISettingsStore _settings;
+
+        public PreferIntegerOrStringForIndexersAnalyzer(ISettingsStore settings)
+        {
+            _settings = settings;
+        }
+
         protected override void Run(IIndexerDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
             IFormalParameterList inputList = element.Params;

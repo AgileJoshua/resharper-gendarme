@@ -22,7 +22,7 @@ namespace RGendarme.Settings.Design
         public bool AvoidRefAndOutParametersEnabled { get; set; }
 
 #warning set settings title
-        [SettingsEntry(true, "")]
+        [SettingsEntry(true, "Avoid visible fields")]
         public bool AvoidVisibleFieldsEnabled { get; set; }
 
         [SettingsEntry(true, "This type is both nested and visible outside the assembly. Nested types are often confused with namespaces.")]
@@ -62,7 +62,7 @@ namespace RGendarme.Settings.Design
         public bool ImplementEqualsAndGetHashCodeInPairEnabled { get; set; }
 
 #warning set settings title
-        [SettingsEntry(true, "")]
+        [SettingsEntry(true, "Implement ICloneable correctly")]
         public bool ImplementICloneableCorrectlyEnabled { get; set; }
 
         [SettingsEntry(true, "This internal namespace should not expose visible types outside the assembly.")]
@@ -105,11 +105,11 @@ namespace RGendarme.Settings.Design
         public bool TypesShouldBeInsideNamespacesEnabled { get; set; }
 
 #warning set settings title
-        [SettingsEntry(true, "")]
+        [SettingsEntry(true, "Types with disposable fields should be disposable")]
         public bool TypesWithDisposableFieldsShouldBeDisposableEnabled { get; set; }
 
 #warning set settings title
-        [SettingsEntry(true, "")]
+        [SettingsEntry(true, "Types with native fields should be disposable")]
         public bool TypesWithNativeFieldsShouldBeDisposableEnabled { get; set; }
 
         [SettingsEntry(true, "An IDisposable type does not conform to the guidelines for its Dispose methods.")]

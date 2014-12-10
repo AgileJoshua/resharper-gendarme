@@ -181,6 +181,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AboutAction.cs" />
     <Compile Include="Rules\Tutorial\ReverseString\ReverseStringAction.cs" />
+    <Compile Include="Settings\Design\DesignOptionPage.xaml.cs">
+      <DependentUpon>DesignOptionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\Design\DesignRulesSettings.cs" />
     <Compile Include="Settings\Naming\NamingOptionPage.xaml.cs">
       <DependentUpon>NamingOptionPage.xaml</DependentUpon>
     </Compile>
@@ -199,6 +203,10 @@
     <EmbeddedResource Include="Actions.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Settings\Design\DesignOptionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Settings\Naming\NamingOptionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

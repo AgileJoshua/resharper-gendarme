@@ -18,8 +18,7 @@ namespace RGendarme.Settings.Naming
         public NamingOptionPage(Lifetime lifetime, OptionsSettingsSmartContext settings)
         {
             InitializeComponent();
-            // TODO add bindings
-
+            
             settings.SetBinding(lifetime, (NamingRulesSettings s) => s.AvoidDeepNamespaceHierarchyEnabled, cbAvoidDeepNamespaceHierarchy, CheckBoxDisabledNoCheck2.IsCheckedLogicallyDependencyProperty);
 
             settings.SetBinding(lifetime, (NamingRulesSettings s) => s.AvoidNonAlphanumericIdentifierEnabled, cbAvoidNonAlphanumericIdentifier, CheckBoxDisabledNoCheck2.IsCheckedLogicallyDependencyProperty);

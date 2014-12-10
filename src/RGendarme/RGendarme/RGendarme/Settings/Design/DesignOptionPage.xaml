@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="RGendarme.Settings.Design.DesignOptionPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="urn:schemas-jetbrains-com:jetbrains-ui-controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel>
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbAttributeArgumentsShouldHaveAccessors" VerticalAlignment="Center" Content="Attribute arguments should have accessors" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbAvoidEmptyInterface" VerticalAlignment="Center" Content="Avoid empty interface" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbAvoidMultidimensionalIndexer" VerticalAlignment="Center" Content="Avoid multi dimensional indexer" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbAvoidPropertiesWithoutGetAccessor" VerticalAlignment="Center" Content="Avoid properties without get accessor" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbAvoidRefAndOutParameters" VerticalAlignment="Center" Content="Avoid ref and out parameters" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbAvoidVisibleFields" VerticalAlignment="Center" Content="Avoid visible fields" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbAvoidVisibleNestedTypes" VerticalAlignment="Center" Content="Avoid visible nested types" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbConsiderAddingInterface" VerticalAlignment="Center" Content="Consider adding interface" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbConsiderConvertingFieldToNullable" VerticalAlignment="Center" Content="Consider converting field to nullable" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbConsiderConvertingMethodToProperty" VerticalAlignment="Center" Content="Consider converting method to property" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbConsiderUsingStaticType" VerticalAlignment="Center" Content="Consider using static type" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbDeclareEventHandlersCorrectly" VerticalAlignment="Center" Content="Declare event handlers correctly" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbDisposableTypesShouldHaveFinalizer" VerticalAlignment="Center" Content="Disposable types should have finalizer" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbEnsureSymmetryForOverloadedOperators" VerticalAlignment="Center" Content="Ensure symmetry for overloaded operators" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbEnumsShouldDefineAZeroValue" VerticalAlignment="Center" Content="Enums should define a zero value" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbEnumsShouldUseInt32" VerticalAlignment="Center" Content="Enums should use Int32" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbFlagsShouldNotDefineAZeroValue" VerticalAlignment="Center" Content="Flags should not define a zero value" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbImplementEqualsAndGetHashCodeInPair" VerticalAlignment="Center" Content="Implement equals and GetHashCode in pair" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbImplementICloneableCorrectly" VerticalAlignment="Center" Content="Implement ICloneable correctly" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbInternalNamespacesShouldNotExposeTypes" VerticalAlignment="Center" Content="Internal namespaces should not expose types" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbMainShouldNotBePublic" VerticalAlignment="Center" Content="Main should not be public" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbMarkAssemblyWith" VerticalAlignment="Center" Content="Mark assembly with" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbMissingAttributeUsageOnCustomAttribute" VerticalAlignment="Center" Content="Missing attribute usage on custom attribute" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbOperatorEqualsShouldBeOverloaded" VerticalAlignment="Center" Content="Operator equals should be overloaded" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbOverrideEqualsMethod" VerticalAlignment="Center" Content="Override Equals method" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbPreferEventsOverMethods" VerticalAlignment="Center" Content="Prefer events over methods" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbPreferIntegerOrStringForIndexers" VerticalAlignment="Center" Content="Prefer integer or string for indexers" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbPreferXmlAbstractions" VerticalAlignment="Center" Content="Prefer xml abstractions" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbProvideAlternativeNamesForOperatorOverloads" VerticalAlignment="Center" Content="Provide alternative names for operator overloads" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbTypesShouldBeInsideNamespaces" VerticalAlignment="Center" Content="Types should be inside namespaces" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbTypesWithDisposableFieldsShouldBeDisposable" VerticalAlignment="Center" Content="Types with disposable fields should be disposable" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbTypesWithNativeFieldsShouldBeDisposable" VerticalAlignment="Center" Content="Types with native fields should be disposable" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbUseCorrectDisposeSignatures" VerticalAlignment="Center" Content="Use correct dispose signatures" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbUseFlagsAttribute" VerticalAlignment="Center" Content="Use Flags attribute" x:FieldModifier="private" />
+        
+    </StackPanel>
+</UserControl>

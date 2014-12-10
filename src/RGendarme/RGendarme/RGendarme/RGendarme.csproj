@@ -190,10 +190,9 @@
     </Compile>
     <Compile Include="Settings\Naming\NamingRulesSettings.cs" />
     <Compile Include="Settings\OptionsPageThemedIcons\ThemedIcons.OptionsPage.Generated.cs" />
-    <Compile Include="Settings\SampleOptionPage.xaml.cs">
-      <DependentUpon>SampleOptionPage.xaml</DependentUpon>
+    <Compile Include="Settings\MainOptionPage.xaml.cs">
+      <DependentUpon>MainOptionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Settings\RGendarmeSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -215,7 +214,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Settings\SampleOptionPage.xaml">
+    <Page Include="Settings\MainOptionPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

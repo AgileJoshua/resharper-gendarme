@@ -10,7 +10,7 @@ namespace RGendarme.Settings.Design
     /// <summary>
     /// Interaction logic for DesignOptionPage.xaml
     /// </summary>
-    [OptionsPage(PID, "Design rules", typeof(OptionsPageThemedIcons.UseIntMaxValueOptions), ParentId = SampleOptionPage.PID)]
+    [OptionsPage(PID, "Design rules", typeof(OptionsPageThemedIcons.UseIntMaxValueOptions), ParentId = MainOptionPage.PID)]
     public partial class DesignOptionPage : IOptionsPage
     {
         private const string PID = "DesignOptionPage";

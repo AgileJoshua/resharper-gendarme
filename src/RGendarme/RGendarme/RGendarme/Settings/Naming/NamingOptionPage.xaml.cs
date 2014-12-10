@@ -10,7 +10,7 @@ namespace RGendarme.Settings.Naming
     /// <summary>
     /// Interaction logic for NamingOptionPage.xaml
     /// </summary>
-    [OptionsPage(PID, "Naming rules", typeof(OptionsPageThemedIcons.UseIntMaxValueOptions), ParentId = SampleOptionPage.PID)]
+    [OptionsPage(PID, "Naming rules", typeof(OptionsPageThemedIcons.UseIntMaxValueOptions), ParentId = MainOptionPage.PID)]
     public partial class NamingOptionPage : IOptionsPage
     {
         private const string PID = "NamingOptionPage";

@@ -19,8 +19,6 @@ namespace RGendarme.Rules.Custom.StringIsNullOrEmptyWithFalse
 
         protected override void Run(IEqualityExpression element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
-            SettingsScalarEntry settingValue = _settings.Schema.GetScalarEntry((RGendarmeSettings s) => s.SampleOption);
-
             bool isNullOrEmptyFunc = false;
             var left = element.LeftOperand as IInvocationExpression;
             if (left != null)

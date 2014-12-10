@@ -71,9 +71,14 @@ namespace RGendarme.Settings.Design
         [SettingsEntry(true, "The entry point (Main) of this assembly is visible to the outside world (ref: C# Programming Guide).")]
         public bool MainShouldNotBePublicEnabled { get; set; }
 
-#warning todo create settings for all markassemblywith...
-        [SettingsEntry(true, "")]
-        public bool MarkAssemblyWith { get; set; }
+        [SettingsEntry(true, "This assembly is not decorated with the [ComVisible] attribute.")]
+        public bool MarkAssemblyWithComVisibleEnabled { get; set; }
+
+        [SettingsEntry(true, "This assembly is not decorated with the [CLSCompliant] attribute.")]
+        public bool MarkAssemblyWithCLSCompliantEnabled { get; set; }
+
+        [SettingsEntry(true, "This assembly is not decorated with the [AssemblyVersion] attribute.")]
+        public bool MarkAssemblyWithAssemblyVersionEnabled { get; set; }
 
         [SettingsEntry(true, "This attribute does not specify the items it can be used upon.")]
         public bool MissingAttributeUsageOnCustomAttributeEnabled { get; set; }

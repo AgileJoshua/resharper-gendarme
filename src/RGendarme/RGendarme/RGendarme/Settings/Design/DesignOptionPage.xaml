@@ -28,7 +28,9 @@
         <controls:CheckBoxDisabledNoCheck2 x:Name="cbImplementICloneableCorrectly" VerticalAlignment="Center" Content="Implement ICloneable correctly" x:FieldModifier="private" />
         <controls:CheckBoxDisabledNoCheck2 x:Name="cbInternalNamespacesShouldNotExposeTypes" VerticalAlignment="Center" Content="Internal namespaces should not expose types" x:FieldModifier="private" />
         <controls:CheckBoxDisabledNoCheck2 x:Name="cbMainShouldNotBePublic" VerticalAlignment="Center" Content="Main should not be public" x:FieldModifier="private" />
-        <controls:CheckBoxDisabledNoCheck2 x:Name="cbMarkAssemblyWith" VerticalAlignment="Center" Content="Mark assembly with" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbMarkAssemblyWithComVisible" VerticalAlignment="Center" Content="Mark assembly with ComVisible attribute" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbMarkAssemblyWithCLSCompliant" VerticalAlignment="Center" Content="Mark assembly with CLSCompliant attribute" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbMarkAssemblyWithAssemblyVersion" VerticalAlignment="Center" Content="Mark assembly with AssemblyVersion attribute" x:FieldModifier="private" />
         <controls:CheckBoxDisabledNoCheck2 x:Name="cbMissingAttributeUsageOnCustomAttribute" VerticalAlignment="Center" Content="Missing attribute usage on custom attribute" x:FieldModifier="private" />
         <controls:CheckBoxDisabledNoCheck2 x:Name="cbOperatorEqualsShouldBeOverloaded" VerticalAlignment="Center" Content="Operator equals should be overloaded" x:FieldModifier="private" />
         <controls:CheckBoxDisabledNoCheck2 x:Name="cbOverrideEqualsMethod" VerticalAlignment="Center" Content="Override Equals method" x:FieldModifier="private" />

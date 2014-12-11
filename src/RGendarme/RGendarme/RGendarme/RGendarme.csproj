@@ -78,7 +78,6 @@
     <Compile Include="Rules\Design\AvoidPropertiesWithoutGetAccessor\AvoidPropertiesWithoutGetAccessorHighlighting.cs" />
     <Compile Include="Rules\Design\AvoidRefAndOutParameters\AvoidRefAndOutParametersAnalyzer.cs" />
     <Compile Include="Rules\Design\AvoidRefAndOutParameters\AvoidRefAndOutParametersHighlighting.cs" />
-    <Compile Include="Rules\Design\AvoidSmallNamespace\AvoidSmallNamespaceAnalyzer.cs" />
     <Compile Include="Rules\Design\AvoidVisibleFields\ AvoidVisibleFieldsRuleAnalyzer.cs" />
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsCreateMethodBulbItem.cs" />
     <Compile Include="Rules\Design\AvoidVisibleFields\AvoidVisibleFieldsCreatePropertyBulbItem.cs" />

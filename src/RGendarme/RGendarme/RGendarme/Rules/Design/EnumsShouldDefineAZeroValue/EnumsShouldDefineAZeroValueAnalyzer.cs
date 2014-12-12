@@ -37,8 +37,8 @@ namespace RGendarme.Rules.Design.EnumsShouldDefineAZeroValue
 
                 try
                 {
-                    int value = Convert.ToInt32(item.EnumMember.ConstantValue.Value);
-                    if (value == 0)
+                    int value;
+                    if (int.TryParse(item.EnumMember.ConstantValue.Value.ToString(), out value) && value == 0)
                     {
                         hasZeroValue = true;
                         break;

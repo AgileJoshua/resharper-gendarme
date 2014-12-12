@@ -1,15 +1,20 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using JetBrains.Application.DataContext;
 using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using RGendarme.Lib;
+using RGendarme.Settings.Design;
 
 namespace RGendarme.Rules.Design.EnumsShouldUseInt32
 {
     [ElementProblemAnalyzer(new[] { typeof(IEnumDeclaration) }, HighlightingTypes = new[] { typeof(EnumsShouldUseInt32Highlighting) })]
-    public class EnumsShouldUseInt32Analyzer : ElementProblemAnalyzer<IEnumDeclaration>
+    public class EnumsShouldUseInt32Analyzer : ElementProblemAnalyzer<IEnumDeclaration>, IRGendarmeRule
     {
         private readonly ISettingsStore _settings;
 
@@ -20,6 +25,9 @@ namespace RGendarme.Rules.Design.EnumsShouldUseInt32
 
         protected override void Run(IEnumDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             var underlinedType = element.UnderlyingTypeUsage as IPredefinedDeclaredTypeUsage;
             if (underlinedType == null)
                 return;
@@ -67,8 +75,14 @@ namespace RGendarme.Rules.Design.EnumsShouldUseInt32
             {
                 consumer.AddHighlighting(new EnumsShouldUseInt32Highlighting(element), element.UnderlyingTypeUsage.GetDocumentRange(), element.GetContainingFile());
             }
+        }
 
-            // TODO: throw new System.NotImplementedException();
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<DesignRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.EnumsShouldUseInt32Enabled;
         }
     }
 }

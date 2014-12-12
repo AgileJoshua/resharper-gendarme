@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Application.DataContext;
 using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using RGendarme.Lib;
 using RGendarme.Lib.Extenstions;
+using RGendarme.Settings.Design;
 
 namespace RGendarme.Rules.Design.ProvideAlternativeNamesForOperatorOverloads
 {
     [ElementProblemAnalyzer(new[] { typeof(IClassDeclaration) }, HighlightingTypes = new[] { typeof(ProvideAlternativeNamesForOperatorOverloadsHighlighting) })]
-    public class ProvideAlternativeNamesForOperatorOverloadsAnalyzer : ElementProblemAnalyzer<IClassDeclaration>
+    public class ProvideAlternativeNamesForOperatorOverloadsAnalyzer : ElementProblemAnalyzer<IClassDeclaration>, IRGendarmeRule
     {
         private readonly ISettingsStore _settings;
 
@@ -66,6 +70,9 @@ namespace RGendarme.Rules.Design.ProvideAlternativeNamesForOperatorOverloads
 
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             if (element.NameIdentifier == null || element.OperatorDeclarations.IsEmpty)
                 return;
 
@@ -93,6 +100,14 @@ namespace RGendarme.Rules.Design.ProvideAlternativeNamesForOperatorOverloads
             }
             
             // throw new System.NotImplementedException();
+        }
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<DesignRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.ProvideAlternativeNamesForOperatorOverloadsEnabled;
         }
     }
 }

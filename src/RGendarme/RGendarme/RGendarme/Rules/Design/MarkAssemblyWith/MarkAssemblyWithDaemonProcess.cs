@@ -17,16 +17,19 @@ namespace RGendarme.Rules.Design.MarkAssemblyWith
     {
         private readonly IDaemonProcess _daemonProcess;
 
-        public MarkAssemblyWithDaemonProcess([NotNull] IDaemonProcess daemonProcess)
+        private readonly MarkAssemblyWithRules _enabledRules;
+
+        public MarkAssemblyWithDaemonProcess([NotNull] IDaemonProcess daemonProcess, MarkAssemblyWithRules enabledRules)
         {
             _daemonProcess = daemonProcess;
+            _enabledRules = enabledRules;
         }
 
         public IDaemonProcess DaemonProcess { get { return _daemonProcess; } }
 
         public void Execute(Action<DaemonStageResult> committer)
         {
-            if (!_daemonProcess.FullRehighlightingRequired)
+            if (!_daemonProcess.FullRehighlightingRequired || _enabledRules.IsAllDisabled)
                 return;
 
             var hightlighings = new List<HighlightingInfo>();
@@ -55,9 +58,14 @@ namespace RGendarme.Rules.Design.MarkAssemblyWith
                 }
             }
 
-            CheckAttributeExistence(typeof(ComVisibleAttribute), sections, hightlighings, assemblyInfoFile);
-            CheckAttributeExistence(typeof(CLSCompliantAttribute), sections, hightlighings, assemblyInfoFile);
-            CheckAttributeExistence(typeof(AssemblyVersionAttribute), sections, hightlighings, assemblyInfoFile);
+            if (_enabledRules.ComVisibleEnabled)
+                CheckAttributeExistence(typeof(ComVisibleAttribute), sections, hightlighings, assemblyInfoFile);
+
+            if (_enabledRules.ClsCompliantEnabled)
+                CheckAttributeExistence(typeof(CLSCompliantAttribute), sections, hightlighings, assemblyInfoFile);
+
+            if (_enabledRules.AssemblyVersion)
+                CheckAttributeExistence(typeof(AssemblyVersionAttribute), sections, hightlighings, assemblyInfoFile);
         }
 
         private void CheckAttributeExistence(Type attributeType, IList<IAttributeSection> sections, IList<HighlightingInfo> highlightings, ICSharpFile assemblyInfo)

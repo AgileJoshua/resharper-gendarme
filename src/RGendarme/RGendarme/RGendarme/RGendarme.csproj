@@ -188,7 +188,7 @@
       <DependentUpon>NamingOptionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings\Naming\NamingRulesSettings.cs" />
-    <Compile Include="Settings\OptionsPageThemedIcons\ThemedIcons.OptionsPage.Generated.cs" />
+    <Compile Include="Settings\Icons\OptionsPageThemedIcons\ThemedIcons.OptionsPage.Generated.cs" />
     <Compile Include="Settings\MainOptionPage.xaml.cs">
       <DependentUpon>MainOptionPage.xaml</DependentUpon>
     </Compile>
@@ -209,7 +209,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Settings\OptionsPageThemedIcons\ThemedIcons.OptionsPage.Generated.Xaml">
+    <Page Include="Settings\Icons\OptionsPageThemedIcons\ThemedIcons.OptionsPage.Generated.Xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -219,9 +219,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ThemedIconPng Include="Settings\OptionsPageThemedIcons\UseIntMaxValueOptions.png" />
+    <ThemedIconPng Include="Settings\Icons\OptionsPageThemedIcons\UseIntMaxValueOptions.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

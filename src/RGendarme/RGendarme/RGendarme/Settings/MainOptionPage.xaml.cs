@@ -1,7 +1,7 @@
 ﻿using JetBrains.ReSharper.Features.Environment.Options.Inspections;
 using JetBrains.UI.CrossFramework;
 using JetBrains.UI.Options;
-using RGendarme.Settings;
+using RGendarme.Settings.Icons;
 
 namespace JetBrains.ReSharper.PowerToys.OptionsPage
 {

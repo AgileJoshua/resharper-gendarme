@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Linq;
+using JetBrains.Application.DataContext;
 using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using RGendarme.Lib;
+using RGendarme.Settings.Design;
 
 namespace RGendarme.Rules.Design.ImplementIComparableCorrectly
 {
     [ElementProblemAnalyzer(new[] { typeof(IClassDeclaration) }, HighlightingTypes = new[] { typeof(ImplementIComparableCorrectlyHighlight) })]
-    public class ImplementIComparableCorrectlyAnalyzer : ElementProblemAnalyzer<IClassDeclaration>
+    public class ImplementIComparableCorrectlyAnalyzer : ElementProblemAnalyzer<IClassDeclaration>, IRGendarmeRule
     {
         private readonly ISettingsStore _settings;
 
@@ -21,6 +24,9 @@ namespace RGendarme.Rules.Design.ImplementIComparableCorrectly
 
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             // 1. Does class implement IComparable
             if (element.ExtendsList == null || !AnalyzerHelper.IsImplement(element.ExtendsList, "System.IComparable"))
                 return;
@@ -53,6 +59,14 @@ namespace RGendarme.Rules.Design.ImplementIComparableCorrectly
                     consumer.AddHighlighting(new ImplementIComparableCorrectlyHighlight(element, string.Format("Need override {0} operator.", op)), element.NameIdentifier.GetDocumentRange(), element.GetContainingFile());
                 }
             }
+        }
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<DesignRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.ImplementIComparableCorrectlyEnabled;
         }
     }
 }

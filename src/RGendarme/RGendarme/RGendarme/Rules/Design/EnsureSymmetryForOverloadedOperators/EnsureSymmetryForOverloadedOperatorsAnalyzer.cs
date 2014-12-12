@@ -1,14 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using JetBrains.Application.DataContext;
 using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using RGendarme.Lib;
+using RGendarme.Settings.Design;
 
 namespace RGendarme.Rules.Design.EnsureSymmetryForOverloadedOperators
 {
     [ElementProblemAnalyzer(new[] { typeof(IClassDeclaration) }, HighlightingTypes = new[] { typeof(EnsureSymmetryForOverloadedOperatorsHighlighting) })]
-    public class EnsureSymmetryForOverloadedOperatorsAnalyzer : ElementProblemAnalyzer<IClassDeclaration>
+    public class EnsureSymmetryForOverloadedOperatorsAnalyzer : ElementProblemAnalyzer<IClassDeclaration>, IRGendarmeRule
     {
         private readonly IDictionary<string, string> _rules;
         private readonly ISettingsStore _settings;
@@ -43,6 +48,9 @@ namespace RGendarme.Rules.Design.EnsureSymmetryForOverloadedOperators
 
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             if (element.Body == null || element.Body.Operators.Count == 0)
                 return;
 
@@ -63,6 +71,14 @@ namespace RGendarme.Rules.Design.EnsureSymmetryForOverloadedOperators
                     consumer.AddHighlighting(new EnsureSymmetryForOverloadedOperatorsHighlighting(element, mustImplement), item.Value.OperatorKeyword.GetDocumentRange(), item.Value.GetContainingFile());
                 }
             }
+        }
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<DesignRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.EnsureSymmetryForOverloadedOperatorsEnabled;
         }
     }
 }

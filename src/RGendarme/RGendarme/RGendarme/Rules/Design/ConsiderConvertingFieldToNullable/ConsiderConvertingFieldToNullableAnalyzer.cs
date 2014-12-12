@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using JetBrains.Application.DataContext;
 using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using RGendarme.Lib;
+using RGendarme.Settings.Design;
 
 namespace RGendarme.Rules.Design.ConsiderConvertingFieldToNullable
 {
     [ElementProblemAnalyzer(new[] { typeof(IClassDeclaration) }, HighlightingTypes = new[] { typeof(ConsiderConvertingFieldToNullableHighlighting) })]
-    public class ConsiderConvertingFieldToNullableAnalyzer : ElementProblemAnalyzer<IClassDeclaration>
+    public class ConsiderConvertingFieldToNullableAnalyzer : ElementProblemAnalyzer<IClassDeclaration>, IRGendarmeRule
     {
         private readonly ISettingsStore _settings;
 
@@ -23,6 +27,9 @@ namespace RGendarme.Rules.Design.ConsiderConvertingFieldToNullable
 
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             if (element.Body == null)
                 return;
 
@@ -74,6 +81,14 @@ namespace RGendarme.Rules.Design.ConsiderConvertingFieldToNullable
         private void ThrowWarning(IFieldDeclaration field, IHighlightingConsumer consumer, string warning)
         {
             consumer.AddHighlighting(new ConsiderConvertingFieldToNullableHighlighting(field, warning), field.GetDocumentRange(), field.GetContainingFile());
+        }
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<DesignRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.ConsiderConvertingFieldToNullableEnabled;
         }
     }
 }

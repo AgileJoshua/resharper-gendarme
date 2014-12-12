@@ -1,15 +1,20 @@
-﻿using JetBrains.Application.Settings;
+﻿using System;
+using JetBrains.Application.DataContext;
+using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.ReSharper.Psi.Util;
+using RGendarme.Lib;
+using RGendarme.Settings.Design;
 
 namespace RGendarme.Rules.Design.DeclareEventHandlersCorrectly
 {
     [ElementProblemAnalyzer(new[] { typeof(IEventDeclaration) }, HighlightingTypes = new[] { typeof(DeclareEventHandlersCorrectlyHighlighting) })]
-    public class DeclareEventHandlersCorrectlyAnalyzer : ElementProblemAnalyzer<IEventDeclaration>
+    public class DeclareEventHandlersCorrectlyAnalyzer : ElementProblemAnalyzer<IEventDeclaration>, IRGendarmeRule
     {
         private readonly ISettingsStore _settings;
 
@@ -20,6 +25,9 @@ namespace RGendarme.Rules.Design.DeclareEventHandlersCorrectly
 
         protected override void Run(IEventDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             if (element.DelegateTypeUsage == null) 
                 return;
 
@@ -109,6 +117,14 @@ namespace RGendarme.Rules.Design.DeclareEventHandlersCorrectly
         private void ThrowWarning(IEventDeclaration element, IHighlightingConsumer consumer, string message)
         {
             consumer.AddHighlighting(new DeclareEventHandlersCorrectlyHighlighting(element,message), element.DelegateName.GetDocumentRange(), element.GetContainingFile());
+        }
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<DesignRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.DeclareEventHandlersCorrectlyEnabled;
         }
     }
 }

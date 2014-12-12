@@ -26,6 +26,7 @@
         <controls:CheckBoxDisabledNoCheck2 x:Name="cbFlagsShouldNotDefineAZeroValue" VerticalAlignment="Center" Content="Flags should not define a zero value" x:FieldModifier="private" />
         <controls:CheckBoxDisabledNoCheck2 x:Name="cbImplementEqualsAndGetHashCodeInPair" VerticalAlignment="Center" Content="Implement equals and GetHashCode in pair" x:FieldModifier="private" />
         <controls:CheckBoxDisabledNoCheck2 x:Name="cbImplementICloneableCorrectly" VerticalAlignment="Center" Content="Implement ICloneable correctly" x:FieldModifier="private" />
+        <controls:CheckBoxDisabledNoCheck2 x:Name="cbImplementIComparableCorrectly" VerticalAlignment="Center" Content="Implement IComparable correctly" x:FieldModifier="private" />
         <controls:CheckBoxDisabledNoCheck2 x:Name="cbInternalNamespacesShouldNotExposeTypes" VerticalAlignment="Center" Content="Internal namespaces should not expose types" x:FieldModifier="private" />
         <controls:CheckBoxDisabledNoCheck2 x:Name="cbMainShouldNotBePublic" VerticalAlignment="Center" Content="Main should not be public" x:FieldModifier="private" />
         <controls:CheckBoxDisabledNoCheck2 x:Name="cbMarkAssemblyWithComVisible" VerticalAlignment="Center" Content="Mark assembly with ComVisible attribute" x:FieldModifier="private" />

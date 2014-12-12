@@ -1,14 +1,19 @@
-﻿using JetBrains.Application.Settings;
+﻿using System;
+using JetBrains.Application.DataContext;
+using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using RGendarme.Lib;
 using RGendarme.Lib.Extenstions;
+using RGendarme.Settings.Design;
 
 namespace RGendarme.Rules.Design.AvoidRefAndOutParameters
 {
     [ElementProblemAnalyzer(new[] { typeof(IMethodDeclaration) }, HighlightingTypes = new[] { typeof(AvoidRefAndOutParametersHighlighting) })]
-    public class AvoidRefAndOutParametersAnalyzer : ElementProblemAnalyzer<IMethodDeclaration>
+    public class AvoidRefAndOutParametersAnalyzer : ElementProblemAnalyzer<IMethodDeclaration>, IRGendarmeRule
     {
         private readonly ISettingsStore _settings;
 
@@ -19,6 +24,9 @@ namespace RGendarme.Rules.Design.AvoidRefAndOutParameters
 
         protected override void Run(IMethodDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             // 1. if method has not params - return
             IFormalParameterList parameters = element.Params;
             if (parameters == null || parameters.IsEmpty())
@@ -44,6 +52,14 @@ namespace RGendarme.Rules.Design.AvoidRefAndOutParameters
 
             // 4. else throw warning
             consumer.AddHighlighting(new AvoidRefAndOutParametersHighlighting(element), element.NameIdentifier.GetDocumentRange(), element.GetContainingFile());
+        }
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<DesignRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.AvoidRefAndOutParametersEnabled;
         }
     }
 }

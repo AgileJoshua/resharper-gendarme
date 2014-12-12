@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using JetBrains.Application.DataContext;
 using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi;
@@ -9,11 +12,12 @@ using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
 using RGendarme.Lib;
+using RGendarme.Settings.Design;
 
 namespace RGendarme.Rules.Design.AttributeArgumentsShouldHaveAccessors
 {
     [ElementProblemAnalyzer(new[] { typeof(IClassDeclaration) }, HighlightingTypes = new[] { typeof(AttributeArgumentsShouldHaveAccessorsighlighting) })]
-    public class AttributeArgumentsShouldHaveAccessorsAnalyzer : ElementProblemAnalyzer<IClassDeclaration>
+    public class AttributeArgumentsShouldHaveAccessorsAnalyzer : ElementProblemAnalyzer<IClassDeclaration>, IRGendarmeRule
     {
         private readonly ISettingsStore _settings;
         public AttributeArgumentsShouldHaveAccessorsAnalyzer(ISettingsStore settings)
@@ -23,6 +27,9 @@ namespace RGendarme.Rules.Design.AttributeArgumentsShouldHaveAccessors
 
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             if (!AnalyzerHelper.IsImplement(element, "System.Attribute") || element.FieldDeclarations.IsEmpty || element.ConstructorDeclarations.IsEmpty)
                 return;
 
@@ -151,6 +158,14 @@ namespace RGendarme.Rules.Design.AttributeArgumentsShouldHaveAccessors
             }
 
             return isReturnField;
+        }
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<DesignRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.AttributeArgumentsShouldHaveAccessorsEnabled;
         }
     }
 }

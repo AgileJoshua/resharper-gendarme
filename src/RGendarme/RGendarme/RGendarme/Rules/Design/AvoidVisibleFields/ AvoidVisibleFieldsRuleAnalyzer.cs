@@ -1,13 +1,18 @@
-﻿using JetBrains.Application.Settings;
+﻿using System;
+using JetBrains.Application.DataContext;
+using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using RGendarme.Lib;
+using RGendarme.Settings.Design;
 
 namespace RGendarme.Rules.Design.AvoidVisibleFields
 {
     [ElementProblemAnalyzer(new[] { typeof(IMultipleFieldDeclaration) }, HighlightingTypes = new[] { typeof(AvoidVisibleFieldsHighlighting) })]
-    public class  AvoidVisibleFieldsAnalyzer : ElementProblemAnalyzer<IMultipleFieldDeclaration>
+    public class  AvoidVisibleFieldsAnalyzer : ElementProblemAnalyzer<IMultipleFieldDeclaration>, IRGendarmeRule
     {
         private readonly ISettingsStore _settings;
 
@@ -18,6 +23,9 @@ namespace RGendarme.Rules.Design.AvoidVisibleFields
 
         protected override void Run(IMultipleFieldDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             bool isPublicField = false;
             IModifiersList modifiers = element.ModifiersList;
 
@@ -36,6 +44,14 @@ namespace RGendarme.Rules.Design.AvoidVisibleFields
             {
                 consumer.AddHighlighting(new AvoidVisibleFieldsHighlighting(element), element.GetDocumentRange(), element.GetContainingFile());
             }
+        }
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<DesignRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.AvoidVisibleFieldsEnabled;
         }
     }
 }

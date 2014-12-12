@@ -4,6 +4,7 @@ using JetBrains.ReSharper.PowerToys.OptionsPage;
 using JetBrains.UI.Controls;
 using JetBrains.UI.CrossFramework;
 using JetBrains.UI.Options;
+using RGendarme.Settings.Icons;
 
 namespace RGendarme.Settings.Design
 {
@@ -18,8 +19,6 @@ namespace RGendarme.Settings.Design
         public DesignOptionPage(Lifetime lifetime, OptionsSettingsSmartContext settings)
         {
             InitializeComponent();
-
-            // TODO: add bingings later
 
             settings.SetBinding(lifetime, (DesignRulesSettings s) => s.AttributeArgumentsShouldHaveAccessorsEnabled, cbAttributeArgumentsShouldHaveAccessors, CheckBoxDisabledNoCheck2.IsCheckedLogicallyDependencyProperty);
 
@@ -58,6 +57,8 @@ namespace RGendarme.Settings.Design
             settings.SetBinding(lifetime, (DesignRulesSettings s) => s.ImplementEqualsAndGetHashCodeInPairEnabled, cbImplementEqualsAndGetHashCodeInPair, CheckBoxDisabledNoCheck2.IsCheckedLogicallyDependencyProperty);
 
             settings.SetBinding(lifetime, (DesignRulesSettings s) => s.ImplementICloneableCorrectlyEnabled, cbImplementICloneableCorrectly, CheckBoxDisabledNoCheck2.IsCheckedLogicallyDependencyProperty);
+
+            settings.SetBinding(lifetime, (DesignRulesSettings s) => s.ImplementIComparableCorrectlyEnabled, cbImplementIComparableCorrectly, CheckBoxDisabledNoCheck2.IsCheckedLogicallyDependencyProperty);
 
             settings.SetBinding(lifetime, (DesignRulesSettings s) => s.InternalNamespacesShouldNotExposeTypesEnabled, cbInternalNamespacesShouldNotExposeTypes, CheckBoxDisabledNoCheck2.IsCheckedLogicallyDependencyProperty);
 

@@ -1,15 +1,19 @@
-﻿using JetBrains.Application.Settings;
+﻿using System;
+using JetBrains.Application.DataContext;
+using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using RGendarme.Lib;
+using RGendarme.Settings.Design;
 
 namespace RGendarme.Rules.Design.FlagsShouldNotDefineAZeroValue
 {
     [ElementProblemAnalyzer(new[] { typeof(IEnumDeclaration) }, HighlightingTypes = new[] { typeof(FlagsShouldNotDefineAZeroValueHighlighting) })]
-    public class FlagsShouldNotDefineAZeroValueAnalyzer : ElementProblemAnalyzer<IEnumDeclaration>
+    public class FlagsShouldNotDefineAZeroValueAnalyzer : ElementProblemAnalyzer<IEnumDeclaration>, IRGendarmeRule
     {
         private readonly ISettingsStore _settings;
 
@@ -20,6 +24,9 @@ namespace RGendarme.Rules.Design.FlagsShouldNotDefineAZeroValue
 
         protected override void Run(IEnumDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+            
             // 1. check for Flags attribute
             if (!AnalyzerHelper.HasAttribute(element, "System.FlagsAttribute"))
                 return;
@@ -43,6 +50,14 @@ namespace RGendarme.Rules.Design.FlagsShouldNotDefineAZeroValue
             {
                 consumer.AddHighlighting(new FlagsShouldNotDefineAZeroValueHighlighting(element), zeroMember.GetDocumentRange(), element.GetContainingFile());
             }
+        }
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<DesignRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.FlagsShouldNotDefineAZeroValueEnabled;
         }
     }
 }

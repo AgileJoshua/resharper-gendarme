@@ -117,5 +117,8 @@ namespace RGendarme.Settings.Design
 
         [SettingsEntry(true, "The enum seems to be composed of flag values, but is not decorated with [Flags].")]
         public bool UseFlagsAttributeEnabled { get; set; }
+
+        [SettingsEntry(true, "Implement IComparable correctly")]
+        public bool ImplementIComparableCorrectlyEnabled { get; set; }
     }
 }

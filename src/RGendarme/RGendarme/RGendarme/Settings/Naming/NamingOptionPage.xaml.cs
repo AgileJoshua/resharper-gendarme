@@ -4,6 +4,7 @@ using JetBrains.ReSharper.PowerToys.OptionsPage;
 using JetBrains.UI.Controls;
 using JetBrains.UI.CrossFramework;
 using JetBrains.UI.Options;
+using RGendarme.Settings.Icons;
 
 namespace RGendarme.Settings.Naming
 {

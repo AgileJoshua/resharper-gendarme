@@ -1,15 +1,19 @@
-﻿using JetBrains.Application.Settings;
+﻿using System;
+using JetBrains.Application.DataContext;
+using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Parsing;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using RGendarme.Lib;
+using RGendarme.Settings.Design;
 
 namespace RGendarme.Rules.Design.ImplementEqualsAndGetHashCodeInPair
 {
     [ElementProblemAnalyzer(new[] { typeof(IClassDeclaration) }, HighlightingTypes = new[] { typeof(ImplementEqualsAndGetHashCodeInPairHighlighting) })]
-    public class ImplementEqualsAndGetHashCodeInPairAnalyzer : ElementProblemAnalyzer<IClassDeclaration>
+    public class ImplementEqualsAndGetHashCodeInPairAnalyzer : ElementProblemAnalyzer<IClassDeclaration>, IRGendarmeRule
     {
         private readonly ISettingsStore _settings;
 
@@ -20,6 +24,9 @@ namespace RGendarme.Rules.Design.ImplementEqualsAndGetHashCodeInPair
 
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             if (element.MethodDeclarations.IsEmpty)
                 return;
 
@@ -44,6 +51,14 @@ namespace RGendarme.Rules.Design.ImplementEqualsAndGetHashCodeInPair
             {
                 consumer.AddHighlighting(new ImplementEqualsAndGetHashCodeInPairHighlighting(getHashCode), getHashCode.NameIdentifier.GetDocumentRange(), getHashCode.GetContainingFile());
             }   
+        }
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<DesignRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.ImplementEqualsAndGetHashCodeInPairEnabled;
         }
     }
 }

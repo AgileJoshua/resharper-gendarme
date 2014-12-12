@@ -1,16 +1,20 @@
 ﻿using System;
 using JetBrains.Annotations;
+using JetBrains.Application.DataContext;
 using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Parsing;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using RGendarme.Lib;
+using RGendarme.Settings.Design;
 
 namespace RGendarme.Rules.Design.OperatorEqualsShouldBeOverloaded
 {
     [ElementProblemAnalyzer(new[] { typeof(ICSharpTypeDeclaration) }, HighlightingTypes = new[] { typeof(OperatorEqualsShouldBeOverloadedHighlighting) })]
-    public class OperatorEqualsShouldBeOverloadedAnalyzer : ElementProblemAnalyzer<ICSharpTypeDeclaration>
+    public class OperatorEqualsShouldBeOverloadedAnalyzer : ElementProblemAnalyzer<ICSharpTypeDeclaration>, IRGendarmeRule
     {
         private readonly ISettingsStore _settings;
 
@@ -21,6 +25,9 @@ namespace RGendarme.Rules.Design.OperatorEqualsShouldBeOverloaded
 
         protected override void Run(ICSharpTypeDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             var cls = element as IClassDeclaration;
             if (cls != null && cls.NameIdentifier != null && !cls.OperatorDeclarations.IsEmpty)
             {
@@ -58,6 +65,14 @@ namespace RGendarme.Rules.Design.OperatorEqualsShouldBeOverloaded
                 op => op.DeclaredElement != null
                       && !string.IsNullOrEmpty(op.DeclaredElement.ShortName)
                       && op.DeclaredElement.ShortName.Equals(operatorName));
+        }
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<DesignRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.OperatorEqualsShouldBeOverloadedEnabled;
         }
     }
 }

@@ -4,6 +4,7 @@ using JetBrains.Application.Settings;
 using JetBrains.ReSharper.Daemon;
 using JetBrains.ReSharper.Psi;
 using RGendarme.Lib.Extenstions;
+using RGendarme.Settings.Design;
 
 namespace RGendarme.Rules.Design.ConsiderAddingInterface
 {
@@ -17,7 +18,9 @@ namespace RGendarme.Rules.Design.ConsiderAddingInterface
 
         public IEnumerable<IDaemonStageProcess> CreateProcess(IDaemonProcess process, IContextBoundSettingsStore settings, DaemonProcessKind processKind)
         {
-            if (!process.Solution.HasCSharpFile())
+            var s = settings.GetKey<DesignRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            if (!s.ConsiderAddingInterfaceEnabled || !process.Solution.HasCSharpFile())
                 return Enumerable.Empty<IDaemonStageProcess>();
 
             return new[] {new ConsiderAddingInterfaceDaemonProcess(process)};

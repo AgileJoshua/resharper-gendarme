@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Linq;
+using JetBrains.Application.DataContext;
 using JetBrains.Application.Settings;
+using JetBrains.DataFlow;
 using JetBrains.ReSharper.Daemon.Stages;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Psi.CSharp.Parsing;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using RGendarme.Lib;
+using RGendarme.Settings.Design;
 
 namespace RGendarme.Rules.Design.UseCorrectDisposeSignatures
 {
     [ElementProblemAnalyzer(new[] { typeof(IClassDeclaration) }, HighlightingTypes = new[] { typeof(UseCorrectDisposeSignaturesHighlighting) })]
-    public class UseCorrectDisposeSignaturesAnalyzer : ElementProblemAnalyzer<IClassDeclaration>
+    public class UseCorrectDisposeSignaturesAnalyzer : ElementProblemAnalyzer<IClassDeclaration>, IRGendarmeRule
     {
         private readonly ISettingsStore _settings;
 
@@ -22,6 +25,9 @@ namespace RGendarme.Rules.Design.UseCorrectDisposeSignatures
 
         protected override void Run(IClassDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
         {
+            if (!IsEnabled(element.ToDataContext()))
+                return;
+
             // 1. have to implement IDisposable interface
 //            if (!AnalyzerHelper.IsImplement(element, "System.IDisposable"))
             if (!AnalyzerHelper.IsImplement(element, typeof(IDisposable)))
@@ -92,6 +98,14 @@ namespace RGendarme.Rules.Design.UseCorrectDisposeSignatures
                     consumer.AddHighlighting(new UseCorrectDisposeSignaturesHighlighting(element, "Should be protected virtual."), disposeInSealed.NameIdentifier.GetDocumentRange(), disposeInSealed.GetContainingFile());
                 }
             }
+        }
+
+        public bool IsEnabled(Func<Lifetime, DataContexts, IDataContext> ctx)
+        {
+            var boundSettings = _settings.BindToContextTransient(ContextRange.Smart(ctx));
+            var setting = boundSettings.GetKey<DesignRulesSettings>(SettingsOptimization.OptimizeDefault);
+
+            return setting.UseCorrectDisposeSignaturesEnabled;
         }
     }
 }

@@ -31,8 +31,14 @@ using System.Xml.XPath;
 
 namespace Foo.Lang.Compiler
 {
-    public class CompilerContext
+//    public class CompilerContext
+//    {
+//    }
+
+    public enum MyCustomValues
     {
+        Foo,
+        Bar
     }
 
 //    public class Context

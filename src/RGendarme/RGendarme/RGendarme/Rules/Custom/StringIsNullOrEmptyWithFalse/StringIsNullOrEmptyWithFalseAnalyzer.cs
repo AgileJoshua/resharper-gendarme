@@ -29,6 +29,7 @@ namespace RGendarme.Rules.Custom.StringIsNullOrEmptyWithFalse
                     ITypeElement parent = method.GetContainingType();
                     if (parent != null)
                     {
+#warning do not use magic strings
                         isNullOrEmptyFunc = parent.GetClrName().FullName.Equals("System.String")
                                             && method.ShortName.Equals("IsNullOrEmpty");
                     }

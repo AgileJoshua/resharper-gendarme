@@ -1,0 +1,7 @@
+﻿public enum |MyCustomValues|(0)
+{
+    Foo,
+    Bar
+}
+-----------------------------------------------
+0: Naming: use singular name in enums unless are flags.
